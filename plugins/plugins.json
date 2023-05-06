@@ -70,7 +70,7 @@
 			"name": "Foxaholic",
 			"site": "https://www.foxaholic.com/",
 			"lang": "English",
-			"version": "1.2.0",
+			"version": "1.0.0",
 			"description": "Digging Pits",
 			"url": "https://raw.githubusercontent.com/nyagami/plugins/main/plugins/english/foxaholic.js",
 			"iconUrl": "https://raw.githubusercontent.com/nyagami/plugins/main/icons/src/en/foxaholic/icon.png"

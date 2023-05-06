@@ -35,7 +35,7 @@ async function popularNovels (page){
 
 async function parseNovelAndChapters (novelUrl){
   const url = novelUrl;
-  const result = await fetchApi(url);
+  const result = await fetchApi(url, {}, pluginId);
   const body = await result.text();
 
   let loadedCheerio = cheerio.load(body);
@@ -104,7 +104,7 @@ async function parseNovelAndChapters (novelUrl){
 };
 
 async function parseChapter (chapterUrl){
-  const result = await fetchApi(chapterUrl);
+  const result = await fetchApi(chapterUrl, {}, pluginId);
   const body = await result.text();
 
   const loadedCheerio = cheerio.load(body);
@@ -116,7 +116,7 @@ async function parseChapter (chapterUrl){
 
 async function searchNovels (searchTerm) {
   const url = `${baseUrl}?s=${searchTerm}&post_type=wp-manga`;
-  const result = await fetchApi(url);
+  const result = await fetchApi(url, {}, pluginId);
   const body = await result.text();
 
   const loadedCheerio = cheerio.load(body);
@@ -138,15 +138,23 @@ async function searchNovels (searchTerm) {
   return novels;
 };
 
+async function fetchImage (url){
+  const headers = {
+    Referer: baseUrl,
+  }
+  return await fetchFile(url, {headers: headers});
+};
+
 module.exports = {
   id: pluginId,
   name: 'Foxaholic',
-  version: '1.2.0',
+  version: '1.0.0',
   icon: 'src/en/foxaholic/icon.png',
   site: baseUrl,
   lang: languages.English,
   description: 'Digging Pits',
   protected: false,
+  fetchImage,
   popularNovels,
   parseNovelAndChapters,
   parseChapter,
