@@ -1,11 +1,11 @@
 require('module-alias/register');
-require('dotenv').config();
 const fs = require('fs');
 const languages = require('@libs/languages');
 const path = require('path')
 const root = path.dirname(__dirname);
-const repo = process.env.GITHUB_REPO || 'LNReader/lnreader-sources';
-const branch = process.env.GITHUB_BRANCH || 'plugins' ;
+const config = require('../config.json');
+const repo = config.githubRepository || 'LNReader/lnreader-sources';
+const branch = config.githubRepository || 'plugins' ;
 
 const githubIconsLink = `https://raw.githubusercontent.com/${repo}/${branch}/icons`;
 const githubPluginsLink = `https://raw.githubusercontent.com/${repo}/${branch}/plugins`;

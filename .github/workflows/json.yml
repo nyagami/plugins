@@ -28,11 +28,12 @@ jobs:
     - name: check
       run: |
         cat > check_json.js << EOF
-          require('dotenv').config();
-          const plugins = JSON.parse(require('fs').readFileSync('plugins/plugins.min.json'));
+          const plugins = require('./plugins/plugins.min.json');
           const gitPath = process.env.GITHUB_REPO+'/'+process.env.GITHUB_BRANCH;
-          for(let lang in plugins) for(let plugin of plugins[lang]) if(plugin.url.indexOf(gitPath) === -1)
-          throw new Error(`Unexpeted url path: ${plugin.url}\n${lang}: ${plugin.id} - ${plugin.name}`);
+          for(let lang in plugins) for(let plugin of plugins[lang]) if(plugin.url.indexOf(gitPath) === -1){
+            console.log(`Unexpeted url path: ${plugin.url}\n${lang}: ${plugin.id} - ${plugin.name}`);
+            throw new Error();
+          }
           console.log("Look good to me xD");
         EOF
         node check_json.js
