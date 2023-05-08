@@ -5,7 +5,7 @@ const path = require('path')
 const root = path.dirname(__dirname);
 const config = require('../config.json');
 const repo = config.githubRepository || 'LNReader/lnreader-sources';
-const branch = config.githubRepository || 'plugins' ;
+const branch = config.githubBranch || 'plugins' ;
 
 const githubIconsLink = `https://raw.githubusercontent.com/${repo}/${branch}/icons`;
 const githubPluginsLink = `https://raw.githubusercontent.com/${repo}/${branch}/plugins`;
