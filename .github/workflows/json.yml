@@ -27,13 +27,12 @@ jobs:
         fi
     - name: check
       run: |
+        echo "$GITHUB_REPO/$GITHUB_BRANCH"
         cat > check_json.js << EOF
           const plugins = require('./plugins/plugins.min.json');
           const gitPath = process.env.GITHUB_REPO+'/'+process.env.GITHUB_BRANCH;
-          for(let lang in plugins) for(let plugin of plugins[lang]) if(plugin.url.indexOf(gitPath) === -1){
-            console.log(`Unexpeted url path: ${plugin.url}\n${lang}: ${plugin.id} - ${plugin.name}`);
-            throw new Error();
-          }
+          for(let lang in plugins) for(let plugin of plugins[lang]) if(plugin.url.indexOf(gitPath) === -1)
+          throw new Error('Unexpeted github path');
           console.log("Look good to me xD");
         EOF
         node check_json.js
