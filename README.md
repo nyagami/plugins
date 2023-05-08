@@ -39,16 +39,15 @@ We use expressjs to make an UI web for testing.
 
 in [.env](./.env)
 ```
-GITHUB_USERNAME='nyagami'
-GITHUB_REPOSITORY='plugins'
-GITHUB_BRANCH='main'
+GITHUB_REPOSITORY='LNReader/lnreader-sources'
+GITHUB_BRANCH='plugins'
 ```
 
 in [pluginManager.ts](https://github.com/nyagami/lnreader/blob/install_sources/src/plugins/pluginManager.ts)
 ```ts
 const fetchPlugins = async () => {
   const availablePlugins: Record<Languages, Array<PluginItem>> = await fetch(
-    'https://raw.githubusercontent.com/nyagami/plugins/main/plugins/plugins.min.json',
+    'https://raw.githubusercontent.com/LNReader/lnreader-sources/plugins/plugins/plugins.min.json',
   ).then(res => res.json());
   return availablePlugins;
 };
