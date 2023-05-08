@@ -30,7 +30,7 @@ jobs:
         node scripts/json_plugins.js
     - name: check
       run: |
-        cat > check_json.js < EOF
+        cat > check_json.js << EOF
           const fs = require('fs');
           let current = JSON.stringify(JSON.parse(fs.readFileSync('plugins/current.min.json')));
           let expected = JSON.stringify(JSON.parse(fs.readFileSync('plugins/plugins.min.json')));
