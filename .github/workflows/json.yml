@@ -27,7 +27,7 @@ jobs:
         fi
     - name: check
       run: |
-        echo "$GITHUB_REPO/$GITHUB_BRANCH"
+        echo "expected github path: $GITHUB_REPO/$GITHUB_BRANCH"
         cat > check_json.js << EOF
           const plugins = require('./plugins/plugins.min.json');
           const gitPath = process.env.GITHUB_REPO+'/'+process.env.GITHUB_BRANCH;
