@@ -26,20 +26,14 @@ jobs:
             export GITHUB_BRANCH=plugins
         fi
         [ -e .env ] && rm .env
-        cp plugins/plugins.min.json plugins/current.min.json
-        node scripts/json_plugins.js
     - name: check
       run: |
         cat > check_json.js << EOF
-          const fs = require('fs');
-          let current = JSON.stringify(JSON.parse(fs.readFileSync('plugins/current.min.json')));
-          let expected = JSON.stringify(JSON.parse(fs.readFileSync('plugins/plugins.min.json')));
-          if (JSON.stringify(current) === JSON.stringify(expected)){
-              console.log("OK, Look good to me xD");
-          }else{
-              console.log("current:", current);
-              console.log("expected:", expected);
-              throw new Error("JSON files are not correct for this repo");
-          }
+          require('dotenv').config();
+          const plugins = JSON.parse(require('fs').readFileSync('plugins/plugins.min.json'));
+          const gitPath = process.env.GITHUB_REPO+'/'+process.env.GITHUB_BRANCH;
+          for(let lang in plugins) for(let plugin of plugins[lang]) if(plugin.url.indexOf(gitPath) === -1)
+          throw new Error(`Unexpeted url path: ${plugin.url}\n${lang}: ${plugin.id} - ${plugin.name}`);
+          console.log("Look good to me xD");
         EOF
         node check_json.js
