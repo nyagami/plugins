@@ -32,7 +32,7 @@ jobs:
           const plugins = require('./plugins/plugins.min.json');
           const gitPath = process.env.GITHUB_REPO+'/'+process.env.GITHUB_BRANCH;
           for(let lang in plugins) for(let plugin of plugins[lang]) if(plugin.url.indexOf(gitPath) === -1)
-          throw new Error('Unexpeted github path');
+          throw new Error('Unexpected github path');
           console.log("Look good to me xD");
         EOF
         node check_json.js
