@@ -1,0 +1,44 @@
+name: JSON checker
+
+on: [push, pull_request]
+
+jobs:
+  check:
+    env:
+      GITHUB_REPO: ${{ github.repository }}
+      GITHUB_BRANCH: ${{ github.head_ref || github.ref_name }}
+      EVENT: ${{ github.event_name }}
+    name: Check the repository
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+    - name: install dependencies
+      run: |
+        npm install
+    - name: setup
+      run: |
+        if [ $EVENT == 'pull_request' ]
+        then 
+            export GITHUB_REPO=LNReader/lnreader-sources
+            export GITHUB_BRANCH=plugins
+        fi
+        [ -e .env ] && rm .env
+        cp plugins/plugins.min.json plugins/current.min.json
+        node scripts/json_plugins.js
+    - name: check
+      run: |
+        if cmp -s plugins/current.min.json plugins/plugins.min.json
+        then
+          echo "OK, Look good to me xD"
+        else
+          echo "JSON files are not correct for this repo"
+          echo "current"
+          cat plugins/current.min.json
+          echo ""
+          echo "expected"
+          cat plugins/plugins.min.json
+          exit 1
+        fi
