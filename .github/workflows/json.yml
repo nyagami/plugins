@@ -25,7 +25,6 @@ jobs:
             export GITHUB_REPO=LNReader/lnreader-sources
             export GITHUB_BRANCH=plugins
         fi
-        [ -e '.env' ] && rm .env
     - name: check
       run: |
         cat > check_json.js << EOF
