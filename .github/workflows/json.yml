@@ -20,7 +20,7 @@ jobs:
         npm install
     - name: setup
       run: |
-        if [ $EVENT == 'pull_request' ]
+        if [ '$EVENT' == 'pull_request' ]
         then 
             export GITHUB_REPO=LNReader/lnreader-sources
             export GITHUB_BRANCH=plugins
