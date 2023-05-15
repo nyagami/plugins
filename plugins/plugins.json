@@ -85,6 +85,16 @@
 			"iconUrl": "https://raw.githubusercontent.com/nyagami/plugins/main/icons/src/en/freewebnovel/icon.png"
 		},
 		{
+			"id": "NobleMTL",
+			"name": "Noble Machine Translations",
+			"site": "https://www.noblemtl.com/",
+			"lang": "English",
+			"version": "1.0.0",
+			"description": "Korean and Chinese Machine Translated Novels",
+			"url": "https://raw.githubusercontent.com/nyagami/plugins/main/plugins/english/nobleMTL.js",
+			"iconUrl": "https://raw.githubusercontent.com/nyagami/plugins/main/icons/"
+		},
+		{
 			"id": "novelpub.com",
 			"name": "NovelPub",
 			"site": "https://www.novelpub.com/",
