@@ -71,13 +71,11 @@ async function parseNovelAndChapters(novelUrl) {
   let chapter = [];
 
   loadedCheerio('div.border-b').each(function () {
-    let name = loadedCheerio(this).text();
-    name = name.replace(/[\t\n]/g, '');
-
-    const releaseTime = null;
-
-    let url = loadedCheerio(this).find('a').attr('href');
+    const name = loadedCheerio(this).find('a > div > div > div > span').text();
+    const releaseTime = loadedCheerio(this).find('a > div > div > div > div > span').text();
+    let url = loadedCheerio(this).find('a').attr('href').slice(1);
 	  url = `${baseUrl}${url}`;
+
     chapter.push({ name, releaseTime, url });
   });
 
