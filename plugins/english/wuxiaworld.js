@@ -25,13 +25,13 @@ async function popularNovels(page) {
       url,
     });
   });
-  console.log(novels);
+
   return  novels;
 };
 
 async function parseNovelAndChapters(novelUrl) {
   const url = novelUrl;
-
+  console.log(url);
   const result = await fetchApi(url, {}, pluginId);
   console.log(result.ok);
   const body = await result.text();
@@ -144,7 +144,7 @@ async function fetchImage (url){
 module.exports = {
     id: pluginId,
     name: 'Wuxia World',
-    version: '0.2.0',
+    version: '0.3.0',
     icon: 'src/en/wuxiaworld/icon.png',
     site: baseUrl,
     lang: languages.English,
