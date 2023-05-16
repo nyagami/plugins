@@ -7,7 +7,7 @@ const FilterInputs = require('@libs/filterInputs');
 const pluginId = 'NobleMTL';
 const baseUrl = 'https://www.noblemtl.com/';
 
-async function popularNovels(page) {
+async function popularNovels(page, { filters }) {
     let link = `${baseUrl}series/?page=${page}`;
 
     if (filters?.genres?.length) {
