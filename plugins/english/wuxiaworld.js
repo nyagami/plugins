@@ -33,7 +33,6 @@ async function parseNovelAndChapters(novelUrl) {
   const url = novelUrl;
   console.log(url);
   const result = await fetchApi(url, {}, pluginId);
-  console.log(result.ok);
   const body = await result.text();
 
   const loadedCheerio = cheerio.load(body);
@@ -42,21 +41,16 @@ async function parseNovelAndChapters(novelUrl) {
     url,
     chapters: [],
   };
+  
+  novel.name = loadedCheerio('h1.line-clamp-2').text();
 
-  novel.name = loadedCheerio('h2').text();
-
-  novel.cover = loadedCheerio('img.img-thumbnail').attr('src');
-
-  novel.summary = loadedCheerio('h3')
-    .filter(function () {
-      return loadedCheerio(this).text().trim() === 'Synopsis';
-    })
-    .next()
+  novel.cover = loadedCheerio('img.absolute').attr('src');
+  
+  novel.summary = loadedCheerio('div.flex-col:nth-child(4) > div > div > span > span')
     .text()
     .trim();
 
-  novel.author = loadedCheerio('div > dt')
-    .filter(function () {
+  novel.author = loadedCheerio('div.MuiGrid-container > div > div > div').filter(function () {
       return loadedCheerio(this).text().trim() === 'Author:';
     })
     .next()
@@ -64,34 +58,32 @@ async function parseNovelAndChapters(novelUrl) {
 
   let genres = [];
 
-  loadedCheerio('.genres')
-    .find('div')
-    .each(function (res) {
-      genres.push(loadedCheerio(this).find('a').text());
+  loadedCheerio('a.MuiLink-underlineNone').each(function () {
+      genres.push(loadedCheerio(this).find('div > div').text());
     });
 
   novel.genre = genres.join(',');
-
+  
   novel.status = null;
 
-  novel.status = loadedCheerio('div.fr-view.pt-10').text().includes('Complete');
+  novel.status = loadedCheerio('div.font-set-b10').text().includes('Complete');
 
   let chapter = [];
 
-  loadedCheerio('.chapter-item').each(function () {
+  loadedCheerio('div.border-b').each(function () {
     let name = loadedCheerio(this).text();
     name = name.replace(/[\t\n]/g, '');
 
     const releaseTime = null;
 
     let url = loadedCheerio(this).find('a').attr('href');
-
+	  url = `${baseUrl}${url}`;
     chapter.push({ name, releaseTime, url });
   });
 
   novel.chapters = chapter;
-  console.log(novel);
-  return novel;
+  
+  return novel
 };
 
 async function parseChapter(chapterUrl) {
@@ -143,8 +135,8 @@ async function fetchImage (url){
 
 module.exports = {
     id: pluginId,
-    name: 'Wuxia World',
-    version: '0.3.0',
+    name: 'Wuxia World (WIP)',
+    version: '0.5.0',
     icon: 'src/en/wuxiaworld/icon.png',
     site: baseUrl,
     lang: languages.English,
