@@ -16,7 +16,7 @@ async function popularNovels(page) {
 
   data.items.map(novel => {
     let name = novel.name;
-    let cover = novel.cover;
+    let cover = novel.coverUrl;
     let url = baseUrl + 'novel/' + novel.slug + '/';
 
     novels.push({
@@ -33,6 +33,7 @@ async function parseNovelAndChapters(novelUrl) {
   const url = novelUrl;
 
   const result = await fetchApi(url, {}, pluginId);
+  console.log(result.ok);
   const body = await result.text();
 
   const loadedCheerio = cheerio.load(body);
@@ -143,12 +144,12 @@ async function fetchImage (url){
 module.exports = {
     id: pluginId,
     name: 'Wuxia World',
-    version: '0.1.0',
+    version: '0.2.0',
     icon: 'src/en/wuxiaworld/icon.png',
     site: baseUrl,
     lang: languages.English,
     description: 'Foremost English Publisher of Chinese and Korean Fantasy Web Novels and Light Novels',
-    protected: false,
+    protected: true,
     fetchImage,
     popularNovels,
     parseNovelAndChapters,
