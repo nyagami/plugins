@@ -25,7 +25,7 @@ async function popularNovels(page) {
       url,
     });
   });
-
+  console.log(novels);
   return  novels;
 };
 
@@ -89,7 +89,7 @@ async function parseNovelAndChapters(novelUrl) {
   });
 
   novel.chapters = chapter;
-
+  console.log(novel);
   return novel;
 };
 
