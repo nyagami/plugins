@@ -92,7 +92,7 @@
 			"version": "1.0.0",
 			"description": "Korean and Chinese Machine Translated Novels",
 			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/main/plugins/english/nobleMTL.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/main/icons/"
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/main/icons/src/en/noblemtl/icon.png"
 		},
 		{
 			"id": "novelpub.com",

@@ -22,6 +22,8 @@ async function popularNovels(page) {
 
     link += '&order=' + (filters?.order ? filters?.order : 'popular');
 
+    console.log(link);
+
     const result = await fetchApi(link, {}, pluginId);
     const body = await result.text();
 
@@ -391,7 +393,7 @@ module.exports = {
   id: pluginId,
   name: 'Noble Machine Translations',
   version: '1.0.0',
-  icon: '',
+  icon: 'src/en/noblemtl/icon.png',
   site: baseUrl,
   lang: languages.English,
   description: 'Korean and Chinese Machine Translated Novels',
