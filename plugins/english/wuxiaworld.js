@@ -143,7 +143,7 @@ async function fetchImage (url){
 module.exports = {
     id: pluginId,
     name: 'Wuxia World',
-    version: '1.0.0',
+    version: '0.1.0',
     icon: 'src/en/wuxiaworld/icon.png',
     site: baseUrl,
     lang: languages.English,
