@@ -59,8 +59,8 @@ async function parseNovelAndChapters(novelUrl) {
     let loadedCheerio = cheerio.load(body);
 
     const novel = {
-	url,
-	chapters: [],
+	    url,
+	    chapters: [],
     };
 
     novel.name = loadedCheerio('.entry-title').text();
