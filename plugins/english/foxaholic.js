@@ -153,7 +153,7 @@ module.exports = {
   site: baseUrl,
   lang: languages.English,
   description: 'Digging Pits',
-  protected: false,
+  protected: true,
   fetchImage,
   popularNovels,
   parseNovelAndChapters,
