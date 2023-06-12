@@ -23,8 +23,8 @@ async function popularNovels(page) {
 
     const novel = {
       name: novelName,
-      url: novelCover,
-      cover: novelUrl,
+      cover: novelCover,
+      url: novelUrl,
     };
 
     novels.push(novel);
