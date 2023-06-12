@@ -8,158 +8,159 @@ const pluginId = 'NobleMTL';
 const baseUrl = 'https://www.noblemtl.com/';
 
 async function popularNovels(page, { filters }) {
-    let link = `${baseUrl}series/?page=${page}`;
+  let link = `${baseUrl}series/?page=${page}`;
 
-    if (filters?.genres?.length) {
+  if (filters?.genres?.length) {
     link += filters.genres.map(i => `&genre[]=${i}`).join('');
-    }
+  }
 
-    if (filters?.type?.length) {
+  if (filters?.type?.length) {
     link += filters.type.map(i => `&lang[]=${i}`).join('');
-    }
+  }
 
-    link += '&status=' + (filters?.status ? filters?.status : '');
+  link += '&status=' + (filters?.status ? filters?.status : '');
 
-    link += '&order=' + (filters?.order ? filters?.order : 'popular');
+  link += '&order=' + (filters?.order ? filters?.order : 'popular');
 
-    console.log(link);
+  const body = await fetchApi(link, {}, pluginId).then(result => result.text());
 
-    const result = await fetchApi(link, {}, pluginId);
-    const body = await result.text();
+  const loadedCheerio = cheerio.load(body);
 
-    const loadedCheerio = cheerio.load(body);
+  const novels = [];
 
-    const novels = [];
+  loadedCheerio('article.bs').each(function () {
+    const novelName = loadedCheerio(this).find('.ntitle').text().trim();
+    let image = loadedCheerio(this).find('img');
+    const novelCover = image.attr('data-src') || image.attr('src');
 
-    loadedCheerio('article.bs').each(function () {
-      const novelName = loadedCheerio(this).find('.ntitle').text().trim();
-      let image = loadedCheerio(this).find('img');
-      const novelCover = image.attr('data-src') || image.attr('src');
-
-      const novelUrl = loadedCheerio(this).find('a').attr('href');
-
-      const novel = {
-        name: novelName,
-        cover: novelCover,
-        url: novelUrl,
-      };
-
-      novels.push(novel);
-    });
-
-    return novels;
-};
-
-async function parseNovelAndChapters(novelUrl) {
-    const url = novelUrl;
-
-    const result = await fetchApi(url, {}, pluginId);
-    const body = await result.text();
-    
-    let loadedCheerio = cheerio.load(body);
+    const novelUrl = loadedCheerio(this).find('a').attr('href');
 
     const novel = {
-	    url,
-	    chapters: [],
+      name: novelName,
+      cover: novelCover,
+      url: novelUrl,
     };
 
-    novel.name = loadedCheerio('.entry-title').text();
+    novels.push(novel);
+  });
 
-    novel.cover =
-      loadedCheerio('img.wp-post-image').attr('data-src') ||
-      loadedCheerio('img.wp-post-image').attr('src');
+  return novels;
+}
 
-    loadedCheerio('div.spe > span').each(function () {
-      const detailName = loadedCheerio(this).find('b').text().trim();
-      const detail = loadedCheerio(this).find('b').next().text().trim();
+async function parseNovelAndChapters(novelUrl) {
+  const url = novelUrl;
 
-      switch (detailName) {
-        case 'Author:':
-          novel.author = detail;
-          break;
-      }
-      novel.status = loadedCheerio(this)
-        .children('b') //select all the children
-        .remove() //remove all the children
-        .end() //again go back to selected element
-        .text()
-        .trim();
+  const result = await fetchApi(url, {}, pluginId);
+  const body = await result.text();
+
+  let loadedCheerio = cheerio.load(body);
+
+  const novel = {
+    url,
+    chapters: [],
+  };
+
+  novel.name = loadedCheerio('.entry-title').text();
+
+  novel.cover =
+    loadedCheerio('img.wp-post-image').attr('data-src') ||
+    loadedCheerio('img.wp-post-image').attr('src');
+
+  loadedCheerio('div.spe > span').each(function () {
+    const detailName = loadedCheerio(this).find('b').text().trim();
+    const detail = loadedCheerio(this).find('b').remove().end().text().trim();
+
+    switch (detailName) {
+      case 'المؤلف:':
+      case 'Yazar:':
+      case 'Autor:':
+      case 'Author:':
+        novel.author = detail;
+        break;
+      case 'Status:':
+      case 'Seviye:':
+        novel.status = detail;
+        break;
+    }
+  });
+
+  novel.genre = loadedCheerio('.genxed').text().trim().replace(/\s/g, ',');
+
+  loadedCheerio('div[itemprop="description"]  h3,p.a,strong').remove();
+  novel.summary = loadedCheerio('div[itemprop="description"]')
+    .find('br')
+    .replaceWith('\n')
+    .end()
+    .text();
+
+  let chapter = [];
+
+  loadedCheerio('.eplister')
+    .find('li')
+    .each(function () {
+      const chapterName =
+        loadedCheerio(this).find('.epl-num').text() +
+        ' - ' +
+        loadedCheerio(this).find('.epl-title').text();
+
+      const releaseDate = loadedCheerio(this).find('.epl-date').text().trim();
+
+      const chapterUrl = loadedCheerio(this).find('a').attr('href');
+
+      chapter.push({
+        name: chapterName,
+        releaseTime: releaseDate,
+        url: chapterUrl,
+      });
     });
 
-    novel.genre = loadedCheerio('.genxed').text().trim().replace(/\s/g, ',');
+  novel.chapters = chapter.reverse();
 
-    novel.summary = loadedCheerio('div[itemprop="description"]')
-      .find('h3 , p.a')
-      .remove()
-      .end()
-      .prop('innerHTML')
-      .replace(/(<.*?>)/g, ' ')
-      .replace(/(&.*;)/g, '\n');
-
-    let chapter = [];
-
-    loadedCheerio('.eplister')
-      .find('li')
-      .each(function () {
-        const name =
-          loadedCheerio(this).find('.epl-num').text() +
-          ' - ' +
-          loadedCheerio(this).find('.epl-title').text();
-
-        const releaseTime = loadedCheerio(this).find('.epl-date').text().trim();
-
-        const url = loadedCheerio(this).find('a').attr('href');
-
-        chapter.push({ name, releaseTime, url });
-      });
-
-    novel.chapters = chapter.reverse();
-
-    return novel;
-};
+  return novel;
+}
 
 async function parseChapter(chapterUrl) {
-    const result = await fetchApi(chapterUrl, {}, pluginId);
-    const body = await result.text();
+  const result = await fetchApi(chapterUrl, {}, pluginId);
+  const body = await result.text();
 
-    const loadedCheerio = cheerio.load(body);
+  const loadedCheerio = cheerio.load(body);
 
-    let chapterText = loadedCheerio('div.epcontent').html();
+  let chapterText = loadedCheerio('div.epcontent').html();
 
-    return chapterText;
-};
+  return chapterText;
+}
 
 async function searchNovels(searchTerm) {
-    const url = `${baseUrl}?s=${searchTerm}`;
+  const url = `${baseUrl}?s=${searchTerm}`;
 
-    const result = await fetchApi(url, {}, pluginId);
-    const body = await result.text();
+  const result = await fetchApi(url, {}, pluginId);
+  const body = await result.text();
 
-    const loadedCheerio = cheerio.load(body);
+  const loadedCheerio = cheerio.load(body);
 
-    const novels = [];
+  const novels = [];
 
-    loadedCheerio('article.bs').each(function () {
-      const novelName = loadedCheerio(this).find('.ntitle').text().trim();
-      const novelCover = loadedCheerio(this).find('img').attr('src');
-      const novelUrl = loadedCheerio(this).find('a').attr('href');
+  loadedCheerio('article.bs').each(function () {
+    const novelName = loadedCheerio(this).find('.ntitle').text().trim();
+    const novelCover = loadedCheerio(this).find('img').attr('src');
+    const novelUrl = loadedCheerio(this).find('a').attr('href');
 
-      novels.push({
-        name: novelName,
-        url: novelUrl,
-        cover: novelCover,
-      });
+    novels.push({
+      name: novelName,
+      url: novelUrl,
+      cover: novelCover,
     });
+  });
 
-    return novels;
-};
+  return novels;
+}
 
-async function fetchImage (url){
+async function fetchImage(url) {
   const headers = {
     Referer: baseUrl,
-  }
-  return await fetchFile(url, {headers: headers});
-};
+  };
+  return await fetchFile(url, { headers: headers });
+}
 
 const filters = [
   {
@@ -184,7 +185,6 @@ const filters = [
     key: 'status',
     label: 'Status',
     values: [
-
       { label: 'All', value: '' },
 
       { label: 'Ongoing', value: 'ongoing' },
@@ -192,7 +192,6 @@ const filters = [
       { label: 'Hiatus', value: 'hiatus' },
 
       { label: 'Completed', value: 'completed' },
-
     ],
     inputType: FilterInputs.Picker,
   },
@@ -278,7 +277,10 @@ const filters = [
 
       { label: 'Light Novel', value: 'light-novel' },
 
-      { label: 'List Adventure Manga Genres', value: 'list-adventure-manga-genres' },
+      {
+        label: 'List Adventure Manga Genres',
+        value: 'list-adventure-manga-genres',
+      },
 
       { label: 'Long Strip', value: 'long-strip' },
 
@@ -388,15 +390,14 @@ const filters = [
   },
 ];
 
-
 module.exports = {
   id: pluginId,
-  name: 'Noble Machine Translations',
+  name: 'NobleMTL',
   version: '1.0.0',
   icon: 'src/en/noblemtl/icon.png',
   site: baseUrl,
   lang: languages.English,
-  description: 'Korean and Chinese Machine Translated Novels',
+  description: 'Noble Machine Translated Novels',
   protected: false,
   fetchImage,
   popularNovels,
