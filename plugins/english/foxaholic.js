@@ -72,12 +72,12 @@ async function parseNovelAndChapters(novelUrl) {
           .join(', ');
         break;
       case 'Novel':
-        novel.status = detail.toLowerCase().trim();
+        novel.status = detail.trim().replace(/G/g,'g');
         break;
     }
   });
 
-  loadedCheerio('.description-summary > div.summary__content em').remove();
+  loadedCheerio('.description-summary > div.summary__content em,div').remove();
 
   novel.summary = loadedCheerio('.description-summary > div.summary__content')
     .text()
