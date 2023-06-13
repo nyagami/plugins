@@ -45,10 +45,7 @@ async function parseNovelAndChapters(novelUrl) {
     chapters: [],
   };
 
-  novel.name = loadedCheerio('.post-title > h1')
-    .text()
-    .replace(/[\t\n]/g, '')
-    .trim();
+  novel.name = loadedCheerio('.post-title > h1').text().trim();
 
   novel.cover = loadedCheerio('.summary_image > a > img').attr('data-src');
 
@@ -56,30 +53,31 @@ async function parseNovelAndChapters(novelUrl) {
     const detailName = loadedCheerio(this)
       .find('.summary-heading > h5')
       .text()
-      .replace(/[\t\n]/g, '')
       .trim();
-    const detail = loadedCheerio(this)
-      .find('.summary-content')
-      .text()
-      .replace(/[\t\n]/g, '')
-      .trim();
+    const detail = loadedCheerio(this).find('.summary-content').html();
 
     switch (detailName) {
       case 'Genre':
-        novel.genre = detail.trim().replace(/[\t\n]/g, ',');
+        novel.genre = loadedCheerio(detail)
+          .children('a')
+          .map((i, el) => loadedCheerio(el).text())
+          .toArray()
+          .join(',');
         break;
       case 'Author':
-        novel.author = detail.trim();
+        novel.author = loadedCheerio(detail)
+          .children('a')
+          .map((i, el) => loadedCheerio(el).text())
+          .toArray()
+          .join(', ');
         break;
       case 'Novel':
-        novel.status = detail.trim();
+        novel.status = detail.toLowerCase().trim();
         break;
     }
   });
 
-  loadedCheerio('.description-summary > div.summary__content')
-    .find('em')
-    .remove();
+  loadedCheerio('.description-summary > div.summary__content em').remove();
 
   novel.summary = loadedCheerio('.description-summary > div.summary__content')
     .text()
