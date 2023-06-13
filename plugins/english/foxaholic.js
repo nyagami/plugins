@@ -77,7 +77,7 @@ async function parseNovelAndChapters(novelUrl) {
     }
   });
 
-  loadedCheerio('.description-summary > div.summary__content em,div').remove();
+  loadedCheerio('.description-summary > div.summary__content > div').remove();
 
   novel.summary = loadedCheerio('.description-summary > div.summary__content')
     .text()
