@@ -95,6 +95,17 @@
 			"iconUrl": "https://raw.githubusercontent.com/nyagami/plugins/main/icons/src/en/lightnovelpub/icon.png"
 		},
 		{
+			"id": "lnmtl",
+			"name": "LNMTL",
+			"site": "https://lnmtl.com/",
+			"lang": "English",
+			"version": "1.0.0",
+			"description": "Place where Web Novels are MTLed",
+			"url": "https://raw.githubusercontent.com/nyagami/plugins/main/plugins/english/lnmtl.js",
+			"iconUrl": "https://raw.githubusercontent.com/nyagami/plugins/main/icons/src/en/lnmtl/icon.png"
+
+		},
+		{
 			"id": "NobleMTL",
 			"name": "NobleMTL",
 			"site": "https://www.noblemtl.com/",
@@ -112,6 +123,17 @@
 			"version": "1.0.0",
 			"url": "https://raw.githubusercontent.com/nyagami/plugins/main/plugins/english/novelpub.js",
 			"iconUrl": "https://raw.githubusercontent.com/nyagami/plugins/main/icons/src/en/novelpub/icon.png"
+		},
+		{
+			"id": "novelupdates",
+			"name": "Novel Updates",
+			"site": "https://www.novelupdates.com/",
+			"lang": "English",
+			"version": "1.0.0",
+			"description": "Directory of Asian Translated Novels",
+			"url": "https://raw.githubusercontent.com/nyagami/plugins/main/plugins/english/novelupdates.js",
+			"iconUrl": "https://raw.githubusercontent.com/nyagami/plugins/main/icons/src/en/novelupdates/icon.png"
+
 		},
 		{
 			"id": "PandaMTL",
