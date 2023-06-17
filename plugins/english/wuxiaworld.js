@@ -1,5 +1,4 @@
 const cheerio = require('cheerio');
-const languages = require('@libs/languages');
 const fetchApi = require('@libs/fetchApi');
 const fetchFile = require('@libs/fetchFile');
 
@@ -137,8 +136,6 @@ module.exports = {
     version: '0.5.0',
     icon: 'src/en/wuxiaworld/icon.png',
     site: baseUrl,
-    lang: languages.English,
-    description: 'Foremost English Publisher of Chinese and Korean Fantasy Web Novels and Light Novels',
     protected: true,
     fetchImage,
     popularNovels,

@@ -1,7 +1,6 @@
 const cheerio = require('cheerio');
 const fetchApi = require('@libs/fetchApi');
 const fetchFile = require('@libs/fetchFile');
-const languages = require('@libs/languages');
 
 const baseUrl = 'https://www.lightnovelpub.com/';
 const pluginId = 'lightnovelpub';
@@ -196,8 +195,6 @@ module.exports = {
   version: '1.0.0',
   icon: 'src/en/lightnovelpub/icon.png',
   site: baseUrl,
-  lang: languages.English,
-  description: 'Light Novel Pub',
   protected: true,
   fetchImage,
   popularNovels,

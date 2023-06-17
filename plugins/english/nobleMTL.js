@@ -1,5 +1,4 @@
 ﻿const cheerio = require('cheerio');
-const languages = require('@libs/languages');
 const fetchApi = require('@libs/fetchApi');
 const fetchFile = require('@libs/fetchFile');
 const FilterInputs = require('@libs/filterInputs');
@@ -396,8 +395,6 @@ module.exports = {
   version: '1.0.0',
   icon: 'src/en/noblemtl/icon.png',
   site: baseUrl,
-  lang: languages.English,
-  description: 'Noble Machine Translated Novels',
   protected: false,
   fetchImage,
   popularNovels,

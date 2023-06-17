@@ -1,5 +1,4 @@
 const cheerio = require('cheerio');
-const languages = require('@libs/languages');
 const fetchApi = require('@libs/fetchApi');
 const fetchFile = require('@libs/fetchFile');
 const FilterInputs = require('@libs/filterInputs');
@@ -458,11 +457,9 @@ const filters = [
 module.exports = {
   id: pluginId,
   name: 'Novel Updates',
-  version: '1.0.0',
+  version: '0.5.0',
   icon: 'src/en/novelupdates/icon.png',
   site: baseUrl,
-  lang: languages.English,
-  description: 'Directory of Asian Translated Novels',
   protected: false,
   fetchImage,
   popularNovels,

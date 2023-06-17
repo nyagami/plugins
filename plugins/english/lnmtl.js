@@ -1,7 +1,6 @@
 const cheerio = require('cheerio');
 const fetchApi = require('@libs/fetchApi');
 const fetchFile = require('@libs/fetchFile');
-const languages = require('@libs/languages');
 const showToast = require('@libs/showToast');
 
 const pluginId = 'lnmtl';
@@ -172,8 +171,6 @@ module.exports = {
   version: '1.0.0',
   icon: 'src/en/lnmtl/icon.png',
   site: baseUrl,
-  lang: languages.English,
-  description: 'Place where Web Novels are MTLed',
   protected: true,
   fetchImage,
   popularNovels,

@@ -1,5 +1,4 @@
 const cheerio = require('cheerio');
-const languages = require('@libs/languages');
 const fetchApi = require('@libs/fetchApi');
 const fetchFile = require('@libs/fetchFile');
 
@@ -154,9 +153,7 @@ module.exports = {
   version: '1.0.0',
   icon: 'src/en/foxaholic/icon.png',
   site: baseUrl,
-  lang: languages.English,
-  description: 'Digging Pits',
-  protected: true,
+  protected: false,
   fetchImage,
   popularNovels,
   parseNovelAndChapters,
