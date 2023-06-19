@@ -7,8 +7,8 @@
 			"site": "https://allnovelfull.com",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/english/allnovelfull.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/en/allnovelfull/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/allnovelfull.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/en/allnovelfull/icon.png"
 		},
 		{
 			"id": "BLN.com",
@@ -16,8 +16,8 @@
 			"site": "https://bestlightnovel.com/",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/english/bestlightnovel.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/en/bestlightnovel/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/bestlightnovel.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/en/bestlightnovel/icon.png"
 		},
 		{
 			"id": "comrademao",
@@ -25,8 +25,8 @@
 			"site": "https://comrademao.com/",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/english/comrademao.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/en/comrademao/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/comrademao.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/en/comrademao/icon.png"
 		},
 		{
 			"id": "DDL.com",
@@ -34,8 +34,8 @@
 			"site": "https://www.divinedaolibrary.com/",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/english/divinedaolibrary.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/en/divinedaolibrary/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/divinedaolibrary.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/en/divinedaolibrary/icon.png"
 		},
 		{
 			"id": "earlynovel",
@@ -43,8 +43,8 @@
 			"site": "https://earlynovel.net/",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/english/earlynovel.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/multisrc/madara/icons/latestnovel.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/earlynovel.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/multisrc/madara/icons/latestnovel.png"
 		},
 		{
 			"id": "fastnovel",
@@ -52,8 +52,8 @@
 			"site": "https://fastnovel.org/",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/english/fastnovel.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/en/fastnovel/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/fastnovel.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/en/fastnovel/icon.png"
 		},
 		{
 			"id": "foxaholic",
@@ -61,17 +61,17 @@
 			"site": "https://www.foxaholic.com/",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/english/foxaholic.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/en/foxaholic/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/foxaholic.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/en/foxaholic/icon.png"
 		},
 		{
 			"id": "freenovelupdates",
-			"name": "Free Novel Updates",
+			"name": "Free Novel Updates (Broken)",
 			"site": "https://www.freenovelupdates.com",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/english/freenovelupdates.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/en/freenovelupdates/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/freenovelupdates.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/en/freenovelupdates/icon.png"
 		},
 		{
 			"id": "FWN.com",
@@ -79,8 +79,8 @@
 			"site": "https://freewebnovel.com/",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/english/freewebnovel.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/en/freewebnovel/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/freewebnovel.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/en/freewebnovel/icon.png"
 		},
 		{
 			"id": "lightnovelpub",
@@ -88,8 +88,8 @@
 			"site": "https://www.lightnovelpub.com/",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/english/lightnovelpub.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/en/lightnovelpub/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/lightnovelpub.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/en/lightnovelpub/icon.png"
 		},
 		{
 			"id": "LightNovelUpdates",
@@ -97,8 +97,8 @@
 			"site": "https://www.lightnovelupdates.com/",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/english/lightnovelupdates.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/en/lightnovelupdates/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/lightnovelupdates.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/en/lightnovelupdates/icon.png"
 		},
 		{
 			"id": "lnmtl",
@@ -106,8 +106,8 @@
 			"site": "https://lnmtl.com/",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/english/lnmtl.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/en/lnmtl/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/lnmtl.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/en/lnmtl/icon.png"
 		},
 		{
 			"id": "LNR.org",
@@ -115,8 +115,26 @@
 			"site": "https://lightnovelreader.org",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/english/LightNovelReader.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/en/lightnovelreader/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/LightNovelReader.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/en/lightnovelreader/icon.png"
+		},
+		{
+			"id": "mtlnovel",
+			"name": "MTL Novel",
+			"site": "https://www.mtlnovel.com/",
+			"lang": "English",
+			"version": "1.0.0",
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/mtlnovel.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/en/mtlnovel/icon.png"
+		},
+		{
+			"id": "mtlreader",
+			"name": "MTL Reader",
+			"site": "https://mtlreader.com/",
+			"lang": "English",
+			"version": "1.0.0",
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/mtlreader.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/en/mtlreader/icon.png"
 		},
 		{
 			"id": "NF.me",
@@ -124,8 +142,8 @@
 			"site": "https://novelfull.me/",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/english/NovelFullMe.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/en/novelfullme/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/NovelFullMe.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/en/novelfullme/icon.png"
 		},
 		{
 			"id": "NO.net",
@@ -133,8 +151,8 @@
 			"site": "https://novelsonline.net",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/english/NovelOnline.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/coverNotAvailable.jpg"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/NovelOnline.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/coverNotAvailable.jpg"
 		},
 		{
 			"id": "NobleMTL",
@@ -142,8 +160,8 @@
 			"site": "https://www.noblemtl.com/",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/english/nobleMTL.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/en/noblemtl/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/nobleMTL.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/en/noblemtl/icon.png"
 		},
 		{
 			"id": "novelpub.com",
@@ -151,8 +169,8 @@
 			"site": "https://www.novelpub.com/",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/english/novelpub.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/en/novelpub/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/novelpub.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/en/novelpub/icon.png"
 		},
 		{
 			"id": "novelupdates",
@@ -160,8 +178,8 @@
 			"site": "https://www.novelupdates.com/",
 			"lang": "English",
 			"version": "0.5.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/english/novelupdates.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/en/novelupdates/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/novelupdates.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/en/novelupdates/icon.png"
 		},
 		{
 			"id": "PandaMTL",
@@ -169,8 +187,8 @@
 			"site": "https://www.pandamtl.com/",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/english/pandaMTL.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/en/wordpress/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/pandaMTL.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/en/wordpress/icon.png"
 		},
 		{
 			"id": "wuxiaworld",
@@ -178,8 +196,8 @@
 			"site": "https://www.wuxiaworld.com/",
 			"lang": "English",
 			"version": "0.5.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/english/wuxiaworld.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/en/wuxiaworld/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/english/wuxiaworld.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/en/wuxiaworld/icon.png"
 		}
 	],
 	"français, française": [
@@ -189,8 +207,8 @@
 			"site": "https://chireads.com/",
 			"lang": "français, française",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/french/chireads.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/fr/chireads/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/french/chireads.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/fr/chireads/icon.png"
 		},
 		{
 			"id": "NDG.com",
@@ -198,8 +216,8 @@
 			"site": "https://noveldeglace.com/",
 			"lang": "français, française",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/french/noveldeglace.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/fr/noveldeglace/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/french/noveldeglace.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/fr/noveldeglace/icon.png"
 		}
 	],
 	"Bahasa Indonesia": [
@@ -209,8 +227,8 @@
 			"site": "https://indowebnovel.id/id/",
 			"lang": "Bahasa Indonesia",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/indonesian/indowebnovel.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/id/indowebnovel/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/indonesian/indowebnovel.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/id/indowebnovel/icon.png"
 		},
 		{
 			"id": "novelringan.com",
@@ -218,8 +236,8 @@
 			"site": "https://novelringan.com/",
 			"lang": "Bahasa Indonesia",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/indonesian/novelringan.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/id/novelringan/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/indonesian/novelringan.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/id/novelringan/icon.png"
 		},
 		{
 			"id": "sakura.id",
@@ -227,8 +245,8 @@
 			"site": "https://sakuranovel.id/",
 			"lang": "Bahasa Indonesia",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/indonesian/sakuranovel.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/id/sakuranovel/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/indonesian/sakuranovel.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/id/sakuranovel/icon.png"
 		}
 	],
 	"日本語": [
@@ -238,8 +256,8 @@
 			"site": "https://yomou.syosetu.com/",
 			"lang": "日本語",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/japanese/Syosetu.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/jp/syosetu/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/japanese/Syosetu.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/jp/syosetu/icon.png"
 		}
 	],
 	"한국어, 조선말": [
@@ -249,8 +267,8 @@
 			"site": "https://agit501.xyz/",
 			"lang": "한국어, 조선말",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/korean/Agitoon.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/kr/agitoon/agit.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/korean/Agitoon.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/kr/agitoon/agit.png"
 		}
 	],
 	"Português": [],
@@ -261,8 +279,8 @@
 			"site": "https://author.today",
 			"lang": "русский язык",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/russian/authortoday.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/ru/authortoday/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/russian/authortoday.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/ru/authortoday/icon.png"
 		},
 		{
 			"id": "bookriver",
@@ -270,8 +288,8 @@
 			"site": "https://bookriver.ru",
 			"lang": "русский язык",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/russian/bookriver.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/ru/bookriver/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/russian/bookriver.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/ru/bookriver/icon.png"
 		},
 		{
 			"id": "EROLATE",
@@ -279,8 +297,8 @@
 			"site": "https://erolate.com",
 			"lang": "русский язык",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/russian/erolate.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/ru/erolate/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/russian/erolate.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/ru/erolate/icon.png"
 		},
 		{
 			"id": "jaomix.ru",
@@ -288,8 +306,8 @@
 			"site": "https://jaomix.ru",
 			"lang": "русский язык",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/russian/jaomix.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/ru/jaomix/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/russian/jaomix.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/ru/jaomix/icon.png"
 		},
 		{
 			"id": "ReN",
@@ -297,8 +315,8 @@
 			"site": "https://renovels.org",
 			"lang": "русский язык",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/russian/renovels.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/ru/renovels/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/russian/renovels.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/ru/renovels/icon.png"
 		},
 		{
 			"id": "RLIB",
@@ -306,8 +324,8 @@
 			"site": "https://ranobelib.me",
 			"lang": "русский язык",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/russian/ranobelib.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/ru/ranobelib/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/russian/ranobelib.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/ru/ranobelib/icon.png"
 		},
 		{
 			"id": "RNBH.org",
@@ -315,8 +333,8 @@
 			"site": "https://ranobehub.org/",
 			"lang": "русский язык",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/russian/ranobehub.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/ru/ranobehub/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/russian/ranobehub.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/ru/ranobehub/icon.png"
 		},
 		{
 			"id": "RNRF",
@@ -324,8 +342,8 @@
 			"site": "https://ранобэ.рф",
 			"lang": "русский язык",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/russian/ranoberf.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/ru/ranoberf/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/russian/ranoberf.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/ru/ranoberf/icon.png"
 		},
 		{
 			"id": "RULATE",
@@ -333,8 +351,8 @@
 			"site": "https://tl.rulate.ru",
 			"lang": "русский язык",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/russian/rulate.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/ru/rulate/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/russian/rulate.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/ru/rulate/icon.png"
 		},
 		{
 			"id": "TL",
@@ -342,8 +360,8 @@
 			"site": "https://novel.tl",
 			"lang": "русский язык",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/russian/novelTL.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/ru/noveltl/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/russian/novelTL.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/ru/noveltl/icon.png"
 		}
 	],
 	"español, castellano": [
@@ -353,8 +371,8 @@
 			"site": "http://www.reinowuxia.com/",
 			"lang": "español, castellano",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/spanish/novelawuxia.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/es/novelawuxia/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/spanish/novelawuxia.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/es/novelawuxia/icon.png"
 		},
 		{
 			"id": "HasuTL",
@@ -362,8 +380,8 @@
 			"site": "https://hasutl.wordpress.com/",
 			"lang": "español, castellano",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/spanish/hasutl.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/es/hasutl/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/spanish/hasutl.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/es/hasutl/icon.png"
 		},
 		{
 			"id": "ligera.com",
@@ -371,8 +389,8 @@
 			"site": "https://novelasligera.com/",
 			"lang": "español, castellano",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/spanish/novelasligera.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/es/novelasligera/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/spanish/novelasligera.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/es/novelasligera/icon.png"
 		},
 		{
 			"id": "oasisTL.wp",
@@ -380,8 +398,8 @@
 			"site": "https://oasistranslations.wordpress.com/",
 			"lang": "español, castellano",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/spanish/oasistranslations.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/es/oasistranslations/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/spanish/oasistranslations.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/es/oasistranslations/icon.png"
 		},
 		{
 			"id": "skynovels.net",
@@ -389,8 +407,8 @@
 			"site": "https://www.skynovels.net/",
 			"lang": "español, castellano",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/spanish/skynovels.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/es/skynovels/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/spanish/skynovels.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/es/skynovels/icon.png"
 		},
 		{
 			"id": "TNL.com",
@@ -398,8 +416,8 @@
 			"site": "https://tunovelaligera.com/",
 			"lang": "español, castellano",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/spanish/tunovelaligera.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/es/tunovelaligera/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/spanish/tunovelaligera.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/es/tunovelaligera/icon.png"
 		},
 		{
 			"id": "yuukitls.com",
@@ -407,8 +425,8 @@
 			"site": "https://yuukitls.com/",
 			"lang": "español, castellano",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/spanish/yukitls.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/es/yuukitls/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/spanish/yukitls.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/es/yuukitls/icon.png"
 		}
 	],
 	"Türkçe": [
@@ -418,8 +436,8 @@
 			"site": "https://www.epiknovel.com/",
 			"lang": "Türkçe",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/turkish/epiknovel.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/tr/epiknovel/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/turkish/epiknovel.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/tr/epiknovel/icon.png"
 		}
 	],
 	"Tiếng Việt": [
@@ -429,8 +447,8 @@
 			"site": "https://ln.hako.vn",
 			"lang": "Tiếng Việt",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/plugins/vietnamese/LNHako.js",
-			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/fastnovel/icons/src/vi/hakolightnovel/icon.png"
+			"url": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/plugins/vietnamese/LNHako.js",
+			"iconUrl": "https://raw.githubusercontent.com/K1ngfish3r/plugins/mtlreader/icons/src/vi/hakolightnovel/icon.png"
 		}
 	]
 }
