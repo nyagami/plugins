@@ -123,7 +123,7 @@ async function fetchImage(url) {
 
 module.exports = {
   id: pluginId,
-  name: 'Free Novel Updates',
+  name: 'Free Novel Updates (Broken)',
   version: '1.0.0',
   icon: 'src/en/freenovelupdates/icon.png',
   site: baseUrl,
