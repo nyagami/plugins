@@ -8,6 +8,13 @@ import { Chapter, Novel, Plugin } from "@typings/plugin";
 
 const pluginId = "yomou.syosetu";
 
+export const id = pluginId;
+export const name = "Syosetu";
+export const icon = "src/jp/syosetu/icon.png";
+export const version = "1.0.0";
+export const site = "https//yomou.syosetu.com/";
+exports.protected = false;
+
 const searchUrl = (pagenum?: number, order?: string) => {
     return `https://yomou.syosetu.com/search.php?order=${order || "hyoka"}${
         pagenum !== undefined
@@ -195,10 +202,3 @@ export const searchNovels: Plugin.searchNovels = async function searchNovels(
 export const fetchImage: Plugin.fetchImage = async function fetchImage(url) {
     return await fetchFile(url);
 };
-
-export const id = pluginId;
-export const name = "Syosetu";
-export const icon = "src/jp/syosetu/icon.png";
-export const version = "1.0.0";
-export const site = "https//yomou.syosetu.com/";
-exports.protected = false;
