@@ -28,7 +28,12 @@ jobs:
             "githubBranch": "plugins"
         }
         EOF
-      
+    - name: Run TSC
+      id: rtsc
+      run: |
+        npx tsc ./scripts/json_plugins.ts --outDir ./ 
+
+
     - name: Update json files
       id: json
       run: |

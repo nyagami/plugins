@@ -1,0 +1,71 @@
+import "module-alias/register";
+import * as fs from "fs";
+import { languages } from "./../libs/languages";
+import * as path from "path";
+const root = path.dirname(__dirname);
+const config = fs.existsSync(path.join(root, "config.json"))
+    ? // @ts-ignore
+      require("../config.json")
+    : {};
+const username = config.githubUsername;
+const repo = config.githubRepository;
+const branch = config.githubBranch;
+
+if (!username || !repo || !branch) {
+    process.exit();
+}
+if (!fs.existsSync(path.join(root, "dist", username))) {
+    fs.mkdirSync(path.join(root, "dist", username));
+}
+const githubIconsLink = `https://raw.githubusercontent.com/${username}/${repo}/${branch}/icons`;
+const githubPluginsLink = `https://raw.githubusercontent.com/${username}/${repo}/${branch}/plugins`;
+
+const json: {
+    [key: string]: {
+        id: string;
+        name: string;
+        site: string;
+        lang: string;
+        version: string;
+        url: string;
+        iconUrl: string;
+    }[];
+} = {};
+const jsonPath = path.join(root, "dist", username, "plugins.json");
+const jsonMinPath = path.join(root, "dist", username, "plugins.min.json");
+
+for (let language in languages) {
+    // language with English name
+    const languageNative = languages[language as keyof typeof languages];
+    const langPath = path.join(root, "plugins", language.toLowerCase());
+    if (!fs.existsSync(langPath)) continue;
+    const plugins = fs.readdirSync(langPath);
+    json[languageNative] = [];
+    plugins.forEach((plugin) => {
+        if (plugin.startsWith(".")) return;
+        const instance = require(`@plugins/${language.toLowerCase()}/${
+            plugin.split(".")[0]
+        }`);
+
+        const { id, name, site, version, icon } = instance;
+        const info = {
+            id,
+            name,
+            site,
+            lang: languageNative,
+            version,
+            url: `${githubPluginsLink}/${language.toLowerCase()}/${plugin}`,
+            iconUrl: `${githubIconsLink}/${icon}`,
+        } as const;
+
+        json[languageNative].push(info);
+
+        console.log("Collected", name);
+    });
+}
+
+for (let lang in json) json[lang].sort((a, b) => a.id.localeCompare(b.id));
+
+fs.writeFileSync(jsonMinPath, JSON.stringify(json));
+fs.writeFileSync(jsonPath, JSON.stringify(json, null, "\t"));
+console.log("Done ✅");
