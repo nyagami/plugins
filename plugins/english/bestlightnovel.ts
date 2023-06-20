@@ -9,7 +9,6 @@ export const name = "BestLightNovel";
 export const site = "https://bestlightnovel.com/";
 export const version = "1.0.0";
 export const icon = "src/en/bestlightnovel/icon.png";
-exports.protected = false;
 
 export const popularNovels: Plugin.popularNovels = async function (page) {
     const url =
@@ -169,3 +168,5 @@ export const searchNovels: Plugin.searchNovels = async function (searchTerm) {
 };
 
 export const fetchImage: Plugin.fetchImage = (...args) => fetchFile(...args);
+
+exports.protected = false;

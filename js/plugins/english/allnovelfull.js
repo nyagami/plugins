@@ -18,7 +18,6 @@ exports.name = "AllNovelFull";
 exports.site = "https://allnovelfull.com";
 exports.version = "1.0.0";
 exports.icon = "src/en/allnovelfull/icon.png";
-exports.protected = false;
 const popularNovels = function (page) {
     return __awaiter(this, void 0, void 0, function* () {
         const url = `${exports.site}/most-popular?page=${page}`;
@@ -168,3 +167,4 @@ const fetchImage = function (url, init) {
     });
 };
 exports.fetchImage = fetchImage;
+exports.protected = false;

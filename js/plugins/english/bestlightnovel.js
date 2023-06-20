@@ -23,7 +23,6 @@ exports.name = "BestLightNovel";
 exports.site = "https://bestlightnovel.com/";
 exports.version = "1.0.0";
 exports.icon = "src/en/bestlightnovel/icon.png";
-exports.protected = false;
 const popularNovels = function (page) {
     return __awaiter(this, void 0, void 0, function* () {
         const url = exports.site + "novel_list?type=topview&category=all&state=all&page=1" + page;
@@ -152,3 +151,4 @@ const searchNovels = function (searchTerm) {
 exports.searchNovels = searchNovels;
 const fetchImage = (...args) => (0, fetchFile_1.fetchFile)(...args);
 exports.fetchImage = fetchImage;
+exports.protected = false;

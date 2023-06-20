@@ -8,7 +8,6 @@ export const name = "AllNovelFull";
 export const site = "https://allnovelfull.com";
 export const version = "1.0.0";
 export const icon = "src/en/allnovelfull/icon.png";
-exports.protected = false;
 
 export const popularNovels: Plugin.popularNovels = async function (page) {
     const url = `${site}/most-popular?page=${page}`;
@@ -189,3 +188,5 @@ export const searchNovels: Plugin.searchNovels = async function (searchTerm) {
 export const fetchImage: Plugin.fetchImage = async function (url, init) {
     return await fetchFile(url, init);
 };
+
+exports.protected = false;

@@ -5,13 +5,10 @@ import dayjs from "dayjs";
 import { Chapter, Novel, Plugin } from "@typings/plugin";
 
 export const id = "comrademao";
-
 export const name = "Comrade Mao";
-
 export const site = "https://comrademao.com/";
 export const version = "1.0.0";
 export const icon = "src/en/comrademao/icon.png";
-exports.protected = false;
 
 export const popularNovels: Plugin.popularNovels = async function (page) {
     let url = site + "page/" + page + "/?post_type=novel";
@@ -164,3 +161,5 @@ export const searchNovels: Plugin.searchNovels = async function (searchTerm) {
     return novels;
 };
 export const fetchImage: Plugin.fetchImage = (...args) => fetchFile(...args);
+
+exports.protected = false;

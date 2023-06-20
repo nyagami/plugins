@@ -22,7 +22,6 @@ exports.name = "Comrade Mao";
 exports.site = "https://comrademao.com/";
 exports.version = "1.0.0";
 exports.icon = "src/en/comrademao/icon.png";
-exports.protected = false;
 const popularNovels = function (page) {
     return __awaiter(this, void 0, void 0, function* () {
         let url = exports.site + "page/" + page + "/?post_type=novel";
@@ -146,3 +145,4 @@ const searchNovels = function (searchTerm) {
 exports.searchNovels = searchNovels;
 const fetchImage = (...args) => (0, fetchFile_1.fetchFile)(...args);
 exports.fetchImage = fetchImage;
+exports.protected = false;
