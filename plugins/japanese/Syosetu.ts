@@ -2,6 +2,7 @@ import { load as loadCheerio } from "cheerio";
 import { fetchApi } from "@libs/fetchApi";
 import { fetchFile } from "@libs/fetchFile";
 import { Chapter, Novel, Plugin } from "@typings/plugin";
+import defaultCover from "@libs/defaultCover";
 // const novelStatus = require('@libs/novelStatus');
 // const isUrlAbsolute = require('@libs/isAbsoluteUrl');
 // const parseDate = require('@libs/parseDate');
@@ -23,16 +24,10 @@ const searchUrl = (pagenum?: number, order?: string) => {
     }`;
 };
 
-export const popularNovels: Plugin.popularNovels = async function popularNovels(
-    pageNo
-) {
+export const popularNovels: Plugin.popularNovels = async function (pageNo) {
     async function getNovelsFromPage(pagenumber: number) {
         // load page
-        const result = await fetchApi(
-            searchUrl(pagenumber),
-            undefined,
-            pluginId
-        );
+        const result = await fetchApi(searchUrl(pagenumber));
         const body = await result.text();
         // Cheerio it!
         const cheerioQuery = loadCheerio(body, { decodeEntities: false });
@@ -47,6 +42,7 @@ export const popularNovels: Plugin.popularNovels = async function popularNovels(
             pageNovels.push({
                 name: novelDIV.text(), // get the name
                 url: novelA.attribs.href, // get last part of the link
+                cover: defaultCover,
             });
         });
         // return all novels from this page
@@ -57,9 +53,9 @@ export const popularNovels: Plugin.popularNovels = async function popularNovels(
 };
 
 export const parseNovelAndChapters: Plugin.parseNovelAndChapters =
-    async function parseNovelAndChapters(novelUrl) {
+    async function (novelUrl) {
         let chapters: Chapter.Item[] = [];
-        const result = await fetchApi(novelUrl, undefined, pluginId);
+        const result = await fetchApi(novelUrl);
         const body = await result.text();
         const loadedCheerio = loadCheerio(body, { decodeEntities: false });
 
@@ -70,6 +66,7 @@ export const parseNovelAndChapters: Plugin.parseNovelAndChapters =
             author: loadedCheerio(".novel_writername")
                 .text()
                 .replace("作者：", ""),
+            cover: defaultCover,
         };
 
         // Get all the chapters
@@ -125,16 +122,14 @@ export const parseNovelAndChapters: Plugin.parseNovelAndChapters =
                 releaseTime: loadedCheerio("head")
                     .find("meta[name='WWWC']")
                     .attr("content"), // get date from metadata
-                url: novelUrl, // set chapterUrl to oneshot so that chapterScraper knows it's a one-shot
+                url: novelUrl, // set chapterUrl to oneshot so that chapterScraper knows it's a one-shot,
             });
         }
         novel.chapters = chapters;
         return novel;
     };
 
-export const parseChapter: Plugin.parseChapter = async function parseChapter(
-    chapterUrl
-) {
+export const parseChapter: Plugin.parseChapter = async function (chapterUrl) {
     const result = await fetchApi(chapterUrl);
     const body = await result.text();
 
@@ -148,9 +143,7 @@ export const parseChapter: Plugin.parseChapter = async function parseChapter(
     return chapterText;
 };
 
-export const searchNovels: Plugin.searchNovels = async function searchNovels(
-    searchTerm
-) {
+export const searchNovels: Plugin.searchNovels = async function (searchTerm) {
     let novels = [];
 
     // returns list of novels from given page
@@ -174,6 +167,7 @@ export const searchNovels: Plugin.searchNovels = async function searchNovels(
             pageNovels.push({
                 name: novelDIV.text(), // get the name
                 url: novelA.attribs.href, // get last part of the link
+                cover: defaultCover,
             });
         });
         // return all novels from this page
@@ -199,6 +193,6 @@ export const searchNovels: Plugin.searchNovels = async function searchNovels(
     return novels;
 };
 
-export const fetchImage: Plugin.fetchImage = async function fetchImage(url) {
+export const fetchImage: Plugin.fetchImage = async function (url) {
     return await fetchFile(url);
 };

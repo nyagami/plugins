@@ -1,6 +1,34 @@
 {
 	"English": [
 		{
+			"id": "ANF.com",
+			"name": "AllNovelFull",
+			"site": "https://allnovelfull.com",
+			"lang": "English",
+			"version": "1.0.0",
+			"url": "https://raw.githubusercontent.com/SkillGG/repo/branch/js/plugins/english/allnovelfull.js",
+			"iconUrl": "https://raw.githubusercontent.com/SkillGG/repo/branch/icons/src/en/allnovelfull/icon.png"
+		},
+		{
+			"id": "BLN.com",
+			"name": "BestLightNovel",
+			"site": "https://bestlightnovel.com/",
+			"lang": "English",
+			"version": "1.0.0",
+			"url": "https://raw.githubusercontent.com/SkillGG/repo/branch/js/plugins/english/bestlightnovel.js",
+			"iconUrl": "https://raw.githubusercontent.com/SkillGG/repo/branch/icons/src/en/bestlightnovel/icon.png"
+		},
+		{
+			"id": "comrademao",
+			"name": "Comrade Mao",
+			"site": "https://comrademao.com/",
+			"lang": "English",
+			"version": "1.0.0",
+			"url": "https://raw.githubusercontent.com/SkillGG/repo/branch/js/plugins/english/comrademao.js",
+			"iconUrl": "https://raw.githubusercontent.com/SkillGG/repo/branch/icons/src/en/comrademao/icon.png"
+		},
+		{
+			"id": "NobleMTL",
 			"name": "NobleMTL",
 			"site": "https://www.noblemtl.com/",
 			"lang": "English",

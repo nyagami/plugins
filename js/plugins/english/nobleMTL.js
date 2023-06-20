@@ -8,26 +8,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.filters = exports.fetchImage = exports.searchNovels = exports.parseChapter = exports.parseNovelAndChapters = exports.popularNovels = exports.site = exports.icon = exports.version = exports.name = exports.pluginId = void 0;
-const cheerio_1 = __importDefault(require("cheerio"));
+exports.filters = exports.fetchImage = exports.searchNovels = exports.parseChapter = exports.parseNovelAndChapters = exports.popularNovels = exports.site = exports.icon = exports.version = exports.name = exports.id = void 0;
+const cheerio_1 = require("cheerio");
 const fetchApi_1 = require("../../libs/fetchApi");
 const fetchFile_1 = require("../../libs/fetchFile");
 const plugin_1 = require("../../types/plugin");
-exports.pluginId = "NobleMTL";
-const baseUrl = "https://www.noblemtl.com/";
+exports.id = "NobleMTL";
 exports.name = "NobleMTL";
 exports.version = "1.0.0";
 exports.icon = "src/en/noblemtl/icon.png";
-exports.site = baseUrl;
+exports.site = "https://www.noblemtl.com/";
 exports.protected = false;
-const popularNovels = function popularNovels(page, { filters }) {
+const popularNovels = function (page, { filters }) {
     var _a, _b;
     return __awaiter(this, void 0, void 0, function* () {
-        let link = `${baseUrl}series/?page=${page}`;
+        let link = `${exports.site}series/?page=${page}`;
         if ((_a = filters === null || filters === void 0 ? void 0 : filters.genres) === null || _a === void 0 ? void 0 : _a.length) {
             if (Array.isArray(filters.genres))
                 link += filters.genres.map((i) => `&genre[]=${i}`).join("");
@@ -38,8 +34,8 @@ const popularNovels = function popularNovels(page, { filters }) {
         }
         link += "&status=" + ((filters === null || filters === void 0 ? void 0 : filters.status) ? filters === null || filters === void 0 ? void 0 : filters.status : "");
         link += "&order=" + ((filters === null || filters === void 0 ? void 0 : filters.order) ? filters === null || filters === void 0 ? void 0 : filters.order : "popular");
-        const body = yield (0, fetchApi_1.fetchApi)(link, {}, exports.pluginId).then((result) => result.text());
-        const loadedCheerio = cheerio_1.default.load(body);
+        const body = yield (0, fetchApi_1.fetchApi)(link).then((result) => result.text());
+        const loadedCheerio = (0, cheerio_1.load)(body);
         const novels = [];
         loadedCheerio("article.bs").each(function () {
             const novelName = loadedCheerio(this).find(".ntitle").text().trim();
@@ -62,9 +58,9 @@ exports.popularNovels = popularNovels;
 const parseNovelAndChapters = function parseNovelAndChapters(novelUrl) {
     return __awaiter(this, void 0, void 0, function* () {
         const url = novelUrl;
-        const result = yield (0, fetchApi_1.fetchApi)(url, {}, exports.pluginId);
+        const result = yield (0, fetchApi_1.fetchApi)(url);
         const body = yield result.text();
-        let loadedCheerio = cheerio_1.default.load(body);
+        let loadedCheerio = (0, cheerio_1.load)(body);
         const novel = {
             url,
             chapters: [],
@@ -94,7 +90,7 @@ const parseNovelAndChapters = function parseNovelAndChapters(novelUrl) {
                     break;
             }
         });
-        novel.genre = loadedCheerio(".genxed")
+        novel.genres = loadedCheerio(".genxed")
             .text()
             .trim()
             .replace(/\s/g, ",");
@@ -129,22 +125,22 @@ const parseNovelAndChapters = function parseNovelAndChapters(novelUrl) {
     });
 };
 exports.parseNovelAndChapters = parseNovelAndChapters;
-const parseChapter = function parseChapter(chapterUrl) {
+const parseChapter = function (chapterUrl) {
     return __awaiter(this, void 0, void 0, function* () {
-        const result = yield (0, fetchApi_1.fetchApi)(chapterUrl, {}, exports.pluginId);
+        const result = yield (0, fetchApi_1.fetchApi)(chapterUrl);
         const body = yield result.text();
-        const loadedCheerio = cheerio_1.default.load(body);
+        const loadedCheerio = (0, cheerio_1.load)(body);
         let chapterText = loadedCheerio("div.epcontent").html();
         return chapterText;
     });
 };
 exports.parseChapter = parseChapter;
-const searchNovels = function searchNovels(searchTerm) {
+const searchNovels = function (searchTerm) {
     return __awaiter(this, void 0, void 0, function* () {
-        const url = `${baseUrl}?s=${searchTerm}`;
-        const result = yield (0, fetchApi_1.fetchApi)(url, {}, exports.pluginId);
+        const url = `${exports.site}?s=${searchTerm}`;
+        const result = yield (0, fetchApi_1.fetchApi)(url);
         const body = yield result.text();
-        const loadedCheerio = cheerio_1.default.load(body);
+        const loadedCheerio = (0, cheerio_1.load)(body);
         const novels = [];
         loadedCheerio("article.bs").each(function () {
             const novelName = loadedCheerio(this).find(".ntitle").text().trim();
@@ -162,10 +158,10 @@ const searchNovels = function searchNovels(searchTerm) {
     });
 };
 exports.searchNovels = searchNovels;
-const fetchImage = function fetchImage(url) {
+const fetchImage = function (url) {
     return __awaiter(this, void 0, void 0, function* () {
         const headers = {
-            Referer: baseUrl,
+            Referer: exports.site,
         };
         return yield (0, fetchFile_1.fetchFile)(url, { headers: headers });
     });

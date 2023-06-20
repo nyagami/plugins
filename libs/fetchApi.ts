@@ -8,12 +8,11 @@ const defaultUserAgentString =
 
 export const fetchApi = async function (
     url: string,
-    init?: NodeFetchParams[1],
-    pluginId?: string
+    init?: NodeFetchParams[1]
 ) {
     const headers = {
-        ...init?.headers,
         "User-Agent": defaultUserAgentString,
+        ...init?.headers,
     };
     return await fetch(url, { ...init, headers });
 };

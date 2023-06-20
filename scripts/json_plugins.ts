@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import { languages } from "@libs/languages";
 import * as path from "path";
+import { Plugin, isPlugin } from "@typings/plugin";
 const root = path.dirname(__dirname);
 const outRoot = path.join(root, "..");
 const config = fs.existsSync(path.join(outRoot, "config.json"))
@@ -42,9 +43,13 @@ for (let language in languages) {
     json[languageNative] = [];
     plugins.forEach((plugin) => {
         if (plugin.startsWith(".")) return;
-        const instance = require(`../plugins/${language.toLowerCase()}/${
+        const instance:
+            | Plugin.instance
+            | unknown = require(`../plugins/${language.toLowerCase()}/${
             plugin.split(".")[0]
         }`);
+
+        if (!isPlugin(instance)) return;
 
         const { id, name, site, version, icon } = instance;
         const info = {

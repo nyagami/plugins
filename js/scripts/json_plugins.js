@@ -26,6 +26,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs"));
 const languages_1 = require("../libs/languages");
 const path = __importStar(require("path"));
+const plugin_1 = require("../types/plugin");
 const root = path.dirname(__dirname);
 const outRoot = path.join(root, "..");
 const config = fs.existsSync(path.join(outRoot, "config.json"))
@@ -58,6 +59,8 @@ for (let language in languages_1.languages) {
         if (plugin.startsWith("."))
             return;
         const instance = require(`../plugins/${language.toLowerCase()}/${plugin.split(".")[0]}`);
+        if (!(0, plugin_1.isPlugin)(instance))
+            return;
         const { id, name, site, version, icon } = instance;
         const info = {
             id,

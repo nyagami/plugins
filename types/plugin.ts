@@ -35,7 +35,7 @@ export namespace Novel {
         url: string;
         name?: string;
         cover?: string;
-        genre?: string;
+        genres?: string;
         summary?: string;
         author?: string;
         status?: string;
@@ -74,6 +74,12 @@ export namespace Plugin {
         requirePath: string;
     }
     export interface instance {
+        id: string;
+        name: string;
+        version: string;
+        icon: string;
+        site: string;
+        protected: boolean;
         popularNovels: popularNovels;
         parseNovelAndChapters: parseNovelAndChapters;
         parseChapter: parseChapter;
@@ -81,7 +87,6 @@ export namespace Plugin {
         fetchImage: fetchImage;
         filters?: Filter.instance[];
     }
-
     export type popularNovels = (
         page: number,
         options: Plugin.Options
@@ -99,16 +104,42 @@ export namespace Plugin {
 
 export const isPlugin = (p: any): p is Plugin.instance => {
     const pl = p as Plugin.instance;
-    const isThisAPlugin =
-        pl.popularNovels &&
-        typeof pl.popularNovels === "function" &&
-        pl.searchNovels &&
-        typeof pl.searchNovels === "function" &&
-        pl.parseNovelAndChapters &&
-        typeof pl.parseNovelAndChapters === "function" &&
-        pl.parseChapter &&
-        typeof pl.parseChapter === "function" &&
-        pl.fetchImage &&
-        typeof pl.fetchImage === "function";
-    return isThisAPlugin;
+
+    const errorOut = (key: string) => {
+        console.error(
+            "=".repeat(6) +
+                `Plugin doesn't have ${key}!` +
+                "=".repeat(6) +
+                "\n" +
+                JSON.stringify(pl) +
+                "=".repeat(6)
+        );
+        return false;
+    };
+
+    const required_funcs: (keyof Plugin.instance)[] = [
+        "popularNovels",
+        "parseNovelAndChapters",
+        "parseChapter",
+        "searchNovels",
+        "fetchImage",
+    ];
+    for (let i = 0; i < required_funcs.length; i++) {
+        const key = required_funcs[i];
+        if (!pl[key] || typeof pl[key] !== "function") return errorOut(key);
+    }
+    const requireds_fields: (keyof Plugin.instance)[] = [
+        "id",
+        "name",
+        "version",
+        "icon",
+        "site",
+        "protected",
+    ];
+    for (let i = 0; i < requireds_fields.length; i++) {
+        const key = requireds_fields[i];
+        if (pl[key] === undefined) return errorOut(key);
+    }
+
+    return true;
 };

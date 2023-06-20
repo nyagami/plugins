@@ -8,14 +8,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fetchImage = exports.searchNovels = exports.parseChapter = exports.parseNovelAndChapters = exports.popularNovels = exports.site = exports.version = exports.icon = exports.name = exports.id = void 0;
 const cheerio_1 = require("cheerio");
 const fetchApi_1 = require("../../libs/fetchApi");
 const fetchFile_1 = require("../../libs/fetchFile");
+const defaultCover_1 = __importDefault(require("../../libs/defaultCover"));
 // const novelStatus = require('@libs/novelStatus');
 // const isUrlAbsolute = require('../../libs/isAbsoluteUrl');
-// const parseDate = require('@libs/parseDate');
+// const parseDate = require('../../libs/parseDate');
 const pluginId = "yomou.syosetu";
 exports.id = pluginId;
 exports.name = "Syosetu";
@@ -29,12 +33,12 @@ const searchUrl = (pagenum, order) => {
         : "" // if isn't don't set ?p
     }`;
 };
-const popularNovels = function popularNovels(pageNo) {
+const popularNovels = function (pageNo) {
     return __awaiter(this, void 0, void 0, function* () {
         function getNovelsFromPage(pagenumber) {
             return __awaiter(this, void 0, void 0, function* () {
                 // load page
-                const result = yield (0, fetchApi_1.fetchApi)(searchUrl(pagenumber), undefined, pluginId);
+                const result = yield (0, fetchApi_1.fetchApi)(searchUrl(pagenumber));
                 const body = yield result.text();
                 // Cheerio it!
                 const cheerioQuery = (0, cheerio_1.load)(body, { decodeEntities: false });
@@ -48,7 +52,8 @@ const popularNovels = function popularNovels(pageNo) {
                     // add new novel to array
                     pageNovels.push({
                         name: novelDIV.text(),
-                        url: novelA.attribs.href, // get last part of the link
+                        url: novelA.attribs.href,
+                        cover: defaultCover_1.default,
                     });
                 });
                 // return all novels from this page
@@ -60,10 +65,10 @@ const popularNovels = function popularNovels(pageNo) {
     });
 };
 exports.popularNovels = popularNovels;
-const parseNovelAndChapters = function parseNovelAndChapters(novelUrl) {
+const parseNovelAndChapters = function (novelUrl) {
     return __awaiter(this, void 0, void 0, function* () {
         let chapters = [];
-        const result = yield (0, fetchApi_1.fetchApi)(novelUrl, undefined, pluginId);
+        const result = yield (0, fetchApi_1.fetchApi)(novelUrl);
         const body = yield result.text();
         const loadedCheerio = (0, cheerio_1.load)(body, { decodeEntities: false });
         // create novel object
@@ -73,6 +78,7 @@ const parseNovelAndChapters = function parseNovelAndChapters(novelUrl) {
             author: loadedCheerio(".novel_writername")
                 .text()
                 .replace("作者：", ""),
+            cover: defaultCover_1.default,
         };
         // Get all the chapters
         const cqGetChapters = loadedCheerio(".novel_sublist2");
@@ -124,7 +130,7 @@ const parseNovelAndChapters = function parseNovelAndChapters(novelUrl) {
                 releaseTime: loadedCheerio("head")
                     .find("meta[name='WWWC']")
                     .attr("content"),
-                url: novelUrl, // set chapterUrl to oneshot so that chapterScraper knows it's a one-shot
+                url: novelUrl, // set chapterUrl to oneshot so that chapterScraper knows it's a one-shot,
             });
         }
         novel.chapters = chapters;
@@ -132,7 +138,7 @@ const parseNovelAndChapters = function parseNovelAndChapters(novelUrl) {
     });
 };
 exports.parseNovelAndChapters = parseNovelAndChapters;
-const parseChapter = function parseChapter(chapterUrl) {
+const parseChapter = function (chapterUrl) {
     return __awaiter(this, void 0, void 0, function* () {
         const result = yield (0, fetchApi_1.fetchApi)(chapterUrl);
         const body = yield result.text();
@@ -146,7 +152,7 @@ const parseChapter = function parseChapter(chapterUrl) {
     });
 };
 exports.parseChapter = parseChapter;
-const searchNovels = function searchNovels(searchTerm) {
+const searchNovels = function (searchTerm) {
     return __awaiter(this, void 0, void 0, function* () {
         let novels = [];
         // returns list of novels from given page
@@ -167,7 +173,8 @@ const searchNovels = function searchNovels(searchTerm) {
                     // add new novel to array
                     pageNovels.push({
                         name: novelDIV.text(),
-                        url: novelA.attribs.href, // get last part of the link
+                        url: novelA.attribs.href,
+                        cover: defaultCover_1.default,
                     });
                 });
                 // return all novels from this page
@@ -191,7 +198,7 @@ const searchNovels = function searchNovels(searchTerm) {
     });
 };
 exports.searchNovels = searchNovels;
-const fetchImage = function fetchImage(url) {
+const fetchImage = function (url) {
     return __awaiter(this, void 0, void 0, function* () {
         return yield (0, fetchFile_1.fetchFile)(url);
     });

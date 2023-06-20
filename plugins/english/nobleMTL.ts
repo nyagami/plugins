@@ -1,22 +1,20 @@
-﻿import cheerio from "cheerio";
+﻿import { load as cheerioload } from "cheerio";
 import { fetchApi } from "@libs/fetchApi";
 import { fetchFile } from "@libs/fetchFile";
 import { Novel, Plugin, Filter, Chapter } from "@typings/plugin";
 
-export const pluginId = "NobleMTL";
-const baseUrl = "https://www.noblemtl.com/";
-
+export const id = "NobleMTL";
 export const name = "NobleMTL";
 export const version = "1.0.0";
 export const icon = "src/en/noblemtl/icon.png";
-export const site = baseUrl;
+export const site = "https://www.noblemtl.com/";
 exports.protected = false;
 
-export const popularNovels: Plugin.popularNovels = async function popularNovels(
+export const popularNovels: Plugin.popularNovels = async function (
     page,
     { filters }
 ) {
-    let link = `${baseUrl}series/?page=${page}`;
+    let link = `${site}series/?page=${page}`;
 
     if (filters?.genres?.length) {
         if (Array.isArray(filters.genres))
@@ -32,11 +30,9 @@ export const popularNovels: Plugin.popularNovels = async function popularNovels(
 
     link += "&order=" + (filters?.order ? filters?.order : "popular");
 
-    const body = await fetchApi(link, {}, pluginId).then((result) =>
-        result.text()
-    );
+    const body = await fetchApi(link).then((result) => result.text());
 
-    const loadedCheerio = cheerio.load(body);
+    const loadedCheerio = cheerioload(body);
 
     const novels: Novel.Item[] = [];
 
@@ -65,10 +61,10 @@ export const parseNovelAndChapters: Plugin.parseNovelAndChapters =
     async function parseNovelAndChapters(novelUrl) {
         const url = novelUrl;
 
-        const result = await fetchApi(url, {}, pluginId);
+        const result = await fetchApi(url);
         const body = await result.text();
 
-        let loadedCheerio = cheerio.load(body);
+        let loadedCheerio = cheerioload(body);
 
         const novel: Novel.instance = {
             url,
@@ -104,7 +100,7 @@ export const parseNovelAndChapters: Plugin.parseNovelAndChapters =
             }
         });
 
-        novel.genre = loadedCheerio(".genxed")
+        novel.genres = loadedCheerio(".genxed")
             .text()
             .trim()
             .replace(/\s/g, ",");
@@ -147,28 +143,24 @@ export const parseNovelAndChapters: Plugin.parseNovelAndChapters =
         return novel;
     };
 
-export const parseChapter: Plugin.parseChapter = async function parseChapter(
-    chapterUrl
-) {
-    const result = await fetchApi(chapterUrl, {}, pluginId);
+export const parseChapter: Plugin.parseChapter = async function (chapterUrl) {
+    const result = await fetchApi(chapterUrl);
     const body = await result.text();
 
-    const loadedCheerio = cheerio.load(body);
+    const loadedCheerio = cheerioload(body);
 
     let chapterText = loadedCheerio("div.epcontent").html();
 
     return chapterText;
 };
 
-export const searchNovels: Plugin.searchNovels = async function searchNovels(
-    searchTerm
-) {
-    const url = `${baseUrl}?s=${searchTerm}`;
+export const searchNovels: Plugin.searchNovels = async function (searchTerm) {
+    const url = `${site}?s=${searchTerm}`;
 
-    const result = await fetchApi(url, {}, pluginId);
+    const result = await fetchApi(url);
     const body = await result.text();
 
-    const loadedCheerio = cheerio.load(body);
+    const loadedCheerio = cheerioload(body);
 
     const novels: Novel.Item[] = [];
 
@@ -188,9 +180,9 @@ export const searchNovels: Plugin.searchNovels = async function searchNovels(
     return novels;
 };
 
-export const fetchImage: Plugin.fetchImage = async function fetchImage(url) {
+export const fetchImage: Plugin.fetchImage = async function (url) {
     const headers = {
-        Referer: baseUrl,
+        Referer: site,
     };
     return await fetchFile(url, { headers: headers });
 };
