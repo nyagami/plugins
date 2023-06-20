@@ -45,8 +45,8 @@ export const popularNovels: Plugin.popularNovels = async function popularNovels(
         // return all novels from this page
         return pageNovels;
     }
-
-    return await getNovelsFromPage(pageNo);
+    const novels = await getNovelsFromPage(pageNo);
+    return novels;
 };
 
 export const parseNovelAndChapters: Plugin.parseNovelAndChapters =

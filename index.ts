@@ -11,13 +11,13 @@ const app = express();
 const port = 3000;
 const host = "localhost";
 
+const dirname = path.join(__dirname, "..");
+
 app.use(bodyParser.json());
-app.use(
-    "/static",
-    express.static(path.join(__dirname, "..", "test_web", "static"))
-);
+app.use("/static", express.static(path.join(dirname, "test_web", "static")));
 app.get("/all_plugins", (req, res) => {
-    res.json(pluginApi.all_plugins());
+    const allPlugins = pluginApi.all_plugins();
+    res.json(allPlugins);
 });
 app.post("/popularNovels/", async (req, res) => {
     const filters = req.body["filters"] || {};
@@ -58,7 +58,7 @@ app.post("/fetchImage/", async (req, res) => {
 });
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "test_web", "index.html"));
+    res.sendFile(path.join(dirname, "test_web", "index.html"));
 });
 
 app.listen(port, host, () => {

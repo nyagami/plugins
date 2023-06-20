@@ -5,7 +5,7 @@
 			"site": "https://www.noblemtl.com/",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/SkillGG/repo/branch/plugins/english/nobleMTL.js",
+			"url": "https://raw.githubusercontent.com/SkillGG/repo/branch/jsOut/plugins/english/nobleMTL.js",
 			"iconUrl": "https://raw.githubusercontent.com/SkillGG/repo/branch/icons/src/en/noblemtl/icon.png"
 		}
 	],
@@ -16,7 +16,7 @@
 			"site": "https//yomou.syosetu.com/",
 			"lang": "日本語",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/SkillGG/repo/branch/plugins/japanese/Syosetu.js",
+			"url": "https://raw.githubusercontent.com/SkillGG/repo/branch/jsOut/plugins/japanese/Syosetu.js",
 			"iconUrl": "https://raw.githubusercontent.com/SkillGG/repo/branch/icons/src/jp/syosetu/icon.png"
 		}
 	]

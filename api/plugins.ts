@@ -21,7 +21,7 @@ export const all_plugins = (): PluginList => {
         res[languageNative] = [];
         plugins.forEach((plugin) => {
             if (plugin.startsWith(".")) return;
-            const requirePath = `@plugins/${languageNative.toLowerCase()}/${
+            const requirePath = `../plugins/${languageEnglish.toLowerCase()}/${
                 plugin.split(".")[0]
             }`;
             const instance = require(requirePath);
@@ -50,7 +50,12 @@ const getPlugin = async (
 export const popularNovels = async (
     pluginRequirePath: string,
     options: Plugin.Options
-) => (await getPlugin(pluginRequirePath))?.popularNovels(1, options);
+) => {
+    const plugin = await getPlugin(pluginRequirePath);
+    if (!plugin) return null;
+    const popularNovels = await plugin.popularNovels(1, options);
+    return popularNovels;
+};
 
 export const searchNovels = async (
     pluginRequirePath: string,

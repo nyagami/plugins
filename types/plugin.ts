@@ -86,7 +86,7 @@ export namespace Plugin {
         page: number,
         options: Plugin.Options
     ) => Promise<PopularNovelsResponse>;
-    export type PopularNovelsResponse = Novel.Item  [];
+    export type PopularNovelsResponse = Novel.Item[];
     export type parseNovelAndChapters = (
         novelUrl: string
     ) => Promise<Novel.instance>;
@@ -97,8 +97,9 @@ export namespace Plugin {
     ) => Promise<string | undefined>;
 }
 
-export const isPlugin = (pl: any): pl is Plugin.instance => {
-    return (
+export const isPlugin = (p: any): p is Plugin.instance => {
+    const pl = p as Plugin.instance;
+    const isThisAPlugin =
         pl.popularNovels &&
         typeof pl.popularNovels === "function" &&
         pl.searchNovels &&
@@ -108,6 +109,6 @@ export const isPlugin = (pl: any): pl is Plugin.instance => {
         pl.parseChapter &&
         typeof pl.parseChapter === "function" &&
         pl.fetchImage &&
-        typeof pl.fetchImagetypeof === "function"
-    );
+        typeof pl.fetchImage === "function";
+    return isThisAPlugin;
 };
