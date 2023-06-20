@@ -1,14 +1,19 @@
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+import { NodeFetchParams, getNodeFetch } from "./nodeFetch";
+
+const fetch = async (...args: NodeFetchParams) =>
+    (await getNodeFetch())(...args);
 
 const defaultUserAgentString =
-    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36';
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36";
 
-async function fetchApi (url, init, pluginId){
+export const fetchApi = async function (
+    url: string,
+    init?: NodeFetchParams[1],
+    pluginId?: string
+) {
     const headers = {
         ...init?.headers,
-        'User-Agent': defaultUserAgentString,
+        "User-Agent": defaultUserAgentString,
     };
     return await fetch(url, { ...init, headers });
-}
-
-module.exports = fetchApi
+};

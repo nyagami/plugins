@@ -1,21 +1,20 @@
-import "module-alias/register";
 import * as fs from "fs";
-import { languages } from "./../libs/languages";
+import { languages } from "@libs/languages";
 import * as path from "path";
 const root = path.dirname(__dirname);
-const config = fs.existsSync(path.join(root, "config.json"))
+const outRoot = path.join(root, "..");
+const config = fs.existsSync(path.join(outRoot, "config.json"))
     ? // @ts-ignore
-      require("../config.json")
+      require("../../config.json")
     : {};
 const username = config.githubUsername;
 const repo = config.githubRepository;
 const branch = config.githubBranch;
-
 if (!username || !repo || !branch) {
     process.exit();
 }
-if (!fs.existsSync(path.join(root, "dist", username))) {
-    fs.mkdirSync(path.join(root, "dist", username));
+if (!fs.existsSync(path.join(outRoot, "dist", username))) {
+    fs.mkdirSync(path.join(outRoot, "dist", username));
 }
 const githubIconsLink = `https://raw.githubusercontent.com/${username}/${repo}/${branch}/icons`;
 const githubPluginsLink = `https://raw.githubusercontent.com/${username}/${repo}/${branch}/plugins`;
@@ -31,8 +30,8 @@ const json: {
         iconUrl: string;
     }[];
 } = {};
-const jsonPath = path.join(root, "dist", username, "plugins.json");
-const jsonMinPath = path.join(root, "dist", username, "plugins.min.json");
+const jsonPath = path.join(outRoot, "dist", username, "plugins.json");
+const jsonMinPath = path.join(outRoot, "dist", username, "plugins.min.json");
 
 for (let language in languages) {
     // language with English name
@@ -43,7 +42,7 @@ for (let language in languages) {
     json[languageNative] = [];
     plugins.forEach((plugin) => {
         if (plugin.startsWith(".")) return;
-        const instance = require(`@plugins/${language.toLowerCase()}/${
+        const instance = require(`../plugins/${language.toLowerCase()}/${
             plugin.split(".")[0]
         }`);
 
@@ -65,6 +64,8 @@ for (let language in languages) {
 }
 
 for (let lang in json) json[lang].sort((a, b) => a.id.localeCompare(b.id));
+
+console.log(jsonPath);
 
 fs.writeFileSync(jsonMinPath, JSON.stringify(json));
 fs.writeFileSync(jsonPath, JSON.stringify(json, null, "\t"));
