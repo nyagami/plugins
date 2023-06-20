@@ -12,7 +12,10 @@ const port = 3000;
 const host = "localhost";
 
 app.use(bodyParser.json());
-app.use("/static", express.static(path.join(__dirname, "test_web", "static")));
+app.use(
+    "/static",
+    express.static(path.join(__dirname, "..", "test_web", "static"))
+);
 app.get("/all_plugins", (req, res) => {
     res.json(pluginApi.all_plugins());
 });
