@@ -6,8 +6,8 @@
 			"site": "https://allnovelfull.com",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/SkillGG/repo/branch/js/plugins/english/allnovelfull.js",
-			"iconUrl": "https://raw.githubusercontent.com/SkillGG/repo/branch/icons/src/en/allnovelfull/icon.png"
+			"url": "https://raw.githubusercontent.com/SkillGG/lnreader-plugins/tssupport/js/plugins/english/allnovelfull.js",
+			"iconUrl": "https://raw.githubusercontent.com/SkillGG/lnreader-plugins/tssupport/icons/src/en/allnovelfull/icon.png"
 		},
 		{
 			"id": "BLN.com",
@@ -15,8 +15,8 @@
 			"site": "https://bestlightnovel.com/",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/SkillGG/repo/branch/js/plugins/english/bestlightnovel.js",
-			"iconUrl": "https://raw.githubusercontent.com/SkillGG/repo/branch/icons/src/en/bestlightnovel/icon.png"
+			"url": "https://raw.githubusercontent.com/SkillGG/lnreader-plugins/tssupport/js/plugins/english/bestlightnovel.js",
+			"iconUrl": "https://raw.githubusercontent.com/SkillGG/lnreader-plugins/tssupport/icons/src/en/bestlightnovel/icon.png"
 		},
 		{
 			"id": "comrademao",
@@ -24,8 +24,8 @@
 			"site": "https://comrademao.com/",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/SkillGG/repo/branch/js/plugins/english/comrademao.js",
-			"iconUrl": "https://raw.githubusercontent.com/SkillGG/repo/branch/icons/src/en/comrademao/icon.png"
+			"url": "https://raw.githubusercontent.com/SkillGG/lnreader-plugins/tssupport/js/plugins/english/comrademao.js",
+			"iconUrl": "https://raw.githubusercontent.com/SkillGG/lnreader-plugins/tssupport/icons/src/en/comrademao/icon.png"
 		},
 		{
 			"id": "NobleMTL",
@@ -33,8 +33,8 @@
 			"site": "https://www.noblemtl.com/",
 			"lang": "English",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/SkillGG/repo/branch/js/plugins/english/nobleMTL.js",
-			"iconUrl": "https://raw.githubusercontent.com/SkillGG/repo/branch/icons/src/en/noblemtl/icon.png"
+			"url": "https://raw.githubusercontent.com/SkillGG/lnreader-plugins/tssupport/js/plugins/english/nobleMTL.js",
+			"iconUrl": "https://raw.githubusercontent.com/SkillGG/lnreader-plugins/tssupport/icons/src/en/noblemtl/icon.png"
 		}
 	],
 	"日本語": [
@@ -44,8 +44,8 @@
 			"site": "https//yomou.syosetu.com/",
 			"lang": "日本語",
 			"version": "1.0.0",
-			"url": "https://raw.githubusercontent.com/SkillGG/repo/branch/js/plugins/japanese/Syosetu.js",
-			"iconUrl": "https://raw.githubusercontent.com/SkillGG/repo/branch/icons/src/jp/syosetu/icon.png"
+			"url": "https://raw.githubusercontent.com/SkillGG/lnreader-plugins/tssupport/js/plugins/japanese/Syosetu.js",
+			"iconUrl": "https://raw.githubusercontent.com/SkillGG/lnreader-plugins/tssupport/icons/src/jp/syosetu/icon.png"
 		}
 	]
 }
