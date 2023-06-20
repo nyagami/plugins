@@ -31,8 +31,7 @@ jobs:
     - name: Run TSC
       id: rtsc
       run: |
-        npx tsc ./scripts/json_plugins.ts --outDir ./ 
-
+        tsc ./scripts/json_plugins.ts --outDir ./scripts/js
 
     - name: Update json files
       id: json
