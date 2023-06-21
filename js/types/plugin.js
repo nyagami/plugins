@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+module.exports = exports = {"__esModule":true}
 exports.isPlugin = exports.Filter = exports.Novel = void 0;
 var Novel;
 (function (Novel) {

@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+module.exports = exports = {"__esModule":true}
 exports.languages = void 0;
 exports.languages = {
     Arabic: "العربية",

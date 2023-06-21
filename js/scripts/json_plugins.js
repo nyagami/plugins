@@ -22,7 +22,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+module.exports = exports = {"__esModule":true}
 const fs = __importStar(require("fs"));
 const languages_1 = require("../libs/languages");
 const path = __importStar(require("path"));

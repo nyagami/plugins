@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+module.exports = exports = {"__esModule":true}
 exports.isUrlAbsolute = void 0;
 const isUrlAbsolute = (url) => {
     if (url) {

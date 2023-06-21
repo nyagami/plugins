@@ -6,7 +6,7 @@
     "scripts": {
         "start": "tsc && tsc-alias && node ./js/index.js",
         "test": "exit 0",
-        "json": "tsc && tsc-alias && node ./js/scripts/json_plugins.js && git add dist && git add js"
+        "json": "tsc && tsc-alias && node ./js/scripts/json_plugins.js && node ./js/scripts/fix_tsc.js && git add dist && git add js"
     },
     "author": "",
     "license": "MIT",
