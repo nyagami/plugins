@@ -2,7 +2,7 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-const = exports = module.exports = {"__esModule":true}
+const exports = module.exports = {"__esModule":true}
 exports.parseMadaraDate = void 0;
 const dayjs_1 = __importDefault(require("dayjs"));
 const parseMadaraDate = (date) => {

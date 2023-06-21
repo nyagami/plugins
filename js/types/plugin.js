@@ -1,5 +1,5 @@
 "use strict";
-const = exports = module.exports = {"__esModule":true}
+const exports = module.exports = {"__esModule":true}
 exports.isPlugin = exports.Filter = exports.Novel = void 0;
 var Novel;
 (function (Novel) {

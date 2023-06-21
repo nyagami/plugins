@@ -1,2 +1,2 @@
 "use strict";
-const = exports = module.exports = {"__esModule":true}
+const exports = module.exports = {"__esModule":true}
