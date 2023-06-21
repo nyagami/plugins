@@ -22,7 +22,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-exports = module.exports = {"__esModule":true}
+const exports = module.exports = {"__esModule":true}
 const fs = __importStar(require("fs"));
 const languages_1 = require("../libs/languages");
 const path = __importStar(require("path"));

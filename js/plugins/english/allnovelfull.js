@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-exports = module.exports = {"__esModule":true}
+const exports = module.exports = {"__esModule":true}
 exports.fetchImage = exports.searchNovels = exports.parseChapter = exports.parseNovelAndChapters = exports.popularNovels = exports.icon = exports.version = exports.site = exports.name = exports.id = void 0;
 const cheerio_1 = require("cheerio");
 const fetchApi_1 = require("../../libs/fetchApi");
