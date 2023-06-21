@@ -23,10 +23,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 const exports = module.exports = {"__esModule":true}
+require("module-alias/register");
 const fs = __importStar(require("fs"));
-const languages_1 = require("../libs/languages");
+const languages_1 = require("@libs/languages");
 const path = __importStar(require("path"));
-const plugin_1 = require("../types/plugin");
+const plugin_1 = require("@typings/plugin");
 const root = path.dirname(__dirname);
 const outRoot = path.join(root, "..");
 const config = fs.existsSync(path.join(outRoot, "config.json"))

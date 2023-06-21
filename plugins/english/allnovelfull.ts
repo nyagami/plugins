@@ -1,7 +1,7 @@
 import { load as cheerioload } from "cheerio";
-import { fetchApi } from "@libs/fetchApi";
+import fetchApi from "@libs/fetchApi";
 import { Chapter, Novel, Plugin } from "@typings/plugin";
-import { fetchFile } from "@libs/fetchFile";
+import fetchFile from "@libs/fetchFile";
 
 export const id = "ANF.com";
 export const name = "AllNovelFull";
@@ -14,7 +14,8 @@ export const popularNovels: Plugin.popularNovels = async function (page) {
 
     const result = await fetchApi(url, {});
     if (!result.ok) {
-        console.error(await result.text());
+        console.error("Cloudflare error");
+        // console.error(await result.text());
         // TODO: Cloudflare protection or other error
         return [];
     }
@@ -48,7 +49,8 @@ export const parseNovelAndChapters: Plugin.parseNovelAndChapters =
 
         const result = await fetchApi(url);
         if (!result.ok) {
-            console.error(await result.text());
+            console.error("Cloudflare error");
+            // console.error(await result.text());
             // TODO: Cloudflare protection or other error
             return { url, chapters: [] };
         }
@@ -95,6 +97,12 @@ export const parseNovelAndChapters: Plugin.parseNovelAndChapters =
             const chapterListUrl = site + "/ajax/chapter-option?novelId=" + id;
 
             const data = await fetchApi(chapterListUrl);
+            if (!data.ok) {
+                console.error("Cloudflare error");
+                // console.error(await result.text());
+                // TODO: Cloudflare protection or other error
+                return [];
+            }
             const chapters = await data.text();
 
             loadedCheerio = cheerioload(chapters);
@@ -132,7 +140,8 @@ export const parseChapter: Plugin.parseChapter = async function (chapterUrl) {
 
     const result = await fetchApi(url);
     if (!result.ok) {
-        console.error(await result.text());
+        console.error("Cloudflare error");
+        // console.error(await result.text());
         // TODO: Cloudflare protection or other error
         return "Cloudflare protected site!";
     }

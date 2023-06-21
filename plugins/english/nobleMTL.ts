@@ -1,7 +1,8 @@
 ﻿import { load as cheerioload } from "cheerio";
-import { fetchApi } from "@libs/fetchApi";
-import { fetchFile } from "@libs/fetchFile";
-import { Novel, Plugin, Filter, Chapter } from "@typings/plugin";
+import fetchApi from "@libs/fetchApi";
+import fetchFile from "@libs/fetchFile";
+import { Novel, Plugin, Chapter } from "@typings/plugin";
+import { Filter, FilterInputs } from "@libs/filterInputs";
 
 export const id = "NobleMTL";
 export const name = "NobleMTL";
@@ -187,7 +188,7 @@ export const fetchImage: Plugin.fetchImage = async function (url) {
     return await fetchFile(url, { headers: headers });
 };
 
-export const filters: Filter.instance[] = [
+export const filters: Filter[] = [
     {
         key: "order",
         label: "Sort By",
@@ -204,7 +205,7 @@ export const filters: Filter.instance[] = [
 
             { label: "Popular", value: "popular" },
         ],
-        inputType: Filter.Inputs.Picker,
+        inputType: FilterInputs.Picker,
     },
     {
         key: "status",
@@ -218,7 +219,7 @@ export const filters: Filter.instance[] = [
 
             { label: "Completed", value: "completed" },
         ],
-        inputType: Filter.Inputs.Picker,
+        inputType: FilterInputs.Picker,
     },
     {
         key: "type",
@@ -236,7 +237,7 @@ export const filters: Filter.instance[] = [
 
             { label: "호곡", value: "%ed%98%b8%ea%b3%a1" },
         ],
-        inputType: Filter.Inputs.Checkbox,
+        inputType: FilterInputs.Checkbox,
     },
     {
         key: "genres",
@@ -411,6 +412,6 @@ export const filters: Filter.instance[] = [
 
             { label: "Yuri", value: "yuri" },
         ],
-        inputType: Filter.Inputs.Checkbox,
+        inputType: FilterInputs.Checkbox,
     },
 ];

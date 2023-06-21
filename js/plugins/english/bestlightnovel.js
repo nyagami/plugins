@@ -14,10 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 const exports = module.exports = {"__esModule":true}
 exports.fetchImage = exports.searchNovels = exports.parseChapter = exports.parseNovelAndChapters = exports.popularNovels = exports.icon = exports.version = exports.site = exports.name = exports.id = void 0;
 const cheerio_1 = require("cheerio");
-const fetchApi_1 = require("../../libs/fetchApi");
-const plugin_1 = require("../../types/plugin");
-const defaultCover_1 = __importDefault(require("../../libs/defaultCover"));
-const fetchFile_1 = require("../../libs/fetchFile");
+const fetchApi_1 = __importDefault(require("@libs/fetchApi"));
+const defaultCover_1 = __importDefault(require("@libs/defaultCover"));
+const fetchFile_1 = __importDefault(require("@libs/fetchFile"));
+const novelStatus_1 = __importDefault(require("@libs/novelStatus"));
 exports.id = "BLN.com";
 exports.name = "BestLightNovel";
 exports.site = "https://bestlightnovel.com/";
@@ -26,7 +26,7 @@ exports.icon = "src/en/bestlightnovel/icon.png";
 const popularNovels = function (page) {
     return __awaiter(this, void 0, void 0, function* () {
         const url = exports.site + "novel_list?type=topview&category=all&state=all&page=1" + page;
-        const result = yield (0, fetchApi_1.fetchApi)(url);
+        const result = yield (0, fetchApi_1.default)(url);
         if (!result.ok) {
             console.error(yield result.text());
             // TODO: Cloudflare protection or other error
@@ -59,7 +59,7 @@ const parseNovelAndChapters = function (novelUrl) {
     var _a, _b, _c;
     return __awaiter(this, void 0, void 0, function* () {
         const url = novelUrl;
-        const result = yield (0, fetchApi_1.fetchApi)(url);
+        const result = yield (0, fetchApi_1.default)(url);
         if (!result.ok) {
             console.error(yield result.text());
             // TODO: Cloudflare protection
@@ -72,7 +72,7 @@ const parseNovelAndChapters = function (novelUrl) {
             name: "",
             cover: "",
             author: "",
-            status: plugin_1.Novel.Status.Unknown,
+            status: novelStatus_1.default.Unknown,
             genres: "",
             summary: "",
             chapters: [],
@@ -87,10 +87,10 @@ const parseNovelAndChapters = function (novelUrl) {
             .text()) === null || _c === void 0 ? void 0 : _c.trim();
         novel.status =
             status === "ONGOING"
-                ? plugin_1.Novel.Status.Ongoing
+                ? novelStatus_1.default.Ongoing
                 : status === "COMPLETED"
-                    ? plugin_1.Novel.Status.Completed
-                    : plugin_1.Novel.Status.Unknown;
+                    ? novelStatus_1.default.Completed
+                    : novelStatus_1.default.Unknown;
         let novelChapters = [];
         loadedCheerio(".chapter-list div.row").each(function () {
             const chapterName = loadedCheerio(this).find("a").text().trim();
@@ -118,7 +118,7 @@ exports.parseNovelAndChapters = parseNovelAndChapters;
 const parseChapter = function (chapterUrl) {
     return __awaiter(this, void 0, void 0, function* () {
         const url = chapterUrl;
-        const result = yield (0, fetchApi_1.fetchApi)(url);
+        const result = yield (0, fetchApi_1.default)(url);
         const body = yield result.text();
         let loadedCheerio = (0, cheerio_1.load)(body);
         const chapterText = loadedCheerio("#vung_doc").html();
@@ -129,7 +129,7 @@ exports.parseChapter = parseChapter;
 const searchNovels = function (searchTerm) {
     return __awaiter(this, void 0, void 0, function* () {
         const url = `${exports.site}search_novels/${searchTerm}`;
-        const result = yield (0, fetchApi_1.fetchApi)(url);
+        const result = yield (0, fetchApi_1.default)(url);
         const body = yield result.text();
         let loadedCheerio = (0, cheerio_1.load)(body);
         let novels = [];
@@ -149,6 +149,6 @@ const searchNovels = function (searchTerm) {
     });
 };
 exports.searchNovels = searchNovels;
-const fetchImage = (...args) => (0, fetchFile_1.fetchFile)(...args);
+const fetchImage = (...args) => (0, fetchFile_1.default)(...args);
 exports.fetchImage = fetchImage;
 exports.protected = false;

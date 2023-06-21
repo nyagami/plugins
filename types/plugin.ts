@@ -1,4 +1,6 @@
+import { Filter } from "@libs/filterInputs";
 import { languages } from "@libs/languages";
+import NovelStatus from "@libs/novelStatus";
 import { NodeFetchParams } from "@libs/nodeFetch";
 
 export namespace Chapter {
@@ -17,15 +19,6 @@ export namespace Chapter {
 }
 
 export namespace Novel {
-    export enum Status {
-        Unknown = "Unknown",
-        Ongoing = "Ongoing",
-        Completed = "Completed",
-        Licensed = "Licensed",
-        PublishingFinished = "Publishing Finished",
-        Cancelled = "Cancelled",
-        OnHiatus = "On Hiatus",
-    }
     export interface Item {
         name: string;
         url: string;
@@ -40,24 +33,6 @@ export namespace Novel {
         author?: string;
         status?: string;
         chapters?: Chapter.Item[];
-    }
-}
-
-export namespace Filter {
-    export interface Value {
-        label: string;
-        value: string;
-    }
-    export enum Inputs {
-        TextInput,
-        Picker,
-        Checkbox,
-    }
-    export interface instance {
-        key: string;
-        label: string;
-        values: Filter.Value[];
-        inputType: Filter.Inputs;
     }
 }
 
@@ -79,13 +54,13 @@ export namespace Plugin {
         version: string;
         icon: string;
         site: string;
-        protected: boolean;
+        protected?: boolean;
         popularNovels: popularNovels;
         parseNovelAndChapters: parseNovelAndChapters;
         parseChapter: parseChapter;
         searchNovels: searchNovels;
         fetchImage: fetchImage;
-        filters?: Filter.instance[];
+        filters?: Filter[];
     }
     export type popularNovels = (
         page: number,
@@ -134,7 +109,6 @@ export const isPlugin = (p: any): p is Plugin.instance => {
         "version",
         "icon",
         "site",
-        "protected",
     ];
     for (let i = 0; i < requireds_fields.length; i++) {
         const key = requireds_fields[i];

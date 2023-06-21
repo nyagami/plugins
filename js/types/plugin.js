@@ -1,28 +1,6 @@
 "use strict";
 const exports = module.exports = {"__esModule":true}
-exports.isPlugin = exports.Filter = exports.Novel = void 0;
-var Novel;
-(function (Novel) {
-    let Status;
-    (function (Status) {
-        Status["Unknown"] = "Unknown";
-        Status["Ongoing"] = "Ongoing";
-        Status["Completed"] = "Completed";
-        Status["Licensed"] = "Licensed";
-        Status["PublishingFinished"] = "Publishing Finished";
-        Status["Cancelled"] = "Cancelled";
-        Status["OnHiatus"] = "On Hiatus";
-    })(Status = Novel.Status || (Novel.Status = {}));
-})(Novel || (exports.Novel = Novel = {}));
-var Filter;
-(function (Filter) {
-    let Inputs;
-    (function (Inputs) {
-        Inputs[Inputs["TextInput"] = 0] = "TextInput";
-        Inputs[Inputs["Picker"] = 1] = "Picker";
-        Inputs[Inputs["Checkbox"] = 2] = "Checkbox";
-    })(Inputs = Filter.Inputs || (Filter.Inputs = {}));
-})(Filter || (exports.Filter = Filter = {}));
+exports.isPlugin = void 0;
 const isPlugin = (p) => {
     const pl = p;
     const errorOut = (key) => {
@@ -52,7 +30,6 @@ const isPlugin = (p) => {
         "version",
         "icon",
         "site",
-        "protected",
     ];
     for (let i = 0; i < requireds_fields.length; i++) {
         const key = requireds_fields[i];

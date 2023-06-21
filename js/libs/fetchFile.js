@@ -9,9 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const exports = module.exports = {"__esModule":true}
-exports.fetchFile = void 0;
 const nodeFetch_1 = require("./nodeFetch");
-const nodeFetch = (0, nodeFetch_1.getNodeFetch)();
 const fetch = (...args) => __awaiter(void 0, void 0, void 0, function* () { return (yield (0, nodeFetch_1.getNodeFetch)())(...args); });
 const fetchFile = function (url, init) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -29,4 +27,5 @@ const fetchFile = function (url, init) {
         }
     });
 };
-exports.fetchFile = fetchFile;
+exports.default = fetchFile;
+module.exports = fetchFile;

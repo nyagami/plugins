@@ -23,8 +23,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 const exports = module.exports = {"__esModule":true}
+require("module-alias/register");
 const fs = __importStar(require("fs"));
-const languages_1 = require("../libs/languages");
+const languages_1 = require("@libs/languages");
 const path = __importStar(require("path"));
 const root = path.dirname(__dirname);
 const replaceExports = (text) => {

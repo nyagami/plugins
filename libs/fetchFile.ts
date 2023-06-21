@@ -1,12 +1,10 @@
 import { Plugin } from "@typings/plugin";
-import { NodeFetchFunction, NodeFetchParams, getNodeFetch } from "./nodeFetch";
-
-const nodeFetch = getNodeFetch();
+import { NodeFetchParams, getNodeFetch } from "./nodeFetch";
 
 const fetch = async (...args: NodeFetchParams) =>
     (await getNodeFetch())(...args);
 
-export const fetchFile: Plugin.fetchImage = async function (url, init) {
+const fetchFile: Plugin.fetchImage = async function (url, init) {
     if (!init) init = {};
     try {
         const res = await fetch(url, init);
@@ -17,3 +15,5 @@ export const fetchFile: Plugin.fetchImage = async function (url, init) {
         return undefined;
     }
 };
+export default  fetchFile;
+module.exports = fetchFile;

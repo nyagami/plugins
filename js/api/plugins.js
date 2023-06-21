@@ -15,9 +15,9 @@ var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fetchImage = exports.parseChapter = exports.parseNovelAndChapters = exports.searchNovels = exports.popularNovels = exports.all_plugins = void 0;
 const fs_1 = __importDefault(require("fs"));
-const languages_1 = require("../libs/languages");
+const languages_1 = require("@libs/languages");
 const path_1 = __importDefault(require("path"));
-const plugin_1 = require("../types/plugin");
+const plugin_1 = require("@typings/plugin");
 const root = path_1.default.dirname(((_a = require === null || require === void 0 ? void 0 : require.main) === null || _a === void 0 ? void 0 : _a.filename) || "");
 const all_plugins = () => {
     const res = {};

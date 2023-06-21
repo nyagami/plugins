@@ -1,3 +1,4 @@
+require("module-alias/register");
 import * as fs from "fs";
 import { languages } from "@libs/languages";
 import * as path from "path";

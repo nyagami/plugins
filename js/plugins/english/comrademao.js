@@ -14,8 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 const exports = module.exports = {"__esModule":true}
 exports.fetchImage = exports.searchNovels = exports.parseChapter = exports.parseNovelAndChapters = exports.popularNovels = exports.icon = exports.version = exports.site = exports.name = exports.id = void 0;
 const cheerio_1 = require("cheerio");
-const fetchApi_1 = require("../../libs/fetchApi");
-const fetchFile_1 = require("../../libs/fetchFile");
+const fetchApi_1 = __importDefault(require("@libs/fetchApi"));
+const fetchFile_1 = __importDefault(require("@libs/fetchFile"));
 const dayjs_1 = __importDefault(require("dayjs"));
 exports.id = "comrademao";
 exports.name = "Comrade Mao";
@@ -25,7 +25,7 @@ exports.icon = "src/en/comrademao/icon.png";
 const popularNovels = function (page) {
     return __awaiter(this, void 0, void 0, function* () {
         let url = exports.site + "page/" + page + "/?post_type=novel";
-        const result = yield (0, fetchApi_1.fetchApi)(url);
+        const result = yield (0, fetchApi_1.default)(url);
         const body = yield result.text();
         const loadedCheerio = (0, cheerio_1.load)(body);
         let novels = [];
@@ -54,7 +54,7 @@ exports.popularNovels = popularNovels;
 const parseNovelAndChapters = function (novelUrl) {
     return __awaiter(this, void 0, void 0, function* () {
         const url = novelUrl;
-        const result = yield (0, fetchApi_1.fetchApi)(url);
+        const result = yield (0, fetchApi_1.default)(url);
         const body = yield result.text();
         const loadedCheerio = (0, cheerio_1.load)(body);
         let novel = { url };
@@ -100,7 +100,7 @@ exports.parseNovelAndChapters = parseNovelAndChapters;
 const parseChapter = function (chapterUrl) {
     return __awaiter(this, void 0, void 0, function* () {
         const url = chapterUrl;
-        const result = yield (0, fetchApi_1.fetchApi)(url);
+        const result = yield (0, fetchApi_1.default)(url);
         if (!result.ok) {
             const err = yield result.text();
             console.error(err);
@@ -117,7 +117,7 @@ exports.parseChapter = parseChapter;
 const searchNovels = function (searchTerm) {
     return __awaiter(this, void 0, void 0, function* () {
         const url = exports.site + "?s=" + searchTerm + "&post_type=novel";
-        const result = yield (0, fetchApi_1.fetchApi)(url);
+        const result = yield (0, fetchApi_1.default)(url);
         const body = yield result.text();
         const loadedCheerio = (0, cheerio_1.load)(body);
         let novels = [];
@@ -143,6 +143,6 @@ const searchNovels = function (searchTerm) {
     });
 };
 exports.searchNovels = searchNovels;
-const fetchImage = (...args) => (0, fetchFile_1.fetchFile)(...args);
+const fetchImage = (...args) => (0, fetchFile_1.default)(...args);
 exports.fetchImage = fetchImage;
 exports.protected = false;

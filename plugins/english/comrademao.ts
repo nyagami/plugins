@@ -1,6 +1,6 @@
 import { load as cheerioload } from "cheerio";
-import { fetchApi } from "@libs/fetchApi";
-import { fetchFile } from "@libs/fetchFile";
+import  fetchApi  from "@libs/fetchApi";
+import fetchFile  from "@libs/fetchFile";
 import dayjs from "dayjs";
 import { Chapter, Novel, Plugin } from "@typings/plugin";
 

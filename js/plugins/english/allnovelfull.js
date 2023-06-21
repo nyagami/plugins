@@ -8,11 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 const exports = module.exports = {"__esModule":true}
 exports.fetchImage = exports.searchNovels = exports.parseChapter = exports.parseNovelAndChapters = exports.popularNovels = exports.icon = exports.version = exports.site = exports.name = exports.id = void 0;
 const cheerio_1 = require("cheerio");
-const fetchApi_1 = require("../../libs/fetchApi");
-const fetchFile_1 = require("../../libs/fetchFile");
+const fetchApi_1 = __importDefault(require("@libs/fetchApi"));
+const fetchFile_1 = __importDefault(require("@libs/fetchFile"));
 exports.id = "ANF.com";
 exports.name = "AllNovelFull";
 exports.site = "https://allnovelfull.com";
@@ -21,9 +24,10 @@ exports.icon = "src/en/allnovelfull/icon.png";
 const popularNovels = function (page) {
     return __awaiter(this, void 0, void 0, function* () {
         const url = `${exports.site}/most-popular?page=${page}`;
-        const result = yield (0, fetchApi_1.fetchApi)(url, {});
+        const result = yield (0, fetchApi_1.default)(url, {});
         if (!result.ok) {
-            console.error(yield result.text());
+            console.error("Cloudflare error");
+            // console.error(await result.text());
             // TODO: Cloudflare protection or other error
             return [];
         }
@@ -50,9 +54,10 @@ exports.popularNovels = popularNovels;
 const parseNovelAndChapters = function (novelUrl) {
     return __awaiter(this, void 0, void 0, function* () {
         const url = novelUrl;
-        const result = yield (0, fetchApi_1.fetchApi)(url);
+        const result = yield (0, fetchApi_1.default)(url);
         if (!result.ok) {
-            console.error(yield result.text());
+            console.error("Cloudflare error");
+            // console.error(await result.text());
             // TODO: Cloudflare protection or other error
             return { url, chapters: [] };
         }
@@ -86,7 +91,13 @@ const parseNovelAndChapters = function (novelUrl) {
         function getChapters(id) {
             return __awaiter(this, void 0, void 0, function* () {
                 const chapterListUrl = exports.site + "/ajax/chapter-option?novelId=" + id;
-                const data = yield (0, fetchApi_1.fetchApi)(chapterListUrl);
+                const data = yield (0, fetchApi_1.default)(chapterListUrl);
+                if (!data.ok) {
+                    console.error("Cloudflare error");
+                    // console.error(await result.text());
+                    // TODO: Cloudflare protection or other error
+                    return [];
+                }
                 const chapters = yield data.text();
                 loadedCheerio = (0, cheerio_1.load)(chapters);
                 const novelChapters = [];
@@ -117,9 +128,10 @@ exports.parseNovelAndChapters = parseNovelAndChapters;
 const parseChapter = function (chapterUrl) {
     return __awaiter(this, void 0, void 0, function* () {
         const url = exports.site + chapterUrl;
-        const result = yield (0, fetchApi_1.fetchApi)(url);
+        const result = yield (0, fetchApi_1.default)(url);
         if (!result.ok) {
-            console.error(yield result.text());
+            console.error("Cloudflare error");
+            // console.error(await result.text());
             // TODO: Cloudflare protection or other error
             return "Cloudflare protected site!";
         }
@@ -133,7 +145,7 @@ exports.parseChapter = parseChapter;
 const searchNovels = function (searchTerm) {
     return __awaiter(this, void 0, void 0, function* () {
         const url = `${exports.site}/search?keyword=${searchTerm}`;
-        const result = yield (0, fetchApi_1.fetchApi)(url);
+        const result = yield (0, fetchApi_1.default)(url);
         if (!result.ok) {
             console.error(yield result.text());
             // TODO: Cloudflare protection or other error
@@ -163,7 +175,7 @@ const searchNovels = function (searchTerm) {
 exports.searchNovels = searchNovels;
 const fetchImage = function (url, init) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield (0, fetchFile_1.fetchFile)(url, init);
+        return yield (0, fetchFile_1.default)(url, init);
     });
 };
 exports.fetchImage = fetchImage;

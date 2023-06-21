@@ -1,8 +1,9 @@
 import { load as cheerioload } from "cheerio";
-import { fetchApi } from "@libs/fetchApi";
+import fetchApi  from "@libs/fetchApi";
 import { Chapter, Novel, Plugin } from "@typings/plugin";
 import defaultCover from "@libs/defaultCover";
-import { fetchFile } from "@libs/fetchFile";
+import  fetchFile  from "@libs/fetchFile";
+import NovelStatus from "@libs/novelStatus";
 
 export const id = "BLN.com";
 export const name = "BestLightNovel";
@@ -68,7 +69,7 @@ export const parseNovelAndChapters: Plugin.parseNovelAndChapters =
             name: "",
             cover: "",
             author: "",
-            status: Novel.Status.Unknown,
+            status: NovelStatus.Unknown,
             genres: "",
             summary: "",
             chapters: [],
@@ -92,10 +93,10 @@ export const parseNovelAndChapters: Plugin.parseNovelAndChapters =
 
         novel.status =
             status === "ONGOING"
-                ? Novel.Status.Ongoing
+                ? NovelStatus.Ongoing
                 : status === "COMPLETED"
-                ? Novel.Status.Completed
-                : Novel.Status.Unknown;
+                ? NovelStatus.Completed
+                : NovelStatus.Unknown;
 
         let novelChapters: Chapter.Item[] = [];
 

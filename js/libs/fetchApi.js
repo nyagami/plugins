@@ -9,14 +9,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const exports = module.exports = {"__esModule":true}
-exports.fetchApi = void 0;
 const nodeFetch_1 = require("./nodeFetch");
 const fetch = (...args) => __awaiter(void 0, void 0, void 0, function* () { return (yield (0, nodeFetch_1.getNodeFetch)())(...args); });
 const defaultUserAgentString = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36";
-const fetchApi = function (url, init) {
+function fetchApi(url, init) {
     return __awaiter(this, void 0, void 0, function* () {
         const headers = Object.assign({ "User-Agent": defaultUserAgentString }, init === null || init === void 0 ? void 0 : init.headers);
         return yield fetch(url, Object.assign(Object.assign({}, init), { headers }));
     });
-};
-exports.fetchApi = fetchApi;
+}
+exports.default = fetchApi;
+module.exports = fetchApi;

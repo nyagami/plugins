@@ -1,6 +1,6 @@
 import { load as loadCheerio } from "cheerio";
-import { fetchApi } from "@libs/fetchApi";
-import { fetchFile } from "@libs/fetchFile";
+import fetchApi from "@libs/fetchApi";
+import fetchFile from "@libs/fetchFile";
 import { Chapter, Novel, Plugin } from "@typings/plugin";
 import defaultCover from "@libs/defaultCover";
 // const novelStatus = require('@libs/novelStatus');

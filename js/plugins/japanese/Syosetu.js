@@ -14,12 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 const exports = module.exports = {"__esModule":true}
 exports.fetchImage = exports.searchNovels = exports.parseChapter = exports.parseNovelAndChapters = exports.popularNovels = exports.site = exports.version = exports.icon = exports.name = exports.id = void 0;
 const cheerio_1 = require("cheerio");
-const fetchApi_1 = require("../../libs/fetchApi");
-const fetchFile_1 = require("../../libs/fetchFile");
-const defaultCover_1 = __importDefault(require("../../libs/defaultCover"));
+const fetchApi_1 = __importDefault(require("@libs/fetchApi"));
+const fetchFile_1 = __importDefault(require("@libs/fetchFile"));
+const defaultCover_1 = __importDefault(require("@libs/defaultCover"));
 // const novelStatus = require('@libs/novelStatus');
-// const isUrlAbsolute = require('../../libs/isAbsoluteUrl');
-// const parseDate = require('../../libs/parseDate');
+// const isUrlAbsolute = require('@libs/isAbsoluteUrl');
+// const parseDate = require('@libs/parseDate');
 const pluginId = "yomou.syosetu";
 exports.id = pluginId;
 exports.name = "Syosetu";
@@ -38,7 +38,7 @@ const popularNovels = function (pageNo) {
         function getNovelsFromPage(pagenumber) {
             return __awaiter(this, void 0, void 0, function* () {
                 // load page
-                const result = yield (0, fetchApi_1.fetchApi)(searchUrl(pagenumber));
+                const result = yield (0, fetchApi_1.default)(searchUrl(pagenumber));
                 const body = yield result.text();
                 // Cheerio it!
                 const cheerioQuery = (0, cheerio_1.load)(body, { decodeEntities: false });
@@ -68,7 +68,7 @@ exports.popularNovels = popularNovels;
 const parseNovelAndChapters = function (novelUrl) {
     return __awaiter(this, void 0, void 0, function* () {
         let chapters = [];
-        const result = yield (0, fetchApi_1.fetchApi)(novelUrl);
+        const result = yield (0, fetchApi_1.default)(novelUrl);
         const body = yield result.text();
         const loadedCheerio = (0, cheerio_1.load)(body, { decodeEntities: false });
         // create novel object
@@ -113,7 +113,7 @@ const parseNovelAndChapters = function (novelUrl) {
              * but every oneshot is set as "there are no chapters" and all contents are thrown into the description!!
              */
             // get summary for oneshot chapter
-            const nameResult = yield (0, fetchApi_1.fetchApi)(searchUrl() + `&word=${novel.name}`);
+            const nameResult = yield (0, fetchApi_1.default)(searchUrl() + `&word=${novel.name}`);
             const nameBody = yield nameResult.text();
             const summaryQuery = (0, cheerio_1.load)(nameBody, {
                 decodeEntities: false,
@@ -140,7 +140,7 @@ const parseNovelAndChapters = function (novelUrl) {
 exports.parseNovelAndChapters = parseNovelAndChapters;
 const parseChapter = function (chapterUrl) {
     return __awaiter(this, void 0, void 0, function* () {
-        const result = yield (0, fetchApi_1.fetchApi)(chapterUrl);
+        const result = yield (0, fetchApi_1.default)(chapterUrl);
         const body = yield result.text();
         // create cheerioQuery
         const cheerioQuery = (0, cheerio_1.load)(body, {
@@ -159,7 +159,7 @@ const searchNovels = function (searchTerm) {
         function getNovelsFromPage(pagenumber) {
             return __awaiter(this, void 0, void 0, function* () {
                 // load page
-                const result = yield (0, fetchApi_1.fetchApi)(searchUrl(pagenumber) + `&word=${searchTerm}`);
+                const result = yield (0, fetchApi_1.default)(searchUrl(pagenumber) + `&word=${searchTerm}`);
                 const body = yield result.text();
                 // Cheerio it!
                 const cheerioQuery = (0, cheerio_1.load)(body, { decodeEntities: false });
@@ -200,7 +200,7 @@ const searchNovels = function (searchTerm) {
 exports.searchNovels = searchNovels;
 const fetchImage = function (url) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield (0, fetchFile_1.fetchFile)(url);
+        return yield (0, fetchFile_1.default)(url);
     });
 };
 exports.fetchImage = fetchImage;
