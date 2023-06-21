@@ -7,3 +7,5 @@ var FilterInputs;
     FilterInputs[FilterInputs["Picker"] = 1] = "Picker";
     FilterInputs[FilterInputs["Checkbox"] = 2] = "Checkbox";
 })(FilterInputs || (exports.FilterInputs = FilterInputs = {}));
+exports.default = FilterInputs;
+module.exports = FilterInputs;

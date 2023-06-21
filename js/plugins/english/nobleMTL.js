@@ -16,7 +16,7 @@ exports.filters = exports.fetchImage = exports.searchNovels = exports.parseChapt
 const cheerio_1 = require("cheerio");
 const fetchApi_1 = __importDefault(require("@libs/fetchApi"));
 const fetchFile_1 = __importDefault(require("@libs/fetchFile"));
-const filterInputs_1 = require("@libs/filterInputs");
+const filterInputs_1 = __importDefault(require("@libs/filterInputs"));
 exports.id = "NobleMTL";
 exports.name = "NobleMTL";
 exports.version = "1.0.0";
@@ -182,7 +182,7 @@ exports.filters = [
             { label: "Latest Added", value: "latest" },
             { label: "Popular", value: "popular" },
         ],
-        inputType: filterInputs_1.FilterInputs.Picker,
+        inputType: filterInputs_1.default.Picker,
     },
     {
         key: "status",
@@ -193,7 +193,7 @@ exports.filters = [
             { label: "Hiatus", value: "hiatus" },
             { label: "Completed", value: "completed" },
         ],
-        inputType: filterInputs_1.FilterInputs.Picker,
+        inputType: filterInputs_1.default.Picker,
     },
     {
         key: "type",
@@ -206,7 +206,7 @@ exports.filters = [
             { label: "삼심", value: "%ec%82%bc%ec%8b%ac" },
             { label: "호곡", value: "%ed%98%b8%ea%b3%a1" },
         ],
-        inputType: filterInputs_1.FilterInputs.Checkbox,
+        inputType: filterInputs_1.default.Checkbox,
     },
     {
         key: "genres",
@@ -299,6 +299,6 @@ exports.filters = [
             { label: "Yandere", value: "yandere" },
             { label: "Yuri", value: "yuri" },
         ],
-        inputType: filterInputs_1.FilterInputs.Checkbox,
+        inputType: filterInputs_1.default.Checkbox,
     },
 ];

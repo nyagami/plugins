@@ -2,7 +2,7 @@
 import fetchApi from "@libs/fetchApi";
 import fetchFile from "@libs/fetchFile";
 import { Novel, Plugin, Chapter } from "@typings/plugin";
-import { Filter, FilterInputs } from "@libs/filterInputs";
+import FilterInputs, { Filter } from "@libs/filterInputs";
 
 export const id = "NobleMTL";
 export const name = "NobleMTL";
