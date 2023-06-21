@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const exports = module.exports = {"__esModule":true}
+exports = module.exports = {"__esModule":true}
 exports.fetchApi = void 0;
 const nodeFetch_1 = require("./nodeFetch");
 const fetch = (...args) => __awaiter(void 0, void 0, void 0, function* () { return (yield (0, nodeFetch_1.getNodeFetch)())(...args); });

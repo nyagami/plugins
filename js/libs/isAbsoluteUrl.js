@@ -1,5 +1,5 @@
 "use strict";
-const exports = module.exports = {"__esModule":true}
+exports = module.exports = {"__esModule":true}
 exports.isUrlAbsolute = void 0;
 const isUrlAbsolute = (url) => {
     if (url) {

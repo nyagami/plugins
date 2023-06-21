@@ -22,13 +22,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-const exports = module.exports = {"__esModule":true}
+exports = module.exports = {"__esModule":true}
 const fs = __importStar(require("fs"));
 const languages_1 = require("../libs/languages");
 const path = __importStar(require("path"));
 const root = path.dirname(__dirname);
 const replaceExports = (text) => {
-    return text.replace(`Object.defineProperty(exports, "__esModule", { value: true });`, `const exports = module.exports = {"__esModule":true}`);
+    return text.replace(`Object.defineProperty(exports, "__esModule", { value: true });`, `exports = module.exports = {"__esModule":true}`);
 };
 // plugins
 for (let language in languages_1.languages) {
