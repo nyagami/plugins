@@ -6,7 +6,7 @@ const root = path.dirname(__dirname);
 const replaceExports = (text: string) => {
     return text.replace(
         `Object.defineProperty(exports, "__esModule", { value: true });`,
-        `module.exports = exports = {"__esModule":true}`
+        `const = exports = module.exports = {"__esModule":true}`
     );
 };
 

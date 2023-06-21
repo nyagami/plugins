@@ -1,5 +1,5 @@
 "use strict";
-module.exports = exports = {"__esModule":true}
+const = exports = module.exports = {"__esModule":true}
 exports.languages = void 0;
 exports.languages = {
     Arabic: "العربية",
