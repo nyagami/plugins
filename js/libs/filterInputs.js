@@ -1,5 +1,5 @@
 "use strict";
-const exports = module.exports = {"__esModule":true}
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.FilterInputs = void 0;
 var FilterInputs;
 (function (FilterInputs) {

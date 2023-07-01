@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const exports = module.exports = {"__esModule":true}
+Object.defineProperty(exports, "__esModule", { value: true });
 const nodeFetch_1 = require("./nodeFetch");
 const fetch = (...args) => __awaiter(void 0, void 0, void 0, function* () { return (yield (0, nodeFetch_1.getNodeFetch)())(...args); });
 const defaultUserAgentString = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36";

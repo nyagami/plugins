@@ -22,7 +22,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-const exports = module.exports = {"__esModule":true}
+Object.defineProperty(exports, "__esModule", { value: true });
 require("module-alias/register");
 const fs = __importStar(require("fs"));
 const languages_1 = require("@libs/languages");

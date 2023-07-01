@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const exports = module.exports = {"__esModule":true}
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.getNodeFetch = void 0;
 const nodeFetch = import("node-fetch");
 const getNodeFetch = () => __awaiter(void 0, void 0, void 0, function* () {
