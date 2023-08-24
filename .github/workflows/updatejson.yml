@@ -52,4 +52,4 @@ jobs:
                   labels: enhancement
                   body: Auto-generated PR for updating json files
                   branch: update-json
-                  delete-branch: false
+                  delete-branch: true
