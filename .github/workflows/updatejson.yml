@@ -3,11 +3,10 @@ name: Update json files
 on:
     push:
         branches:
-            - plugins
+            - action
 
 jobs:
     updatejson:
-        if: github.repository == 'LNReader/lnreader-sources'
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
@@ -23,9 +22,9 @@ jobs:
                   mkdir dist
                   cat > config.json << EOF
                   {
-                      "githubUsername": "LNReader",
-                      "githubRepository": "lnreader-sources",
-                      "githubBranch": "plugins"
+                      "githubUsername": "nyagami",
+                      "githubRepository": "plugins",
+                      "githubBranch": "action"
                   }
                   EOF
             - name: Update json files
@@ -46,8 +45,8 @@ jobs:
               uses: peter-evans/create-pull-request@v4
               with:
                   token: ${{ secrets.REPO_SCOPED_TOKEN }}
-                  author: rajarsheechatterjee <rajarshee.adm@gmail.com>
-                  committer: rajarsheechatterjee <rajarshee.adm@gmail.com>
+                  author: nyagami <hoangquan05112002@gmail.com>
+                  committer: nyagami <hoangquan05112002@gmail.com>
                   commit-message: "plugins: update json files for new plugins"
                   title: Update json files
                   labels: enhancement
