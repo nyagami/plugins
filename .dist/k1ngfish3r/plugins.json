@@ -30,7 +30,7 @@
 		{
 			"id": "kolnovel",
 			"name": "KolNovel",
-			"site": "https://kolnovel.com/",
+			"site": "https://kolnovel.lol/",
 			"lang": "العربية",
 			"version": "1.0.0",
 			"url": "https://raw.githubusercontent.com/k1ngfish3r/plugins/classes/.js/plugins/arabic/kolnovel.js",
@@ -282,9 +282,9 @@
 			"iconUrl": "https://raw.githubusercontent.com/k1ngfish3r/plugins/classes/icons/multisrc/madara/icons/onlymtl.png"
 		},
 		{
-			"id": "PandaMTL",
+			"id": "pandamtl",
 			"name": "PandaMTL",
-			"site": "https://www.pandamtl.com/",
+			"site": "https://pandamtl.com/",
 			"lang": "English",
 			"version": "1.0.0",
 			"url": "https://raw.githubusercontent.com/k1ngfish3r/plugins/classes/.js/plugins/english/pandaMTL.js",

@@ -7,7 +7,7 @@ class KolNovel implements Plugin.PluginBase {
     id = "kolnovel";
     name = "KolNovel";
     icon = "multisrc/wpmangastream/icons/kolnovel.png"
-    site = "https://kolnovel.com/";
+    site = "https://kolnovel.lol/";
     version = "1.0.0";
     userAgent = "";
     cookieString = "";
@@ -143,10 +143,12 @@ class KolNovel implements Plugin.PluginBase {
         const body = await result.text();
     
         const loadedCheerio = parseHTML(body);
-    
+
+        loadedCheerio('.epcontent > div, i').remove();
         let ignore = loadedCheerio('article > style').text().trim().split(',');
         ignore.push(...(ignore.pop()?.match(/^\.\w+/) || []));
         ignore.map(tag => loadedCheerio(`p${tag}`).remove());
+
         let chapterText = loadedCheerio('.epcontent').html() || "";
     
         return chapterText;

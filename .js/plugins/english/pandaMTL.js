@@ -41,10 +41,10 @@ var fetch_1 = require("@libs/fetch");
 var filterInputs_1 = require("@libs/filterInputs");
 var PandaMTL = /** @class */ (function () {
     function PandaMTL() {
-        this.id = "PandaMTL";
+        this.id = "pandamtl";
         this.name = "PandaMTL";
         this.icon = "src/en/wordpress/icon.png";
-        this.site = "https://www.pandamtl.com/";
+        this.site = "https://pandamtl.com/";
         this.version = "1.0.0";
         this.userAgent = "";
         this.cookieString = "";
@@ -168,7 +168,7 @@ var PandaMTL = /** @class */ (function () {
                         if (this.cookieString) {
                             headers.append("cookie", this.cookieString);
                         }
-                        return [4 /*yield*/, fetch(url, { headers: headers })];
+                        return [4 /*yield*/, (0, fetch_1.fetchApi)(url, { headers: headers })];
                     case 1:
                         result = _a.sent();
                         return [4 /*yield*/, result.text()];
@@ -239,7 +239,7 @@ var PandaMTL = /** @class */ (function () {
                         if (this.cookieString) {
                             headers.append("cookie", this.cookieString);
                         }
-                        return [4 /*yield*/, fetch(chapterUrl, { headers: headers })];
+                        return [4 /*yield*/, (0, fetch_1.fetchApi)(chapterUrl, { headers: headers })];
                     case 1:
                         result = _a.sent();
                         return [4 /*yield*/, result.text()];

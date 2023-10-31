@@ -44,7 +44,7 @@ var KolNovel = /** @class */ (function () {
         this.id = "kolnovel";
         this.name = "KolNovel";
         this.icon = "multisrc/wpmangastream/icons/kolnovel.png";
-        this.site = "https://kolnovel.com/";
+        this.site = "https://kolnovel.lol/";
         this.version = "1.0.0";
         this.userAgent = "";
         this.cookieString = "";
@@ -271,6 +271,7 @@ var KolNovel = /** @class */ (function () {
                     case 2:
                         body = _b.sent();
                         loadedCheerio = (0, cheerio_1.load)(body);
+                        loadedCheerio('.epcontent > div, i').remove();
                         ignore = loadedCheerio('article > style').text().trim().split(',');
                         ignore.push.apply(ignore, (((_a = ignore.pop()) === null || _a === void 0 ? void 0 : _a.match(/^\.\w+/)) || []));
                         ignore.map(function (tag) { return loadedCheerio("p".concat(tag)).remove(); });
