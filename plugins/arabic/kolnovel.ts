@@ -8,7 +8,7 @@ class KolNovel implements Plugin.PluginBase {
     name = "KolNovel";
     icon = "multisrc/wpmangastream/icons/kolnovel.png"
     site = "https://kolnovel.com/";
-    version = "1.0.0";
+    version = "1.1.0";
     userAgent = "";
     cookieString = "";
     async popularNovels(pageNo: number, {filters}: Plugin.PopularNovelsOptions): Promise<Plugin.NovelItem[]> {
