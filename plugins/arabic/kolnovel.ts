@@ -144,9 +144,10 @@ class KolNovel implements Plugin.PluginBase {
     
         const loadedCheerio = parseHTML(body);
     
-        let ignore = loadedCheerio(".epcontent > p").next().attr("class");
-        loadedCheerio(`p.${ignore}`).remove();
-        let chapterText = loadedCheerio(".epcontent").html() || "";
+        let ignore = loadedCheerio('article > style').text().trim().split(',');
+        ignore.push(...(ignore.pop()?.match(/^\.\w+/) || []));
+        ignore.map(tag => loadedCheerio(`p${tag}`).remove());
+        let chapterText = loadedCheerio('.epcontent').html() || "";
     
         return chapterText;
     }
