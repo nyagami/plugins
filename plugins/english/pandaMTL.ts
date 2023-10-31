@@ -8,7 +8,7 @@ class PandaMTL implements Plugin.PluginBase {
     name = "PandaMTL";
     icon = "src/en/wordpress/icon.png";
     site = "https://www.pandamtl.com/";
-    version = "1.1.0";
+    version = "1.0.0";
     userAgent = "";
     cookieString = "";
 async popularNovels(pageNo: number, {filters}: Plugin.PopularNovelsOptions): Promise<Plugin.NovelItem[]> {
