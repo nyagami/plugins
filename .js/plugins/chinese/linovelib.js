@@ -432,6 +432,8 @@ var Linovelib = /** @class */ (function () {
                                             .find('img.book-cover')
                                             .attr('data-src');
                                         var novelUrl = _this.site + nUrl;
+                                        if (!nUrl)
+                                            return;
                                         novels.push({
                                             name: novelName,
                                             url: novelUrl,

@@ -446,13 +446,15 @@ class Linovelib implements Plugin.PluginBase {
         const addPage = async (pageCheerio: CheerioAPI, redirect: string) => {
           const loadSearchResults = () => {
             pageCheerio('.book-ol .book-layout').each((i, el) => {
-              let nUrl = pageCheerio(el).attr('href');
+                let nUrl = pageCheerio(el).attr('href');
 
                 const novelName = pageCheerio(el).find('.book-title').text();
                 const novelCover = pageCheerio(el)
                   .find('img.book-cover')
                   .attr('data-src');
                 const novelUrl = this.site + nUrl;
+
+                if (!nUrl) return;
 
                 novels.push({
                   name: novelName,
