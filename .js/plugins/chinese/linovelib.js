@@ -180,19 +180,18 @@ var Linovelib = /** @class */ (function () {
                                     chapterId++;
                                 }
                             }
-                            if (chapterId !== undefined) {
-                                var chapterUrl = "".concat(_this.site, "/novel/").concat(novelId, "/").concat(chapterId, ".html");
-                                var chapterName = volumeName +
-                                    ' — ' +
-                                    chaptersLoadedCheerio(el).find('.chapter-index').text().trim();
-                                var releaseDate = null;
-                                chapter.push({
-                                    name: chapterName,
-                                    releaseTime: releaseDate,
-                                    url: chapterUrl,
-                                });
-                            }
-                            ;
+                            var chapterUrl = "".concat(_this.site, "/novel/").concat(novelId, "/").concat(chapterId, ".html");
+                            var chapterName = volumeName +
+                                ' — ' +
+                                chaptersLoadedCheerio(el).find('.chapter-index').text().trim();
+                            var releaseDate = null;
+                            if (!chapterId)
+                                return;
+                            chapter.push({
+                                name: chapterName,
+                                releaseTime: releaseDate,
+                                url: chapterUrl,
+                            });
                         });
                         novel.chapters = chapter;
                         return [2 /*return*/, novel];
