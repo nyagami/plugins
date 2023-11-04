@@ -121,19 +121,19 @@ class TuNovelaLigera implements Plugin.PluginBase {
             const novelName = n[4];
             showToast('Cargando desde Archivo...');
 
-            const formBody = { 
-                action: "madara_load_more",
-                page: "0",
-                template: "html/loop/content",
-                "vars[category_name]": novelName,
-                "vars[posts_per_page]": "10000",
-            };
+            const formData = new FormData()
+            formData.append("action", "madara_load_more");
+            formData.append("page", "0");
+            formData.append("template", "html/loop/content");
+            formData.append("vars[category_name]", novelName);
+            formData.append("vars[posts_per_page]", "10000");
 
-            const result = await fetch(
+            const result = await fetchApi(
                 `${this.site}wp-admin/admin-ajax.php`,
                 {
                 method: "POST",
-                body: JSON.stringify(formBody),
+                body: formData,
+                headers
                 },
             );
             const text = await result.text();

@@ -225,23 +225,23 @@ var TuNovelaLigera = /** @class */ (function () {
                         lastPage = 1;
                         lastPage = +loadedCheerio('.lcp_paginator li:last').prev().text();
                         getChapters = function () { return __awaiter(_this, void 0, void 0, function () {
-                            var n, novelName, formBody, result, text;
+                            var n, novelName, formData, result, text;
                             return __generator(this, function (_a) {
                                 switch (_a.label) {
                                     case 0:
                                         n = url.split('/');
                                         novelName = n[4];
                                         (0, showToast_1.showToast)('Cargando desde Archivo...');
-                                        formBody = {
-                                            action: "madara_load_more",
-                                            page: "0",
-                                            template: "html/loop/content",
-                                            "vars[category_name]": novelName,
-                                            "vars[posts_per_page]": "10000",
-                                        };
-                                        return [4 /*yield*/, fetch("".concat(this.site, "wp-admin/admin-ajax.php"), {
+                                        formData = new FormData();
+                                        formData.append("action", "madara_load_more");
+                                        formData.append("page", "0");
+                                        formData.append("template", "html/loop/content");
+                                        formData.append("vars[category_name]", novelName);
+                                        formData.append("vars[posts_per_page]", "10000");
+                                        return [4 /*yield*/, (0, fetch_1.fetchApi)("".concat(this.site, "wp-admin/admin-ajax.php"), {
                                                 method: "POST",
-                                                body: JSON.stringify(formBody),
+                                                body: formData,
+                                                headers: headers
                                             })];
                                     case 1:
                                         result = _a.sent();
