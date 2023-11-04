@@ -71,8 +71,6 @@ class HakoPlugin implements Plugin.PluginBase {
 
         link += "&page=" + pageNo;
 
-        console.log(link);
-
         const result = await fetch(link);
         const body = await result.text();
         const loadedCheerio = parseHTML(body);

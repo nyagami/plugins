@@ -237,7 +237,6 @@ var HakoPlugin = /** @class */ (function () {
                         }
                         link += "&sapxep=" + ((filters === null || filters === void 0 ? void 0 : filters.sort) ? filters.sort : "topthang");
                         link += "&page=" + pageNo;
-                        console.log(link);
                         return [4 /*yield*/, fetch(link)];
                     case 1:
                         result = _b.sent();
