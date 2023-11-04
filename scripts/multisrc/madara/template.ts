@@ -149,15 +149,15 @@ class MadaraPlugin implements Plugin.PluginBase {
                 loadedCheerio('.rating-post-id').attr('value') ||
                 loadedCheerio('#manga-chapters-holder').attr('data-id') || '';
     
-            const body = {
-                action: "manga_get_chapters",
-                manga: novelId,
-            }
+            const formData = new FormData()
+            formData.append("action", "manga_get_chapters");
+            formData.append("manga", novelId);
+
             html = await fetchApi(
                 this.site + 'wp-admin/admin-ajax.php',
                 {
                 method: 'POST',
-                body: JSON.stringify(body),
+                body: formData,
                 })
                 .then(res => res.text());
         } else {
