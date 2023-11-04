@@ -145,7 +145,7 @@ class MadaraPlugin implements Plugin.PluginBase {
     
         let html;
     
-        if (this.options?.useNewChapterEndpoint) {
+        if (this.options?.useNewChapterEndpoint !== true) {
             const novelId =
                 loadedCheerio('.rating-post-id').attr('value') ||
                 loadedCheerio('#manga-chapters-holder').attr('data-id') || '';
@@ -163,7 +163,7 @@ class MadaraPlugin implements Plugin.PluginBase {
                 .then(res => res.text());
         } else {
             html = await fetchApi(
-            this.site + 'ajax/chapters/',
+            novelUrl + 'ajax/chapters/',
             { method: 'POST' })
             .then(res => res.text());
         }
