@@ -45,6 +45,11 @@ var defaultCover_1 = require("@libs/defaultCover");
 var novelStatus_1 = require("@libs/novelStatus");
 var parseMadaraDate_1 = require("@libs/parseMadaraDate");
 var dayjs_1 = __importDefault(require("dayjs"));
+var MadaraDefaultPath = {
+    novels: 'novel',
+    novel: 'novel',
+    chapter: 'novel'
+};
 var MadaraPlugin = /** @class */ (function () {
     function MadaraPlugin(metadata) {
         this.id = metadata.id;
@@ -72,7 +77,7 @@ var MadaraPlugin = /** @class */ (function () {
                             url += ((_e = (_d = this.options) === null || _d === void 0 ? void 0 : _d.path) === null || _e === void 0 ? void 0 : _e.genres) + filters.genres + '/';
                         }
                         else {
-                            url += (_g = (_f = this.options) === null || _f === void 0 ? void 0 : _f.path) === null || _g === void 0 ? void 0 : _g.novels;
+                            url += ((_g = (_f = this.options) === null || _f === void 0 ? void 0 : _f.path) === null || _g === void 0 ? void 0 : _g.novels) ? this.options.path.novels : MadaraDefaultPath.novels;
                         }
                         url += '/page/' + pageNo + '/' +
                             '?m_orderby=' + (showLatestNovels ? 'latest' : ((filters === null || filters === void 0 ? void 0 : filters.sort) || 'rating'));
