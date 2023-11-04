@@ -15,7 +15,7 @@ class Linovelib implements Plugin.PluginBase {
     async popularNovels(pageNo: number, {filters}: Plugin.PopularNovelsOptions): Promise<Plugin.NovelItem[]> {
         let link = `${this.site}/top/`;
 
-        link += (filters?.sort ?? "monthvisit");
+        link += (filters?.sort ? filters.sort : "monthvisit");
 
         link += `/${pageNo}.html`;
 

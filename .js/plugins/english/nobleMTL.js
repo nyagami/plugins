@@ -182,12 +182,11 @@ var NobleMTL = /** @class */ (function () {
         ];
     }
     NobleMTL.prototype.popularNovels = function (pageNo, _a) {
-        var _b, _c;
         var filters = _a.filters;
         return __awaiter(this, void 0, void 0, function () {
             var link, headers, body, loadedCheerio, novels;
-            return __generator(this, function (_d) {
-                switch (_d.label) {
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
                         link = "".concat(this.site, "series/?page=").concat(pageNo);
                         if (filters) {
@@ -197,8 +196,8 @@ var NobleMTL = /** @class */ (function () {
                             if (Array.isArray(filters.type) && filters.type.length)
                                 link += filters.type.map(function (i) { return "&lang[]=".concat(i); }).join("");
                         }
-                        link += "&status=" + ((_b = filters === null || filters === void 0 ? void 0 : filters.status) !== null && _b !== void 0 ? _b : "");
-                        link += "&order=" + ((_c = filters === null || filters === void 0 ? void 0 : filters.order) !== null && _c !== void 0 ? _c : "popular");
+                        link += "&status=" + ((filters === null || filters === void 0 ? void 0 : filters.status) ? filters.status : "");
+                        link += "&order=" + ((filters === null || filters === void 0 ? void 0 : filters.order) ? filters.order : "popular");
                         headers = new Headers();
                         if (this.cookieString) {
                             headers.append("cookie", this.cookieString);
@@ -207,7 +206,7 @@ var NobleMTL = /** @class */ (function () {
                                 return result.text();
                             })];
                     case 1:
-                        body = _d.sent();
+                        body = _b.sent();
                         loadedCheerio = (0, cheerio_1.load)(body);
                         novels = [];
                         loadedCheerio("article.bs").each(function () {

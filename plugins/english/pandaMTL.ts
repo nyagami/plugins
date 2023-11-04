@@ -24,7 +24,7 @@ class PandaMTL implements Plugin.PluginBase {
         }
         link += "&status=" + (filters?.status ?? "");
 
-        link += "&order=" + (filters?.order ?? "popular");
+        link += "&order=" + (filters?.order ? filters.order : "popular");
 
         const headers = new Headers();
         if(this.cookieString){

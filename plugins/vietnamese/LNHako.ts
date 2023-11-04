@@ -55,7 +55,7 @@ class HakoPlugin implements Plugin.PluginBase {
         let link = this.site;
 
         if(!filters?.genre){
-            link += '/danh-sach/' + (filters?.az ?? "") + '?';
+            link += '/danh-sach/' + (filters?.az ? filters.az : "") + '?';
         } else {
             link += '/the-loai/' + filters.genre + '?';
         }
@@ -67,9 +67,11 @@ class HakoPlugin implements Plugin.PluginBase {
             link += filters.status.map((i) => `${i}=1`).join("&");
         }
 
-        link += "&sapxep=" + (filters?.sort ?? "topthang");
+        link += "&sapxep=" + (filters?.sort ? filters.sort : "topthang");
 
         link += "&page=" + pageNo;
+
+        console.log(link);
 
         const result = await fetch(link);
         const body = await result.text();
@@ -262,7 +264,7 @@ class HakoPlugin implements Plugin.PluginBase {
         },
         {
             key: "genre",
-            label: "Phân loại",
+            label: "Thể loại",
             values: [
                 { label: "Action", value: "action" },
 
@@ -386,7 +388,7 @@ class HakoPlugin implements Plugin.PluginBase {
         },
         {
             key: "type",
-            label: "Phân loại",
+            label: "Loại truyện",
             values: [
                 { label: "Truyện dịch", value: "truyendich" },
 
@@ -398,7 +400,7 @@ class HakoPlugin implements Plugin.PluginBase {
         },
         {
             key: "status",
-            label: "Tình trạng",
+            label: "Trạng thái",
             values: [
                 { label: "Đang tiến hành", value: "dangtienhanh" },
 

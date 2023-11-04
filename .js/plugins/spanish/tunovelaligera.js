@@ -122,27 +122,26 @@ var TuNovelaLigera = /** @class */ (function () {
         ];
     }
     TuNovelaLigera.prototype.popularNovels = function (pageNo, _a) {
-        var _b;
         var filters = _a.filters;
         return __awaiter(this, void 0, void 0, function () {
             var link, headers, result, body, loadedCheerio, novels;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
                         link = "".concat(this.site);
                         link += ((filters === null || filters === void 0 ? void 0 : filters.genres) ? "genero/" + filters.genres : "novelas");
                         link += "/page/".concat(pageNo);
-                        link += ((_b = filters === null || filters === void 0 ? void 0 : filters.order) !== null && _b !== void 0 ? _b : "?m_orderby=rating");
+                        link += ((filters === null || filters === void 0 ? void 0 : filters.order) ? filters.order : "?m_orderby=rating");
                         headers = new Headers();
                         if (this.cookieString) {
                             headers.append("cookie", this.cookieString);
                         }
                         return [4 /*yield*/, (0, fetch_1.fetchApi)(link, { headers: headers })];
                     case 1:
-                        result = _c.sent();
+                        result = _b.sent();
                         return [4 /*yield*/, result.text()];
                     case 2:
-                        body = _c.sent();
+                        body = _b.sent();
                         loadedCheerio = (0, cheerio_1.load)(body);
                         novels = [];
                         loadedCheerio(".page-item-detail").each(function (i, el) {

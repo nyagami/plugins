@@ -95,7 +95,7 @@ var HakoPlugin = /** @class */ (function () {
             },
             {
                 key: "genre",
-                label: "Phân loại",
+                label: "Thể loại",
                 values: [
                     { label: "Action", value: "action" },
                     { label: "Adapted to Anime", value: "adapted-to-anime" },
@@ -161,7 +161,7 @@ var HakoPlugin = /** @class */ (function () {
             },
             {
                 key: "type",
-                label: "Phân loại",
+                label: "Loại truyện",
                 values: [
                     { label: "Truyện dịch", value: "truyendich" },
                     { label: "Truyện sáng tác", value: "sangtac" },
@@ -171,7 +171,7 @@ var HakoPlugin = /** @class */ (function () {
             },
             {
                 key: "status",
-                label: "Tình trạng",
+                label: "Trạng thái",
                 values: [
                     { label: "Đang tiến hành", value: "dangtienhanh" },
                     { label: "Tạm ngưng", value: "tamngung" },
@@ -216,16 +216,15 @@ var HakoPlugin = /** @class */ (function () {
         return novels;
     };
     HakoPlugin.prototype.popularNovels = function (pageNo, _a) {
-        var _b, _c;
         var filters = _a.filters;
         return __awaiter(this, void 0, void 0, function () {
             var link, result, body, loadedCheerio;
-            return __generator(this, function (_d) {
-                switch (_d.label) {
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
                         link = this.site;
                         if (!(filters === null || filters === void 0 ? void 0 : filters.genre)) {
-                            link += '/danh-sach/' + ((_b = filters === null || filters === void 0 ? void 0 : filters.az) !== null && _b !== void 0 ? _b : "") + '?';
+                            link += '/danh-sach/' + ((filters === null || filters === void 0 ? void 0 : filters.az) ? filters.az : "") + '?';
                         }
                         else {
                             link += '/the-loai/' + filters.genre + '?';
@@ -236,14 +235,15 @@ var HakoPlugin = /** @class */ (function () {
                         if (Array.isArray(filters === null || filters === void 0 ? void 0 : filters.status) && (filters === null || filters === void 0 ? void 0 : filters.status.length)) {
                             link += filters.status.map(function (i) { return "".concat(i, "=1"); }).join("&");
                         }
-                        link += "&sapxep=" + ((_c = filters === null || filters === void 0 ? void 0 : filters.sort) !== null && _c !== void 0 ? _c : "topthang");
+                        link += "&sapxep=" + ((filters === null || filters === void 0 ? void 0 : filters.sort) ? filters.sort : "topthang");
                         link += "&page=" + pageNo;
+                        console.log(link);
                         return [4 /*yield*/, fetch(link)];
                     case 1:
-                        result = _d.sent();
+                        result = _b.sent();
                         return [4 /*yield*/, result.text()];
                     case 2:
-                        body = _d.sent();
+                        body = _b.sent();
                         loadedCheerio = (0, cheerio_1.load)(body);
                         return [2 /*return*/, this.parseNovels(loadedCheerio)];
                 }
