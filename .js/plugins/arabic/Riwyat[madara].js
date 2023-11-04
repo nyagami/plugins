@@ -108,7 +108,7 @@ var MadaraPlugin = /** @class */ (function () {
     MadaraPlugin.prototype.parseNovelAndChapters = function (novelUrl) {
         var _a;
         return __awaiter(this, void 0, void 0, function () {
-            var novel, body, loadedCheerio, html, novelId, body_1, chapters;
+            var novel, body, loadedCheerio, html, novelId, formData, chapters;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -153,13 +153,12 @@ var MadaraPlugin = /** @class */ (function () {
                         if (!((_a = this.options) === null || _a === void 0 ? void 0 : _a.useNewChapterEndpoint)) return [3 /*break*/, 3];
                         novelId = loadedCheerio('.rating-post-id').attr('value') ||
                             loadedCheerio('#manga-chapters-holder').attr('data-id') || '';
-                        body_1 = {
-                            action: "manga_get_chapters",
-                            manga: novelId,
-                        };
+                        formData = new FormData();
+                        formData.append("action", "manga_get_chapters");
+                        formData.append("manga", novelId);
                         return [4 /*yield*/, (0, fetch_1.fetchApi)(this.site + 'wp-admin/admin-ajax.php', {
                                 method: 'POST',
-                                body: JSON.stringify(body_1),
+                                body: formData,
                             })
                                 .then(function (res) { return res.text(); })];
                     case 2:
