@@ -11,7 +11,13 @@ interface MadaraOptionPath{
     genres?: string,
     novels?: string,
     novel?: string,
-    chapter?: string
+    chapter?: string,
+}
+
+const MadaraDefaultPath: MadaraOptionPath = {
+    novels: 'novel',
+    novel: 'novel',
+    chapter: 'novel'
 }
 
 interface MadaraOptions {
@@ -58,7 +64,7 @@ class MadaraPlugin implements Plugin.PluginBase {
         if (filters?.genres &&  this.options?.path?.genres) {
             url += this.options?.path?.genres + filters.genres + '/';
         } else {
-            url += this.options?.path?.novels;
+            url += this.options?.path?.novels ? this.options.path.novels : MadaraDefaultPath.novels;
         }
     
         url += '/page/' + pageNo + '/' + 
