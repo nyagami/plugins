@@ -105,15 +105,16 @@ class MadaraPlugin implements Plugin.PluginBase {
     
         let loadedCheerio = parseHTML(body);
     
-        loadedCheerio('.manga-title-badges').remove();
-    
-        novel.name = loadedCheerio('.post-title h1').text().trim();
+        loadedCheerio('.manga-title-badges, #manga-title span').remove();
+        novel.name = 
+            loadedCheerio('.post-title h1').text().trim() || 
+            loadedCheerio('#manga-title h1').text();
     
         novel.cover =
-        loadedCheerio('.summary_image > a > img').attr('data-lazy-src') ||
-        loadedCheerio('.summary_image > a > img').attr('data-src') ||
-        loadedCheerio('.summary_image > a > img').attr('src') ||
-        defaultCover;
+            loadedCheerio('.summary_image > a > img').attr('data-lazy-src') ||
+            loadedCheerio('.summary_image > a > img').attr('data-src') ||
+            loadedCheerio('.summary_image > a > img').attr('src') ||
+            defaultCover;
     
         loadedCheerio('.post-content_item, .post-content').each(function () {
             const detailName = loadedCheerio(this).find('h5').text().trim();
@@ -140,8 +141,10 @@ class MadaraPlugin implements Plugin.PluginBase {
         });
     
         loadedCheerio('div.summary__content .code-block,script').remove();
-        novel.summary = loadedCheerio('div.summary__content').text().trim();
-    
+        novel.summary = 
+            loadedCheerio('div.summary__content').text().trim() ||
+            loadedCheerio('#tab-manga-about').text().trim() ||
+            loadedCheerio('.post-content_item h5:contains("Summary")').next().text().trim();
     
         let html;
     

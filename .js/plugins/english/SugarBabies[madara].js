@@ -119,8 +119,10 @@ var MadaraPlugin = /** @class */ (function () {
                     case 1:
                         body = _b.sent();
                         loadedCheerio = (0, cheerio_1.load)(body);
-                        loadedCheerio('.manga-title-badges').remove();
-                        novel.name = loadedCheerio('.post-title h1').text().trim();
+                        loadedCheerio('.manga-title-badges, #manga-title span').remove();
+                        novel.name =
+                            loadedCheerio('.post-title h1').text().trim() ||
+                                loadedCheerio('#manga-title h1').text();
                         novel.cover =
                             loadedCheerio('.summary_image > a > img').attr('data-lazy-src') ||
                                 loadedCheerio('.summary_image > a > img').attr('data-src') ||
@@ -149,7 +151,10 @@ var MadaraPlugin = /** @class */ (function () {
                             }
                         });
                         loadedCheerio('div.summary__content .code-block,script').remove();
-                        novel.summary = loadedCheerio('div.summary__content').text().trim();
+                        novel.summary =
+                            loadedCheerio('div.summary__content').text().trim() ||
+                                loadedCheerio('#tab-manga-about').text().trim() ||
+                                loadedCheerio('.post-content_item h5:contains("Summary")').next().text().trim();
                         if (!(((_a = this.options) === null || _a === void 0 ? void 0 : _a.useNewChapterEndpoint) !== true)) return [3 /*break*/, 3];
                         novelId = loadedCheerio('.rating-post-id').attr('value') ||
                             loadedCheerio('#manga-chapters-holder').attr('data-id') || '';
