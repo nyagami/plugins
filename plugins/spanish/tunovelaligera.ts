@@ -22,7 +22,7 @@ class TuNovelaLigera implements Plugin.PluginBase {
 
         link += `/page/${pageNo}`;
 
-        link += (filters?.order ? filters.order : "?m_orderby=rating")
+        link += (filters?.order ?? "?m_orderby=rating")
 
         const headers = new Headers();
         if(this.cookieString){

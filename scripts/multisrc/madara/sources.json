@@ -2160,7 +2160,10 @@
     ],
     "options": {
       "path": {
-        "genres": "home/novel-genre"
+        "genres": "home/novel-genre",
+        "chapter": "home/novel",
+        "novel": "home/novel",
+        "novels": "home/novel"
       },
       "useNewChapterEndpoint": true,
       "lang": "Arabic"

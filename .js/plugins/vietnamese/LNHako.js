@@ -39,8 +39,147 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var cheerio_1 = require("cheerio");
 var fetch_1 = require("@libs/fetch");
 var isAbsoluteUrl_1 = require("@libs/isAbsoluteUrl");
+var filterInputs_1 = require("@libs/filterInputs");
 var HakoPlugin = /** @class */ (function () {
     function HakoPlugin() {
+        this.filters = [
+            {
+                key: "sort",
+                label: "Sắp xếp",
+                values: [
+                    { label: "A - Z", value: "tentruyen" },
+                    { label: "Z - A", value: "tentruyenza" },
+                    { label: "Mới cập nhật", value: "capnhat" },
+                    { label: "Truyện mới", value: "truyenmoi" },
+                    { label: "Theo dõi", value: "theodoi" },
+                    { label: "Top toàn thời gian", value: "top" },
+                    { label: "Top tháng", value: "topthang" },
+                    { label: "Số từ", value: "sotu" }
+                ],
+                inputType: filterInputs_1.FilterInputs.Picker,
+            },
+            {
+                key: "az",
+                label: "Chữ cái",
+                values: [
+                    { label: "Tất cả", value: "" },
+                    { label: "#", value: "khac" },
+                    { label: "A", value: "a" },
+                    { label: "B", value: "b" },
+                    { label: "C", value: "c" },
+                    { label: "D", value: "d" },
+                    { label: "E", value: "e" },
+                    { label: "F", value: "f" },
+                    { label: "G", value: "g" },
+                    { label: "H", value: "h" },
+                    { label: "I", value: "i" },
+                    { label: "J", value: "j" },
+                    { label: "K", value: "k" },
+                    { label: "L", value: "l" },
+                    { label: "M", value: "m" },
+                    { label: "N", value: "n" },
+                    { label: "O", value: "o" },
+                    { label: "P", value: "p" },
+                    { label: "Q", value: "q" },
+                    { label: "R", value: "r" },
+                    { label: "S", value: "s" },
+                    { label: "T", value: "t" },
+                    { label: "U", value: "u" },
+                    { label: "V", value: "v" },
+                    { label: "W", value: "w" },
+                    { label: "X", value: "x" },
+                    { label: "Y", value: "y" },
+                    { label: "Z", value: "z" }
+                ],
+                inputType: filterInputs_1.FilterInputs.Picker,
+            },
+            {
+                key: "genre",
+                label: "Phân loại",
+                values: [
+                    { label: "Action", value: "action" },
+                    { label: "Adapted to Anime", value: "adapted-to-anime" },
+                    { label: "Adapted to Drama CD", value: "adapted-to-drama-cd" },
+                    { label: "Adapted to Manga", value: "adapted-to-manga" },
+                    { label: "Adult", value: "adult" },
+                    { label: "Adventure", value: "adventure" },
+                    { label: "Age Gap", value: "age-gap" },
+                    { label: "Boys Love", value: "boys-love" },
+                    { label: "Character Growth", value: "character-growth" },
+                    { label: "Chinese Novel", value: "chinese-novel" },
+                    { label: "Comedy", value: "comedy" },
+                    { label: "Cooking", value: "cooking" },
+                    { label: "Different Social Status", value: "different-social-status" },
+                    { label: "Drama", value: "drama" },
+                    { label: "Ecchi", value: "ecchi" },
+                    { label: "English Novel", value: "english-novel" },
+                    { label: "Fantasy", value: "fantasy" },
+                    { label: "Female Protagonist", value: "female-protagonist" },
+                    { label: "Game", value: "game" },
+                    { label: "Gender Bender", value: "gender-bender" },
+                    { label: "Harem", value: "harem" },
+                    { label: "Historical", value: "historical" },
+                    { label: "Horror", value: "horror" },
+                    { label: "Incest", value: "incest" },
+                    { label: "Isekai", value: "isekai" },
+                    { label: "Josei", value: "josei" },
+                    { label: "Korean Novel", value: "korean-novel" },
+                    { label: "Magic", value: "magic" },
+                    { label: "Martial Arts", value: "martial-arts" },
+                    { label: "Mature", value: "mature" },
+                    { label: "Mecha", value: "mecha" },
+                    { label: "Military", value: "military" },
+                    { label: "Misunderstanding", value: "misunderstanding" },
+                    { label: "Mystery", value: "mystery" },
+                    { label: "Netorare", value: "netorare" },
+                    { label: "One shot", value: "one-shot" },
+                    { label: "Otome Game", value: "otome-game" },
+                    { label: "Parody", value: "parody" },
+                    { label: "Psychological", value: "psychological" },
+                    { label: "Reverse Harem", value: "reverse-harem" },
+                    { label: "Romance", value: "romance" },
+                    { label: "School Life", value: "school-life" },
+                    { label: "Science Fiction", value: "science-fiction" },
+                    { label: "Seinen", value: "seinen" },
+                    { label: "Shoujo", value: "shoujo" },
+                    { label: "Shoujo ai", value: "shoujo-ai" },
+                    { label: "Shounen", value: "shounen" },
+                    { label: "Shounen ai", value: "shounen-ai" },
+                    { label: "Slice of Life", value: "slice-of-life" },
+                    { label: "Slow Life", value: "slow-life" },
+                    { label: "Sports", value: "sports" },
+                    { label: "Super Power", value: "super-power" },
+                    { label: "Supernatural", value: "supernatural" },
+                    { label: "Suspense", value: "suspense" },
+                    { label: "Tragedy", value: "tragedy" },
+                    { label: "Wars", value: "wars" },
+                    { label: "Web Novel", value: "web-novel" },
+                    { label: "Workplace", value: "workplace" },
+                    { label: "Yuri", value: "yuri" }
+                ],
+                inputType: filterInputs_1.FilterInputs.Picker,
+            },
+            {
+                key: "type",
+                label: "Phân loại",
+                values: [
+                    { label: "Truyện dịch", value: "truyendich" },
+                    { label: "Truyện sáng tác", value: "sangtac" },
+                    { label: "Convert", value: "convert" },
+                ],
+                inputType: filterInputs_1.FilterInputs.Checkbox,
+            },
+            {
+                key: "status",
+                label: "Tình trạng",
+                values: [
+                    { label: "Đang tiến hành", value: "dangtienhanh" },
+                    { label: "Tạm ngưng", value: "tamngung" },
+                    { label: "Đã hoàn thành", value: "hoanthanh" },
+                ],
+                inputType: filterInputs_1.FilterInputs.Checkbox,
+            },
+        ];
         this.id = "ln.hako";
         this.name = "Hako";
         this.icon = "src/vi/hakolightnovel/icon.png";
@@ -76,19 +215,35 @@ var HakoPlugin = /** @class */ (function () {
         });
         return novels;
     };
-    HakoPlugin.prototype.popularNovels = function (pageNo, options) {
+    HakoPlugin.prototype.popularNovels = function (pageNo, _a) {
+        var _b, _c;
+        var filters = _a.filters;
         return __awaiter(this, void 0, void 0, function () {
             var link, result, body, loadedCheerio;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            return __generator(this, function (_d) {
+                switch (_d.label) {
                     case 0:
-                        link = this.site + "/danh-sach?truyendich=1&sapxep=topthang&page=" + pageNo;
+                        link = this.site;
+                        if (!(filters === null || filters === void 0 ? void 0 : filters.genre)) {
+                            link += '/danh-sach/' + ((_b = filters === null || filters === void 0 ? void 0 : filters.az) !== null && _b !== void 0 ? _b : "") + '?';
+                        }
+                        else {
+                            link += '/the-loai/' + filters.genre + '?';
+                        }
+                        if (Array.isArray(filters === null || filters === void 0 ? void 0 : filters.type) && (filters === null || filters === void 0 ? void 0 : filters.type.length)) {
+                            link += filters.type.map(function (i) { return "".concat(i, "=1"); }).join("&");
+                        }
+                        if (Array.isArray(filters === null || filters === void 0 ? void 0 : filters.status) && (filters === null || filters === void 0 ? void 0 : filters.status.length)) {
+                            link += filters.status.map(function (i) { return "".concat(i, "=1"); }).join("&");
+                        }
+                        link += "&sapxep=" + ((_c = filters === null || filters === void 0 ? void 0 : filters.sort) !== null && _c !== void 0 ? _c : "topthang");
+                        link += "&page=" + pageNo;
                         return [4 /*yield*/, fetch(link)];
                     case 1:
-                        result = _a.sent();
+                        result = _d.sent();
                         return [4 /*yield*/, result.text()];
                     case 2:
-                        body = _a.sent();
+                        body = _d.sent();
                         loadedCheerio = (0, cheerio_1.load)(body);
                         return [2 /*return*/, this.parseNovels(loadedCheerio)];
                 }

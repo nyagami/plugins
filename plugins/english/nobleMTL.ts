@@ -22,9 +22,9 @@ class NobleMTL implements Plugin.PluginBase {
             if (Array.isArray(filters.type) && filters.type.length)
                 link += filters.type.map((i) => `&lang[]=${i}`).join("");
         }
-        link += "&status=" + (filters?.status ? filters.status : "");
+        link += "&status=" + (filters?.status ?? "");
 
-        link += "&order=" + (filters?.order ? filters.order : "popular");
+        link += "&order=" + (filters?.order ?? "popular");
 
         const headers = new Headers();
         if(this.cookieString){

@@ -65,7 +65,7 @@ class MadaraPlugin implements Plugin.PluginBase {
         if (filters?.genres &&  this.options?.path?.genres) {
             url += this.options?.path?.genres + filters.genres + '/';
         } else {
-            url += this.options?.path?.novels ? this.options.path.novels : MadaraDefaultPath.novels;
+            url += this.options?.path?.novels ?? MadaraDefaultPath.novels;
         }
     
         url += '/page/' + pageNo + '/' + 
@@ -123,7 +123,7 @@ class MadaraPlugin implements Plugin.PluginBase {
             switch (detailName) {
                 case 'Genre(s)':
                 case 'التصنيفات':
-                    novel.genres = detail.replace(/[\\t\\n]/g, ',');
+                    novel.genres = detail.replace(/[\t\n]/g, ',');
                     break;
                 case 'Author(s)':
                 case 'المؤلف':

@@ -2,7 +2,7 @@ import { CheerioAPI, load as parseHTML } from "cheerio";
 import { fetchApi, fetchFile } from "@libs/fetch";
 import { Plugin } from "@typings/plugin";
 import { isUrlAbsolute } from "@libs/isAbsoluteUrl";
-import { Filter } from "@libs/filterInputs";
+import { Filter, FilterInputs } from "@libs/filterInputs";
 class HakoPlugin implements Plugin.PluginBase {
     id: string;
     name: string;
@@ -51,8 +51,26 @@ class HakoPlugin implements Plugin.PluginBase {
         });
         return novels;
     }
-    async popularNovels(pageNo: number, options: Plugin.PopularNovelsOptions): Promise<Plugin.NovelItem[]> {
-        const link = this.site + "/danh-sach?truyendich=1&sapxep=topthang&page=" + pageNo;
+    async popularNovels(pageNo: number, {filters}: Plugin.PopularNovelsOptions): Promise<Plugin.NovelItem[]> {
+        let link = this.site;
+
+        if(!filters?.genre){
+            link += '/danh-sach/' + (filters?.az ?? "") + '?';
+        } else {
+            link += '/the-loai/' + filters.genre + '?';
+        }
+        
+        if (Array.isArray(filters?.type) && filters?.type.length) {
+                link += filters.type.map((i) => `${i}=1`).join("&");
+        }
+        if (Array.isArray(filters?.status) && filters?.status.length) {
+            link += filters.status.map((i) => `${i}=1`).join("&");
+        }
+
+        link += "&sapxep=" + (filters?.sort ?? "topthang");
+
+        link += "&page=" + pageNo;
+
         const result = await fetch(link);
         const body = await result.text();
         const loadedCheerio = parseHTML(body);
@@ -156,6 +174,241 @@ class HakoPlugin implements Plugin.PluginBase {
         };
         return await fetchFile(url, { headers: headers });
     }
+
+    filters = [
+        {
+            key: "sort",
+            label: "Sắp xếp",
+            values: [
+                { label: "A - Z", value: "tentruyen" },
+
+                { label: "Z - A", value: "tentruyenza" },
+            
+                { label: "Mới cập nhật", value: "capnhat" },
+            
+                { label: "Truyện mới", value: "truyenmoi" },
+            
+                { label: "Theo dõi", value: "theodoi" },
+            
+                { label: "Top toàn thời gian", value: "top" },
+            
+                { label: "Top tháng", value: "topthang" },
+            
+                { label: "Số từ", value: "sotu" }
+            ],
+            inputType: FilterInputs.Picker,
+        },
+        {
+            key: "az",
+            label: "Chữ cái",
+            values: [
+                { label: "Tất cả", value: "" },
+
+                { label: "#", value: "khac" },
+
+                { label: "A", value: "a" },
+
+                { label: "B", value: "b" },
+
+                { label: "C", value: "c" },
+
+                { label: "D", value: "d" },
+
+                { label: "E", value: "e" },
+
+                { label: "F", value: "f" },
+
+                { label: "G", value: "g" },
+
+                { label: "H", value: "h" },
+
+                { label: "I", value: "i" },
+
+                { label: "J", value: "j" },
+
+                { label: "K", value: "k" },
+
+                { label: "L", value: "l" },
+
+                { label: "M", value: "m" },
+
+                { label: "N", value: "n" },
+
+                { label: "O", value: "o" },
+
+                { label: "P", value: "p" },
+
+                { label: "Q", value: "q" },
+
+                { label: "R", value: "r" },
+
+                { label: "S", value: "s" },
+
+                { label: "T", value: "t" },
+
+                { label: "U", value: "u" },
+
+                { label: "V", value: "v" },
+
+                { label: "W", value: "w" },
+
+                { label: "X", value: "x" },
+
+                { label: "Y", value: "y" },
+
+                { label: "Z", value: "z" }
+            ],
+            inputType: FilterInputs.Picker,
+        },
+        {
+            key: "genre",
+            label: "Phân loại",
+            values: [
+                { label: "Action", value: "action" },
+
+                { label: "Adapted to Anime", value: "adapted-to-anime" },
+            
+                { label: "Adapted to Drama CD", value: "adapted-to-drama-cd" },
+            
+                { label: "Adapted to Manga", value: "adapted-to-manga" },
+            
+                { label: "Adult", value: "adult" },
+            
+                { label: "Adventure", value: "adventure" },
+            
+                { label: "Age Gap", value: "age-gap" },
+            
+                { label: "Boys Love", value: "boys-love" },
+            
+                { label: "Character Growth", value: "character-growth" },
+            
+                { label: "Chinese Novel", value: "chinese-novel" },
+            
+                { label: "Comedy", value: "comedy" },
+            
+                { label: "Cooking", value: "cooking" },
+            
+                { label: "Different Social Status", value: "different-social-status" },
+            
+                { label: "Drama", value: "drama" },
+            
+                { label: "Ecchi", value: "ecchi" },
+            
+                { label: "English Novel", value: "english-novel" },
+            
+                { label: "Fantasy", value: "fantasy" },
+            
+                { label: "Female Protagonist", value: "female-protagonist" },
+            
+                { label: "Game", value: "game" },
+            
+                { label: "Gender Bender", value: "gender-bender" },
+            
+                { label: "Harem", value: "harem" },
+            
+                { label: "Historical", value: "historical" },
+            
+                { label: "Horror", value: "horror" },
+            
+                { label: "Incest", value: "incest" },
+            
+                { label: "Isekai", value: "isekai" },
+            
+                { label: "Josei", value: "josei" },
+            
+                { label: "Korean Novel", value: "korean-novel" },
+            
+                { label: "Magic", value: "magic" },
+            
+                { label: "Martial Arts", value: "martial-arts" },
+            
+                { label: "Mature", value: "mature" },
+            
+                { label: "Mecha", value: "mecha" },
+            
+                { label: "Military", value: "military" },
+            
+                { label: "Misunderstanding", value: "misunderstanding" },
+            
+                { label: "Mystery", value: "mystery" },
+            
+                { label: "Netorare", value: "netorare" },
+            
+                { label: "One shot", value: "one-shot" },
+            
+                { label: "Otome Game", value: "otome-game" },
+            
+                { label: "Parody", value: "parody" },
+            
+                { label: "Psychological", value: "psychological" },
+            
+                { label: "Reverse Harem", value: "reverse-harem" },
+            
+                { label: "Romance", value: "romance" },
+            
+                { label: "School Life", value: "school-life" },
+            
+                { label: "Science Fiction", value: "science-fiction" },
+            
+                { label: "Seinen", value: "seinen" },
+            
+                { label: "Shoujo", value: "shoujo" },
+            
+                { label: "Shoujo ai", value: "shoujo-ai" },
+            
+                { label: "Shounen", value: "shounen" },
+            
+                { label: "Shounen ai", value: "shounen-ai" },
+            
+                { label: "Slice of Life", value: "slice-of-life" },
+            
+                { label: "Slow Life", value: "slow-life" },
+            
+                { label: "Sports", value: "sports" },
+            
+                { label: "Super Power", value: "super-power" },
+            
+                { label: "Supernatural", value: "supernatural" },
+            
+                { label: "Suspense", value: "suspense" },
+            
+                { label: "Tragedy", value: "tragedy" },
+            
+                { label: "Wars", value: "wars" },
+            
+                { label: "Web Novel", value: "web-novel" },
+            
+                { label: "Workplace", value: "workplace" },
+            
+                { label: "Yuri", value: "yuri" }
+            ],
+            inputType: FilterInputs.Picker,
+        },
+        {
+            key: "type",
+            label: "Phân loại",
+            values: [
+                { label: "Truyện dịch", value: "truyendich" },
+
+                { label: "Truyện sáng tác", value: "sangtac" },
+
+                { label: "Convert", value: "convert" },
+            ],
+            inputType: FilterInputs.Checkbox,
+        },
+        {
+            key: "status",
+            label: "Tình trạng",
+            values: [
+                { label: "Đang tiến hành", value: "dangtienhanh" },
+
+                { label: "Tạm ngưng", value: "tamngung" },
+
+                { label: "Đã hoàn thành", value: "hoanthanh" },
+            ],
+            inputType: FilterInputs.Checkbox,
+        },
+    ];
 }
 
 export default new HakoPlugin();

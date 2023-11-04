@@ -72,15 +72,16 @@ var Linovelib = /** @class */ (function () {
         ];
     }
     Linovelib.prototype.popularNovels = function (pageNo, _a) {
+        var _b;
         var filters = _a.filters;
         return __awaiter(this, void 0, void 0, function () {
             var link, headers, body, loadedCheerio, novels;
             var _this = this;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            return __generator(this, function (_c) {
+                switch (_c.label) {
                     case 0:
                         link = "".concat(this.site, "/top/");
-                        link += ((filters === null || filters === void 0 ? void 0 : filters.sort) ? filters.sort : "monthvisit");
+                        link += ((_b = filters === null || filters === void 0 ? void 0 : filters.sort) !== null && _b !== void 0 ? _b : "monthvisit");
                         link += "/".concat(pageNo, ".html");
                         headers = new Headers();
                         if (this.cookieString) {
@@ -90,7 +91,7 @@ var Linovelib = /** @class */ (function () {
                                 return result.text();
                             })];
                     case 1:
-                        body = _b.sent();
+                        body = _c.sent();
                         loadedCheerio = (0, cheerio_1.load)(body);
                         novels = [];
                         loadedCheerio(".module-rank-booklist .book-layout").each(function (i, el) {

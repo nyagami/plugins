@@ -64,12 +64,12 @@ var MadaraPlugin = /** @class */ (function () {
         this.filter = metadata.filters;
     }
     MadaraPlugin.prototype.popularNovels = function (pageNo, _a) {
-        var _b, _c, _d, _e, _f, _g;
+        var _b, _c, _d, _e, _f, _g, _h;
         var filters = _a.filters, showLatestNovels = _a.showLatestNovels;
         return __awaiter(this, void 0, void 0, function () {
             var novels, url, body, loadedCheerio;
-            return __generator(this, function (_h) {
-                switch (_h.label) {
+            return __generator(this, function (_j) {
+                switch (_j.label) {
                     case 0:
                         novels = [];
                         url = this.site;
@@ -77,13 +77,13 @@ var MadaraPlugin = /** @class */ (function () {
                             url += ((_e = (_d = this.options) === null || _d === void 0 ? void 0 : _d.path) === null || _e === void 0 ? void 0 : _e.genres) + filters.genres + '/';
                         }
                         else {
-                            url += ((_g = (_f = this.options) === null || _f === void 0 ? void 0 : _f.path) === null || _g === void 0 ? void 0 : _g.novels) ? this.options.path.novels : MadaraDefaultPath.novels;
+                            url += (_h = (_g = (_f = this.options) === null || _f === void 0 ? void 0 : _f.path) === null || _g === void 0 ? void 0 : _g.novels) !== null && _h !== void 0 ? _h : MadaraDefaultPath.novels;
                         }
                         url += '/page/' + pageNo + '/' +
                             '?m_orderby=' + (showLatestNovels ? 'latest' : ((filters === null || filters === void 0 ? void 0 : filters.sort) || 'rating'));
                         return [4 /*yield*/, (0, fetch_1.fetchApi)(url).then(function (res) { return res.text(); })];
                     case 1:
-                        body = _h.sent();
+                        body = _j.sent();
                         loadedCheerio = (0, cheerio_1.load)(body);
                         loadedCheerio('.manga-title-badges').remove();
                         loadedCheerio('.page-item-detail').each(function () {
@@ -134,7 +134,7 @@ var MadaraPlugin = /** @class */ (function () {
                             switch (detailName) {
                                 case 'Genre(s)':
                                 case 'التصنيفات':
-                                    novel.genres = detail.replace(/[\\t\\n]/g, ',');
+                                    novel.genres = detail.replace(/[\t\n]/g, ',');
                                     break;
                                 case 'Author(s)':
                                 case 'المؤلف':
