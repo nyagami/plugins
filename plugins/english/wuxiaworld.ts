@@ -43,11 +43,7 @@ class WuxiaWorld implements Plugin.PluginBase {
     async popularNovels(pageNo: number, options: Plugin.PopularNovelsOptions<Filters>): Promise<Plugin.NovelItem[]> {
         const link = `${this.site}api/novels`;
 
-        const result = await fetch(link, {
-            headers: {
-                "User-Agent": "",
-            }
-        });
+        const result = await fetchApi(link);
         const data = await result.json();
 
         return this.parseNovels(data)
@@ -66,7 +62,6 @@ class WuxiaWorld implements Plugin.PluginBase {
             {
                 headers: {
                     "Content-Type": "application/grpc-web+proto",
-                    "User-Agent": "",
                 }
             }
         )
@@ -84,15 +79,15 @@ class WuxiaWorld implements Plugin.PluginBase {
         };
 
         // novel.summary = loadedCheerio('.relative > .absolute:first')
-  		// 	.children('span')
-  		// 	.map((i,el) => loadedCheerio(el).text().trim())
+  		// 	   .children('span')
+  		// 	   .map((i,el) => loadedCheerio(el).text().trim())
         //     .toArray()
         //     .join('\n');
 
         // novel.genres = loadedCheerio("a.MuiLink-underlineNone")
-  		// 	.map((i,el) => loadedCheerio(el).text())
-  		// 	.toArray()
-  		// 	.join(',');
+  		// 	   .map((i,el) => loadedCheerio(el).text())
+  		// 	   .toArray()
+  		// 	   .join(',');
 
         // novel.status = loadedCheerio("div.font-set-b10").text();
 
@@ -107,7 +102,6 @@ class WuxiaWorld implements Plugin.PluginBase {
             {
                 headers: {
                     "Content-Type": "application/grpc-web+proto",
-                    "User-Agent": "",
                 }
             }
         )
@@ -122,26 +116,13 @@ class WuxiaWorld implements Plugin.PluginBase {
             }))
         );
 
-        // loadedCheerio("div.border-b.border-gray-line-base").each((idx, ele) => {
-        //     const name = loadedCheerio(ele)
-        //         .find("a > div > div > div > span")
-        //         .text();
-        //     const releaseTime = loadedCheerio(ele)
-        //         .find("a > div > div > div > div > span")
-        //         .text();
-        //     const path = loadedCheerio(ele).find("a").attr("href")?.slice(1);
-        //     if (!path) return;
-
-        //     chapter.push({ name, releaseTime, path });
-        // });
-
         novel.chapters = chapter;
 
         return novel;
     }
 
     async parseChapter(chapterPath: string): Promise<string> {
-        const pathing = chapterPath.split('/');
+        const paths = chapterPath.split('/');
         const data = await fetchProto(
             {
                 proto: this.proto,
@@ -150,8 +131,8 @@ class WuxiaWorld implements Plugin.PluginBase {
                 requestData: {
                     chapterProperty: {
                         slugs: {
-                            novelSlug: pathing[0],
-                            chapterSlug: pathing[1],
+                            novelSlug: paths[0],
+                            chapterSlug: paths[1],
                         }
                     }
                 },
@@ -160,26 +141,16 @@ class WuxiaWorld implements Plugin.PluginBase {
             {
                 headers: {
                     "Content-Type": "application/grpc-web+proto",
-                    "User-Agent": "",
                 }
             }
         )
+        // loadedCheerio(".chapter-nav").remove();
+        // loadedCheerio("#chapter-content > script").remove();
+        // const chapterText = loadedCheerio("#chapter-content").html() || '';
 
         const result = JSON.parse(data)
         const chapterText = result.item.content.value || "";
         return chapterText
-        // const result = await fetchApi(chapterUrl);
-        // const body = await result.text();
-
-        // const loadedCheerio = parseHTML(body);
-
-        // loadedCheerio(".chapter-nav").remove();
-
-        // loadedCheerio("#chapter-content > script").remove();
-
-        // const chapterText = loadedCheerio("#chapter-content").html() || '';
-
-        // return chapterText;
     }
 
     async searchNovels(searchTerm: string, pageNo: number): Promise<Plugin.NovelItem[]> {
