@@ -73,19 +73,17 @@ class WuxiaWorld implements Plugin.PluginBase {
             }
         )
 
-        const novelInfo = JSON.parse(data);
-
         const novel: Plugin.SourceNovel = {
             path: novelPath,
-            name: novelInfo.item.name || "Untitled",
-            cover: novelInfo.item.coverUrl.value,
-            summary: novelInfo.item.description.value + '\n' + novelInfo.item.synopsis.value,
-            author: novelInfo.item.authorName.value,
-            genres: novelInfo.item.genres,
+            name: data.item.name || "Untitled",
+            cover: data.item.coverUrl.value,
+            summary: data.item.description.value + '\n' + data.item.synopsis.value,
+            author: data.item.authorName.value,
+            genres: data.item.genres,
             chapters: [],
         };
 
-        const status = novelInfo.item.status;
+        const status = data.item.status;
         switch (status){
             case "Active":
                 novel.status = NovelStatus.Ongoing;
@@ -114,7 +112,7 @@ class WuxiaWorld implements Plugin.PluginBase {
                 proto: this.proto,
                 requestType: 'GetChapterListRequest',
                 responseType: 'GetChapterListResponse',
-                requestData: {novelId: Number(novelInfo.item.id)},
+                requestData: {novelId: Number(data.item.id)},
             }, 
             'https://api2.wuxiaworld.com/wuxiaworld.api.v2.Chapters/GetChapterList',
             {
@@ -123,12 +121,10 @@ class WuxiaWorld implements Plugin.PluginBase {
                 }
             }
         )
-        const freeChapter = novelInfo.item.karmaInfo?.maxFreeChapter?.units +
-            (novelInfo.item.karmaInfo?.maxFreeChapter?.nanos || 0) / 1000000000 || 50;
+        const freeChapter = data.item.karmaInfo?.maxFreeChapter?.units +
+            (data.item.karmaInfo?.maxFreeChapter?.nanos || 0) / 1000000000 || 50;
 
-        const listInfo = JSON.parse(list);
-
-        const chapter: Plugin.ChapterItem[] = listInfo.items.flatMap((item: { chapterList: ChapterListing[] }) => 
+        const chapter: Plugin.ChapterItem[] = list.items.flatMap((item: { chapterList: ChapterListing[] }) => 
             item.chapterList.map((chapterItem: ChapterListing, i: number) => ({
                 name: chapterItem.name + (
                     (chapterItem.relatedUserInfo?.isChapterUnlocked === false) ||
@@ -177,8 +173,7 @@ class WuxiaWorld implements Plugin.PluginBase {
         // loadedCheerio("#chapter-content > script").remove();
         // const chapterText = loadedCheerio("#chapter-content").html() || '';
 
-        const result = JSON.parse(data)
-        const chapterText = result.item.content?.value || "";
+        const chapterText = data.item.content?.value || "";
         return chapterText
     }
 
