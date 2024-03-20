@@ -1,6 +1,7 @@
 import { fetchApi, fetchFile, fetchProto } from "@libs/fetch";
 import { Plugin } from "@typings/plugin";
 import { Filters } from "@libs/filterInputs";
+import { NovelStatus } from "@libs/novelStatus";
 
 interface NovelEntry {
     name: string;
@@ -28,7 +29,7 @@ class WuxiaWorld implements Plugin.PluginBase {
         data.items.map((novel: NovelEntry) => {
             const name = novel.name;
             const cover = novel.coverUrl;
-            const path = novel.slug; /*novel/${novel.slug}/*/
+            const path = `novel/${novel.slug}/`;
 
             novels.push({
                 name,
@@ -56,7 +57,7 @@ class WuxiaWorld implements Plugin.PluginBase {
                 proto: this.proto,
                 requestType: 'GetNovelRequest',
                 responseType: 'GetNovelResponse',
-                requestData: {slug: novelPath},
+                requestData: {slug: novelPath.split('/')[1]},
             },
             'https://api2.wuxiaworld.com/wuxiaworld.api.v2.Novels/GetNovel',
             {
@@ -77,6 +78,17 @@ class WuxiaWorld implements Plugin.PluginBase {
             genres: novelInfo.item.genres,
             chapters: [],
         };
+
+        const status = novelInfo.item.status;
+        switch (status){
+            case "Active":
+                novel.status = NovelStatus.Ongoing;
+                break;
+            case "Hiatus":
+                novel.status = NovelStatus.OnHiatus;
+                break;
+            default: novel.status = NovelStatus.Completed;
+        }
 
         // novel.summary = loadedCheerio('.relative > .absolute:first')
   		// 	   .children('span')
@@ -111,7 +123,7 @@ class WuxiaWorld implements Plugin.PluginBase {
         const chapter: Plugin.ChapterItem[] = listInfo.items.flatMap((item: { chapterList: ChapterListing[]}) => 
             item.chapterList.map((chapterItem: ChapterListing) => ({
                 name: chapterItem.name,
-                path: novelPath + '/' + chapterItem.slug,
+                path: novelPath + chapterItem.slug,
                 chapterNumber: chapterItem.offset
             }))
         );
@@ -131,8 +143,8 @@ class WuxiaWorld implements Plugin.PluginBase {
                 requestData: {
                     chapterProperty: {
                         slugs: {
-                            novelSlug: paths[0],
-                            chapterSlug: paths[1],
+                            novelSlug: paths[1],
+                            chapterSlug: paths[2],
                         }
                     }
                 },
@@ -150,13 +162,13 @@ class WuxiaWorld implements Plugin.PluginBase {
 
         const result = JSON.parse(data)
         const chapterText = result.item.content.value || "";
-        return chapterText
+        return chapterText;
     }
 
     async searchNovels(searchTerm: string, pageNo: number): Promise<Plugin.NovelItem[]> {
         const searchUrl = "https://www.wuxiaworld.com/api/novels/search?query=";
 
-        const url = `${searchUrl}${searchTerm}`;
+        const url = searchUrl + searchTerm ;
 
         const result = await fetchApi(url);
         const data = await result.json();
