@@ -1,3 +1,4 @@
+import { load as parseHTML } from "cheerio";
 import { fetchApi, fetchFile, fetchProto } from "@libs/fetch";
 import { Plugin } from "@typings/plugin";
 import { Filters } from "@libs/filterInputs";
@@ -154,7 +155,7 @@ class WuxiaWorld implements Plugin.PluginBase {
             path: novelPath,
             name: data.item?.name || "Untitled",
             cover: data.item?.coverUrl?.value,
-            summary: data.item?.description?.value + '\n' + data.item?.synopsis?.value,
+            summary: parseHTML(data.item?.description?.value + '\n\n' + data.item?.synopsis?.value).text(),
             author: data.item?.authorName?.value,
             genres: data.item?.genres.join(','),
             chapters: [],
