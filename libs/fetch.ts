@@ -153,9 +153,6 @@ export const fetchProto = async function (
         const payload = new Uint8Array(arr);
         const length = Number(BigInt(payload[1] << 24) | BigInt(payload[2] << 16) | BigInt(payload[3] << 8) | BigInt(payload[4]));
         const ResponseMessage = protoRoot.lookupType(protoInit.responseType);
-        const data = JSON.stringify(ResponseMessage.decode(payload.slice(5, 5 + length)));
-        console.log(data);
-        
-        return data;
+        return (ResponseMessage.decode(payload.slice(5, 5 + length)));
     })
 }
