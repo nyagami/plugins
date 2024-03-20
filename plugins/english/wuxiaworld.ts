@@ -32,16 +32,18 @@ interface RelatedChapterUserInfo {
 }
 
 interface ChapterItem {
-    item: {
-        entityId: number;
-        name: string;
-        slug: string;
-        number?: DecimalValue;
-        content?: StringValue;
-        relatedUserInfo?: RelatedChapterUserInfo;
-        offset: number;
-        publishedAt?: Timestamp;
-    }
+    entityId: number;
+    name: string;
+    slug: string;
+    number?: DecimalValue;
+    content?: StringValue;
+    relatedUserInfo?: RelatedChapterUserInfo;
+    offset: number;
+    publishedAt?: Timestamp;
+}
+
+interface GetChapterResponse {
+    item?: ChapterItem;
 }
 
 interface ChapterGroupCounts {
@@ -51,15 +53,17 @@ interface ChapterGroupCounts {
 }
 
 interface ChapterGroupItem {
-    items : {
-        id: number;
-        title: string;
-        order: number;
-        fromChapterNumber?: DecimalValue;
-        toChapterNumber?: DecimalValue;
-        chapterList: ChapterItem[];
-        counts?: ChapterGroupCounts;
-    }
+    id: number;
+    title: string;
+    order: number;
+    fromChapterNumber?: DecimalValue;
+    toChapterNumber?: DecimalValue;
+    chapterList: ChapterItem[];
+    counts?: ChapterGroupCounts;
+}
+
+interface GetChapterListResponse {
+    items: ChapterGroupItem[];
 }
 
 enum NovelItem_Status {
@@ -77,20 +81,22 @@ interface NovelKarmaInfo {
 }
 
 interface NovelItem {
-    item: {
-        id: number;
-        name: string;
-        slug: string;
-        status: NovelItem_Status;
-        visible: boolean;
-        description?: StringValue;
-        synopsis?: StringValue;
-        coverUrl?: StringValue;
-        translatorName?: StringValue;
-        authorName?: StringValue;
-        karmaInfo?: NovelKarmaInfo;
-        genres: string[];
-    }
+    id: number;
+    name: string;
+    slug: string;
+    status: NovelItem_Status;
+    visible: boolean;
+    description?: StringValue;
+    synopsis?: StringValue;
+    coverUrl?: StringValue;
+    translatorName?: StringValue;
+    authorName?: StringValue;
+    karmaInfo?: NovelKarmaInfo;
+    genres: string[];
+}
+
+interface GetNovelResponse {
+    item?: NovelItem;
 }
 
 class WuxiaWorld implements Plugin.PluginBase {
@@ -129,7 +135,7 @@ class WuxiaWorld implements Plugin.PluginBase {
     }
 
     async parseNovel(novelPath: string): Promise<Plugin.SourceNovel> {
-        const data = await fetchProto<NovelItem>(
+        const data = await fetchProto<GetNovelResponse>(
             {
                 proto: this.proto,
                 requestType: 'GetNovelRequest',
@@ -146,15 +152,15 @@ class WuxiaWorld implements Plugin.PluginBase {
 
         const novel: Plugin.SourceNovel = {
             path: novelPath,
-            name: data.item.name || "Untitled",
-            cover: data.item.coverUrl?.value,
-            summary: data.item.description?.value + '\n' + data.item.synopsis?.value,
-            author: data.item.authorName?.value,
-            genres: data.item.genres.join(','),
+            name: data.item?.name || "Untitled",
+            cover: data.item?.coverUrl?.value,
+            summary: data.item?.description?.value + '\n' + data.item?.synopsis?.value,
+            author: data.item?.authorName?.value,
+            genres: data.item?.genres.join(','),
             chapters: [],
         };
 
-        const status = data.item.status;
+        const status = data.item?.status;
         switch (status){
             case NovelItem_Status.Active:
                 novel.status = NovelStatus.Ongoing;
@@ -181,12 +187,12 @@ class WuxiaWorld implements Plugin.PluginBase {
 
         // novel.status = loadedCheerio("div.font-set-b10").text();
 
-        const list = await fetchProto<ChapterGroupItem>(
+        const list = await fetchProto<GetChapterListResponse>(
             {
                 proto: this.proto,
                 requestType: 'GetChapterListRequest',
                 responseType: 'GetChapterListResponse',
-                requestData: {novelId: data.item.id},
+                requestData: {novelId: data.item?.id},
             }, 
             'https://api2.wuxiaworld.com/wuxiaworld.api.v2.Chapters/GetChapterList',
             {
@@ -195,25 +201,29 @@ class WuxiaWorld implements Plugin.PluginBase {
                 }
             }
         )
-        const freeChapter = Number(data.item.karmaInfo?.maxFreeChapter?.units) +
-            (data.item.karmaInfo?.maxFreeChapter?.nanos || 0) / 1000000000 || 50;
 
-        const chapter: Plugin.ChapterItem[] = list.items.chapterList
-            .map((chapterItem: ChapterItem, i: number) => ({
-                name: chapterItem.item.name + (
-                    (chapterItem.item.relatedUserInfo?.isChapterUnlocked?.value === false) ||
-                    (!chapterItem.item.relatedUserInfo && i > freeChapter)  
+        const freeChapter = Number(data.item?.karmaInfo?.maxFreeChapter?.units) +
+            (data.item?.karmaInfo?.maxFreeChapter?.nanos || 0) / 1000000000 || 50;
+
+        const chapter: Plugin.ChapterItem[] = list.items.flatMap((ChapterGroupItem: ChapterGroupItem) =>
+            ChapterGroupItem.chapterList.map((chapterItem: ChapterItem) => ({
+                page: ChapterGroupItem.title,
+                name: chapterItem.name + (
+                    (chapterItem.relatedUserInfo?.isChapterUnlocked?.value === false) ||
+                    (!chapterItem.relatedUserInfo && 
+                        (Number(chapterItem.number?.units) +
+                        (chapterItem.number?.nanos || 0) / 1000000000) > freeChapter)  
                     ? ' 🔒' 
                     : ''
                 ),
-                path: novelPath + chapterItem.item.slug,
-                chapterNumber: chapterItem.item.offset,
+                path: novelPath + chapterItem.slug,
+                chapterNumber: chapterItem.offset,
                 releaseTime: new Date(
-                    (chapterItem.item.publishedAt?.seconds || 0) * 1000 +
-                    (chapterItem.item.publishedAt?.nanos || 0) / 1000000
+                    (chapterItem.publishedAt?.seconds || 0) * 1000 +
+                    (chapterItem.publishedAt?.nanos || 0) / 1000000
                 ).toISOString(),
             })
-        );
+        ));
 
         novel.chapters = chapter;
 
@@ -222,7 +232,7 @@ class WuxiaWorld implements Plugin.PluginBase {
 
     async parseChapter(chapterPath: string): Promise<string> {
         const paths = chapterPath.split('/');
-        const data = await fetchProto<ChapterItem>(
+        const data = await fetchProto<GetChapterResponse>(
             {
                 proto: this.proto,
                 requestType: 'GetChapterRequest',
@@ -247,7 +257,7 @@ class WuxiaWorld implements Plugin.PluginBase {
         // loadedCheerio("#chapter-content > script").remove();
         // const chapterText = loadedCheerio("#chapter-content").html() || '';
 
-        const chapterText = data.item.content?.value || "";
+        const chapterText = data.item?.content?.value || "";
         return chapterText
     }
 
