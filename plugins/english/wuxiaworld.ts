@@ -13,6 +13,13 @@ interface ChapterListing {
     name: string,
     slug: string;
     offset: number;
+    publishedAt: {
+        seconds: number;
+        nanos: number;
+    }
+    relatedUserInfo :{
+        isChapterUnlocked: boolean
+    }
 }
 
 class WuxiaWorld implements Plugin.PluginBase {
@@ -50,7 +57,6 @@ class WuxiaWorld implements Plugin.PluginBase {
         return this.parseNovels(data)
     }
 
-
     async parseNovel(novelPath: string): Promise<Plugin.SourceNovel> {
         const data = await fetchProto(
             {
@@ -66,7 +72,7 @@ class WuxiaWorld implements Plugin.PluginBase {
                 }
             }
         )
-        
+
         const novelInfo = JSON.parse(data);
 
         const novel: Plugin.SourceNovel = {
@@ -117,14 +123,25 @@ class WuxiaWorld implements Plugin.PluginBase {
                 }
             }
         )
+        const freeChapter = novelInfo.item.karmaInfo?.maxFreeChapter?.units +
+            (novelInfo.item.karmaInfo?.maxFreeChapter?.nanos || 0) / 1000000000 || 50;
 
         const listInfo = JSON.parse(list);
 
-        const chapter: Plugin.ChapterItem[] = listInfo.items.flatMap((item: { chapterList: ChapterListing[]}) => 
-            item.chapterList.map((chapterItem: ChapterListing) => ({
-                name: chapterItem.name,
+        const chapter: Plugin.ChapterItem[] = listInfo.items.flatMap((item: { chapterList: ChapterListing[] }) => 
+            item.chapterList.map((chapterItem: ChapterListing, i: number) => ({
+                name: chapterItem.name + (
+                    (chapterItem.relatedUserInfo?.isChapterUnlocked === false) ||
+                    (!chapterItem.relatedUserInfo && i > freeChapter)  
+                    ? ' 🔒' 
+                    : ''
+                ),
                 path: novelPath + chapterItem.slug,
-                chapterNumber: chapterItem.offset
+                chapterNumber: chapterItem.offset,
+                releaseTime: new Date(
+                    chapterItem.publishedAt.seconds * 1000 + 
+                    (chapterItem.publishedAt.nanos || 0) / 1000000
+                ).toISOString(),
             }))
         );
 
@@ -161,14 +178,14 @@ class WuxiaWorld implements Plugin.PluginBase {
         // const chapterText = loadedCheerio("#chapter-content").html() || '';
 
         const result = JSON.parse(data)
-        const chapterText = result.item.content.value || "";
-        return chapterText;
+        const chapterText = result.item.content?.value || "";
+        return chapterText
     }
 
     async searchNovels(searchTerm: string, pageNo: number): Promise<Plugin.NovelItem[]> {
         const searchUrl = "https://www.wuxiaworld.com/api/novels/search?query=";
 
-        const url = searchUrl + searchTerm ;
+        const url = searchUrl + searchTerm;
 
         const result = await fetchApi(url);
         const data = await result.json();
@@ -216,6 +233,14 @@ class WuxiaWorld implements Plugin.PluginBase {
         int32 nanos = 2;
     }
 
+    message RelatedChapterUserInfo {
+        optional BoolValue isChapterUnlocked = 1;
+        optional BoolValue isNovelUnlocked = 2;
+        optional BoolValue isChapterFavorite = 3;
+        optional BoolValue isNovelOwned = 4;
+        optional BoolValue isChapterOwned = 5;
+    }
+
     message ChapterNovelInfo {
         int32 id = 1;
         string name = 2;
@@ -228,11 +253,6 @@ class WuxiaWorld implements Plugin.PluginBase {
         int32 chapterId = 2;
         int32 totalComments = 3;
         optional StringValue content = 4;
-    }
-
-    message ChapterKarma {
-        optional Int32Value karmaPrice = 1;
-        bool isKarmaRequired = 2;
     }
     
     message ChapterItem {
@@ -247,8 +267,8 @@ class WuxiaWorld implements Plugin.PluginBase {
         optional Timestamp whenToPublish = 9;
         bool spoilerTitle = 10;
         bool allowComments = 11;
-        optional ChapterKarma karmaInfo = 13;
         optional ChapterNovelInfo novelInfo = 14;
+        optional RelatedChapterUserInfo relatedUserInfo = 16;
         int32 offset = 17;
         optional Timestamp publishedAt = 18;
         optional StringValue translatorThoughts = 19;
@@ -313,6 +333,13 @@ class WuxiaWorld implements Plugin.PluginBase {
         optional ChapterItem item = 1;
     }
 
+    message NovelKarmaInfo {
+        bool isActive = 1;
+        bool isFree = 2;
+        optional DecimalValue maxFreeChapter = 3;
+        bool canUnlockWithVip = 4;
+    }
+
     message NovelItem {
         int32 id = 1;
         string name = 2;
@@ -330,6 +357,7 @@ class WuxiaWorld implements Plugin.PluginBase {
         optional StringValue coverUrl = 10;
         optional StringValue translatorName = 11;
         optional StringValue authorName = 13;
+        optional NovelKarmaInfo karmaInfo = 14;
         repeated string genres = 16;
     }
 
